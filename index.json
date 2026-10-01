@@ -1,0 +1,1027 @@
+{
+  "schema": "apex-skill-hub-v1",
+  "name": "Apex Skill Hub",
+  "description": "Apex Agent official skill repository - curated life & general-purpose skills for the Agent workstation. Install on demand from the in-app Market.",
+  "count": 62,
+  "skills": [
+    {
+      "id": "appliance-rescue",
+      "name": "家电急救",
+      "version": "1.0.0",
+      "description": "家电不通电、异响、漏水等常见故障的自查决策树、断电安全规范与报修换新决策，帮用户安全自救、判断何时该找专业维修",
+      "category": "AGENT",
+      "tags": [
+        "家电",
+        "维修",
+        "故障",
+        "appliance",
+        "troubleshooting"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/appliance-rescue.json"
+    },
+    {
+      "id": "beauty-skincare",
+      "name": "美妆护肤指南",
+      "version": "1.0.0",
+      "description": "护肤方法论：肤质自判与动态调整、早晚流程框架、功效成分对照与耐受建立、烂脸避雷清单（过度清洁/猛药叠加/三无速效）、防晒优先的预算分配",
+      "category": "AGENT",
+      "tags": [
+        "护肤",
+        "美妆",
+        "成分",
+        "skincare"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/beauty-skincare.json"
+    },
+    {
+      "id": "blessing-writer",
+      "name": "节日祝福",
+      "version": "1.0.0",
+      "description": "为不想再群发模板祝福的人定制走心祝福：节日、生日、乔迁、升学升职等节点，按长辈晚辈朋友客户分对象调整语气，真诚具体不落俗套",
+      "category": "AGENT",
+      "tags": [
+        "祝福语",
+        "拜年",
+        "生日祝福",
+        "greetings",
+        "blessing"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/blessing-writer.json"
+    },
+    {
+      "id": "brainstorm-partner",
+      "name": "头脑风暴搭子",
+      "version": "1.0.0",
+      "description": "创意工作流：发散收敛双阶段纪律、SCAMPER 七问、六顶思考帽、评估矩阵筛选与组合升级，附流程模板",
+      "category": "AGENT",
+      "tags": [
+        "头脑风暴",
+        "创意",
+        "点子",
+        "brainstorm"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/brainstorm-partner.json"
+    },
+    {
+      "id": "car-buying",
+      "name": "购车避坑指南",
+      "version": "1.0.0",
+      "description": "购车决策框架：需求画像定位、候选参数对比表、试驾检查要点、落地价明细与谈判策略、新能源与燃油对比",
+      "category": "AGENT",
+      "tags": [
+        "购车",
+        "买车",
+        "新能源车",
+        "car"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/car-buying.json"
+    },
+    {
+      "id": "career-navigator",
+      "name": "职业发展规划",
+      "version": "1.0.0",
+      "description": "职业规划框架：能力四清单盘点、行业三层分析、路径三选项评估、跳槽时机信号清单、职业倦怠分型应对",
+      "category": "AGENT",
+      "tags": [
+        "职业",
+        "规划",
+        "跳槽",
+        "career"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/career-navigator.json"
+    },
+    {
+      "id": "chat-companion",
+      "name": "情感陪伴聊天",
+      "version": "1.0.0",
+      "description": "情感陪伴五步法：拆解情绪层与事实层、共情确认三件套、倾听优先不评判、按求助信号切换建议模式、危机信号温和转介",
+      "category": "AGENT",
+      "tags": [
+        "聊天",
+        "陪伴",
+        "倾听",
+        "empathy",
+        "companion"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/chat-companion.json"
+    },
+    {
+      "id": "cleaning-hacks",
+      "name": "清洁妙招",
+      "version": "1.0.0",
+      "description": "各类污渍对症去除、异味清除、家电定期清洁与衣鞋护理，含清洁剂混用安全警示，帮用户用对方法把家清得干净又不伤物",
+      "category": "AGENT",
+      "tags": [
+        "清洁",
+        "去污",
+        "家务",
+        "cleaning",
+        "stain-removal"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/cleaning-hacks.json"
+    },
+    {
+      "id": "coffee-tea-guide",
+      "name": "咖啡茶饮",
+      "version": "1.0.0",
+      "description": "咖啡与茶的冲煮参数底盘、入门装备梯度、豆茶选购与风味品鉴训练，附流行饮品在家复刻配方，让爱好者在家做出好喝的一杯",
+      "category": "AGENT",
+      "tags": [
+        "咖啡",
+        "泡茶",
+        "手冲",
+        "coffee",
+        "tea"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/coffee-tea-guide.json"
+    },
+    {
+      "id": "constellation-star",
+      "name": "星座命理趣谈",
+      "version": "1.0.0",
+      "description": "星座趣谈框架：四元素×三特质速写矩阵、配对分析口径、水逆/上升星座等概念科普、巴纳姆效应提醒，全程明确娱乐性质、不参与重大决策",
+      "category": "AGENT",
+      "tags": [
+        "星座",
+        "配对",
+        "娱乐",
+        "astrology"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/constellation-star.json"
+    },
+    {
+      "id": "cooking-master",
+      "name": "家常菜大师",
+      "version": "1.0.0",
+      "description": "家常菜四维法：备料与预处理、火候时序、基础味型调味公式（咸鲜/糖醋/鱼香/麻辣）、替代食材与翻车抢救，按症状反查失败原因",
+      "category": "AGENT",
+      "tags": [
+        "菜谱",
+        "做饭",
+        "烹饪",
+        "cooking"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/cooking-master.json"
+    },
+    {
+      "id": "digital-picker",
+      "name": "数码选购",
+      "version": "1.0.0",
+      "description": "手机电脑外设选购决策：需求预算矩阵、核心参数人话解读、候选横评与避坑清单，帮换机用户把钱花在真实需求上不交智商税",
+      "category": "AGENT",
+      "tags": [
+        "数码",
+        "选购",
+        "参数",
+        "gadget",
+        "buying-guide"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/digital-picker.json"
+    },
+    {
+      "id": "dream-reader",
+      "name": "解梦趣谈",
+      "version": "1.0.0",
+      "description": "为对梦境好奇的人做趣味解梦：心理学视角看情绪投射与日间残留，辅以中西文化对照趣谈，全程明确娱乐性质，不预测不引焦虑",
+      "category": "AGENT",
+      "tags": [
+        "解梦",
+        "做梦",
+        "梦境",
+        "dream",
+        "psychology"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/dream-reader.json"
+    },
+    {
+      "id": "emotional-companion",
+      "name": "情绪陪伴",
+      "version": "1.0.0",
+      "description": "聊天技能：倾听、共情与情绪支持 —— 在用户倾诉时主动调用",
+      "category": "PRODUCTIVITY",
+      "tags": [
+        "chat",
+        "empathy",
+        "companion",
+        "emotional-support"
+      ],
+      "scope": "agent",
+      "author": "Apex Agent",
+      "file": "skills/emotional-companion.json"
+    },
+    {
+      "id": "emotional-value",
+      "name": "情绪价值供给",
+      "version": "1.0.0",
+      "description": "夸人三段式（具体行为+独特点+真实影响）、焦虑安抚三步（承认合理→缩小灾难化→给可控感）、化解尴尬三板斧与高情商回应模板",
+      "category": "AGENT",
+      "tags": [
+        "情商",
+        "夸人",
+        "安抚",
+        "social-skills"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/emotional-value.json"
+    },
+    {
+      "id": "etiquette-coach",
+      "name": "社交礼仪",
+      "version": "1.0.0",
+      "description": "为职场人与社交新手梳理礼仪规范：称呼法则、中西餐桌规矩、做客之道、微信沟通分寸与中外差异提示，让人舒适不制造焦虑",
+      "category": "AGENT",
+      "tags": [
+        "礼仪",
+        "称呼",
+        "做客",
+        "etiquette",
+        "manners"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/etiquette-coach.json"
+    },
+    {
+      "id": "exam-tutor",
+      "name": "考试备考教练",
+      "version": "1.0.0",
+      "description": "备考体系：考纲拆解到考点颗粒度、三轮复习法（地毯-专题-套卷）、真题三刷策略、考场时间分配与心态预案",
+      "category": "AGENT",
+      "tags": [
+        "考试",
+        "备考",
+        "复习",
+        "exam"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/exam-tutor.json"
+    },
+    {
+      "id": "fashion-stylist",
+      "name": "穿搭时尚顾问",
+      "version": "1.0.0",
+      "description": "穿搭顾问体系：身型修饰逻辑（收敛/展开/提高腰线）、60-30-10色彩法则、场合着装基准（面试/约会/婚礼/见长辈）、胶囊衣橱与购物优先级",
+      "category": "AGENT",
+      "tags": [
+        "穿搭",
+        "时尚",
+        "搭配",
+        "fashion"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/fashion-stylist.json"
+    },
+    {
+      "id": "fat-loss-coach",
+      "name": "减脂食谱",
+      "version": "1.0.0",
+      "description": "基于热量缺口与高蛋白结构的减脂饮食法：三餐模板、外食外卖策略与平台期排查，反对极端节食与药物捷径，帮用户可持续地健康变瘦",
+      "category": "AGENT",
+      "tags": [
+        "减脂",
+        "减重",
+        "热量",
+        "fat-loss",
+        "diet"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/fat-loss-coach.json"
+    },
+    {
+      "id": "finance-literacy",
+      "name": "理财入门顾问",
+      "version": "1.0.0",
+      "description": "理财入门五步：记账摸底、应急金垫底、配置金字塔分层、复利思维养习惯、防骗清单避雷；仅财商科普，不构成投资建议",
+      "category": "AGENT",
+      "tags": [
+        "理财",
+        "记账",
+        "存钱",
+        "finance"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/finance-literacy.json"
+    },
+    {
+      "id": "fitness-coach",
+      "name": "健身私教",
+      "version": "1.0.0",
+      "description": "健身六原则：先评估再开计划、推拉腿分化逻辑、动作要领校验点、渐进超负荷路径、热身拉伸闭环、增肌减脂饮食配合口径",
+      "category": "AGENT",
+      "tags": [
+        "健身",
+        "训练",
+        "增肌",
+        "fitness"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/fitness-coach.json"
+    },
+    {
+      "id": "game-strategist",
+      "name": "游戏攻略军师",
+      "version": "1.0.0",
+      "description": "游戏攻略框架：上下文四要素校准（游戏/版本/进度/瓶颈）、卡关排查四象限（数值/机制/构筑/操作）、build三步法、手残党与时间党适配",
+      "category": "AGENT",
+      "tags": [
+        "游戏",
+        "攻略",
+        "配装",
+        "gaming"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/game-strategist.json"
+    },
+    {
+      "id": "gift-chooser",
+      "name": "礼物挑选专家",
+      "version": "1.0.0",
+      "description": "礼物挑选公式：定位四要素（关系/场合/预算/画像）、礼物类型与关系阶段匹配、文化忌讳与社交雷区清单、预算呈现策略、卡片文案三段式",
+      "category": "AGENT",
+      "tags": [
+        "礼物",
+        "送礼",
+        "挑选",
+        "gifts"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/gift-chooser.json"
+    },
+    {
+      "id": "health-consultant",
+      "name": "健康养生顾问",
+      "version": "1.0.0",
+      "description": "健康咨询纪律：红旗症状优先分诊（胸痛/卒中/出血即刻就医）、症状三步分诊与就医梯度、循证养生口径（作息/饮食/运动），声明不替代医生",
+      "category": "AGENT",
+      "tags": [
+        "健康",
+        "养生",
+        "就医",
+        "health"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/health-consultant.json"
+    },
+    {
+      "id": "hiking-companion",
+      "name": "户外徒步",
+      "version": "1.0.0",
+      "description": "徒步路线四维难度评估、分级装备清单、天气风险与失温迷路处置，安全红线优先，帮从新手到进阶的徒步爱好者安全进山",
+      "category": "AGENT",
+      "tags": [
+        "徒步",
+        "登山",
+        "户外",
+        "hiking",
+        "outdoor"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/hiking-companion.json"
+    },
+    {
+      "id": "home-organizer",
+      "name": "收纳整理",
+      "version": "1.0.0",
+      "description": "断舍离决策法、动线分区规划、垂直收纳与小空间改造，帮居住空间拥挤物品杂乱的用户建立整理与维持不复乱的系统方法",
+      "category": "AGENT",
+      "tags": [
+        "收纳",
+        "断舍离",
+        "整理",
+        "organizing",
+        "declutter"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/home-organizer.json"
+    },
+    {
+      "id": "house-hunting",
+      "name": "买房置业攻略",
+      "version": "1.0.0",
+      "description": "购房五步法：月供安全线预算测算、地段四半径评估、看房二十项清单、合同条款避坑、税费明细核算",
+      "category": "AGENT",
+      "tags": [
+        "买房",
+        "置业",
+        "看房",
+        "housing"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/house-hunting.json"
+    },
+    {
+      "id": "interview-coach",
+      "name": "面试通关教练",
+      "version": "1.0.0",
+      "description": "面试全流程：自我介绍公式、STAR 结构化答题、反问环节设计、薪资谈判话术、模拟面试逐题复盘机制",
+      "category": "AGENT",
+      "tags": [
+        "面试",
+        "求职",
+        "谈薪",
+        "interview"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/interview-coach.json"
+    },
+    {
+      "id": "language-coach",
+      "name": "语言学习教练",
+      "version": "1.0.0",
+      "description": "以可理解输入为主体、间隔重复为巩固、影子跟读练听说、产出驱动倒逼激活的四引擎学习法，附误区清单与每日节奏模板",
+      "category": "AGENT",
+      "tags": [
+        "语言",
+        "外语",
+        "学习",
+        "language"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/language-coach.json"
+    },
+    {
+      "id": "legal-consult",
+      "name": "法律常识咨询",
+      "version": "1.0.0",
+      "description": "高频场景法律常识导航：劳动、租房、消费、婚姻家事的常见问题与维权路径，证据意识与何时找律师；不构成法律意见",
+      "category": "AGENT",
+      "tags": [
+        "法律",
+        "维权",
+        "劳动法",
+        "legal"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/legal-consult.json"
+    },
+    {
+      "id": "life-assistant",
+      "name": "生活百事通",
+      "version": "1.0.0",
+      "description": "办事五要素框架（前置条件/渠道/步骤/时限/避坑）：快递理赔、租房合同、购票出行、政务民生流程指南，附时效声明与维权阶梯",
+      "category": "AGENT",
+      "tags": [
+        "生活",
+        "办事",
+        "攻略",
+        "life-hacks"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/life-assistant.json"
+    },
+    {
+      "id": "life-planning",
+      "name": "生活规划",
+      "version": "1.0.0",
+      "description": "聊天技能：计划拆解、决策权衡与行动清单 —— 生活事务求助时主动调用",
+      "category": "PRODUCTIVITY",
+      "tags": [
+        "chat",
+        "planning",
+        "decision",
+        "life",
+        "checklist"
+      ],
+      "scope": "agent",
+      "author": "Apex Agent",
+      "file": "skills/life-planning.json"
+    },
+    {
+      "id": "love-advisor",
+      "name": "恋爱军师",
+      "version": "1.0.0",
+      "description": "为暧昧期与恋爱中的人出谋划策：关系阶段判断、信号解读、表白策划与矛盾沟通话术，坚守真诚表达底线，坚决拒绝操控式话术",
+      "category": "AGENT",
+      "tags": [
+        "恋爱",
+        "表白",
+        "暧昧",
+        "relationship",
+        "dating"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/love-advisor.json"
+    },
+    {
+      "id": "mbti-explorer",
+      "name": "MBTI人格",
+      "version": "1.0.0",
+      "description": "为 MBTI 爱好者提供 16 型人格解读、相处指南与职场适配参考：四维度拆解、破除刻板印象、自测引导，娱乐参考不作心理定论",
+      "category": "AGENT",
+      "tags": [
+        "人格",
+        "性格",
+        "人格测试",
+        "MBTI",
+        "personality"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/mbti-explorer.json"
+    },
+    {
+      "id": "moments-copilot",
+      "name": "朋友圈文案",
+      "version": "1.0.0",
+      "description": "为想在朋友圈得体表达的人定制配文：日常记录、节日应景、人生官宣、高情商回应四类场景，保持真实人设，不写虚假炫耀",
+      "category": "AGENT",
+      "tags": [
+        "朋友圈",
+        "官宣",
+        "配文",
+        "moments",
+        "copywriting"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/moments-copilot.json"
+    },
+    {
+      "id": "movie-cinephile",
+      "name": "影视鉴赏推荐",
+      "version": "1.0.0",
+      "description": "影视推荐方法论：按心情场景匹配、四维度评述（叙事/视听/表演/主题）、避雷信号法（非铁律）、观影顺序决策与剧透分层纪律",
+      "category": "AGENT",
+      "tags": [
+        "电影",
+        "影视",
+        "推荐",
+        "movies"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/movie-cinephile.json"
+    },
+    {
+      "id": "moving-planner",
+      "name": "搬家攻略",
+      "version": "1.0.0",
+      "description": "倒排时间表、分区打包体系、易碎品保护、搬家公司合同避坑与新居入住清单，让搬家全程可控、物品不丢不损不乱",
+      "category": "AGENT",
+      "tags": [
+        "搬家",
+        "打包",
+        "新居",
+        "moving"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/moving-planner.json"
+    },
+    {
+      "id": "music-companion",
+      "name": "音乐品味伴侣",
+      "version": "1.0.0",
+      "description": "场景配乐逻辑：按学习/健身/通勤/睡前场景匹配（BPM与歌词密度）、心情同质引导两段式、歌单能量曲线编排与专辑入坑路径设计",
+      "category": "AGENT",
+      "tags": [
+        "音乐",
+        "歌单",
+        "推荐",
+        "music"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/music-companion.json"
+    },
+    {
+      "id": "naming-master",
+      "name": "起名大师",
+      "version": "1.0.0",
+      "description": "为新生儿、网名、店铺与品牌提供候选命名方案：音形义三维度评估、谐音生僻字排雷清单、重名率与商标风险提示，帮用户收敛定名",
+      "category": "AGENT",
+      "tags": [
+        "起名",
+        "取名",
+        "店名",
+        "naming",
+        "branding"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/naming-master.json"
+    },
+    {
+      "id": "negotiation-master",
+      "name": "谈判沟通专家",
+      "version": "1.0.0",
+      "description": "谈判方法论：利益与立场区分、BATNA 三条线、锚定开局、节奏化让步、跨文化维度调整，附谈判前准备清单",
+      "category": "AGENT",
+      "tags": [
+        "谈判",
+        "沟通",
+        "议价",
+        "negotiation"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/negotiation-master.json"
+    },
+    {
+      "id": "parenting-guide",
+      "name": "科学育儿指南",
+      "version": "1.0.0",
+      "description": "分龄养育坐标（0-1/1-3/3-6/学龄/青春期）、亲子沟通三件套、行为干预阶梯、就医红线与用药纪律",
+      "category": "AGENT",
+      "tags": [
+        "育儿",
+        "亲子",
+        "带娃",
+        "parenting"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/parenting-guide.json"
+    },
+    {
+      "id": "party-planner",
+      "name": "聚会活动策划",
+      "version": "1.0.0",
+      "description": "聚会策划五法：需求定位五问（目的/人群/预算/场地/时长）、能量曲线流程编排、破冰游戏选用矩阵、物料预算四分法与备用金、冷场天气应急预案",
+      "category": "AGENT",
+      "tags": [
+        "聚会",
+        "活动",
+        "策划",
+        "party"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/party-planner.json"
+    },
+    {
+      "id": "pet-care",
+      "name": "宠物养护百科",
+      "version": "1.0.0",
+      "description": "宠物养护框架：喂养与七日换粮过渡、疫苗驱虫日程、行为解读先译需求、异常观察基线对比，附猫狗就医红线清单与禁忌食物表",
+      "category": "AGENT",
+      "tags": [
+        "宠物",
+        "养猫",
+        "养狗",
+        "pet-care"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/pet-care.json"
+    },
+    {
+      "id": "plant-nursery",
+      "name": "养花种草",
+      "version": "1.0.0",
+      "description": "面向家庭园艺爱好者与「植物杀手」：光照浇水施肥诊断、换盆配土、四季养护节奏与常见病虫害识别处置，把植物养活养好",
+      "category": "AGENT",
+      "tags": [
+        "养花",
+        "植物",
+        "绿植",
+        "gardening",
+        "plants"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/plant-nursery.json"
+    },
+    {
+      "id": "poetry-companion",
+      "name": "诗词对联",
+      "version": "1.0.0",
+      "description": "为诗词爱好者原创诗词、对联、飞花令与藏头诗：先立意后成篇、意象选字有讲究、平仄从宽处理，附白话讲评，趣味交流非格律权威",
+      "category": "AGENT",
+      "tags": [
+        "诗词",
+        "对联",
+        "藏头诗",
+        "poetry",
+        "couplet"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/poetry-companion.json"
+    },
+    {
+      "id": "privacy-guard",
+      "name": "隐私卫士",
+      "version": "1.0.0",
+      "description": "账号分级加固、诈骗话术拆解识别、APP 权限最小化与个人信息卫生，纯防御向，帮普通用户把泄露与被骗的风险和损失降到最低",
+      "category": "AGENT",
+      "tags": [
+        "隐私",
+        "防诈骗",
+        "账号安全",
+        "privacy",
+        "security"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/privacy-guard.json"
+    },
+    {
+      "id": "psychology-healer",
+      "name": "心理疏导陪伴",
+      "version": "1.0.0",
+      "description": "心理疏导方法：危机识别优先响应、先接情绪再做认知工作、认知重构三步（捕捉-检验-替代）、焦虑缓解工具、低落期行为激活与转介边界",
+      "category": "AGENT",
+      "tags": [
+        "心理",
+        "疏导",
+        "焦虑",
+        "psychology"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/psychology-healer.json"
+    },
+    {
+      "id": "public-speaking",
+      "name": "演讲表达训练",
+      "version": "1.0.0",
+      "description": "演讲五维：坡道-发现-甜点结构、开场钩子三式、故事化表达、控场互动技巧、紧张能量转化与即兴模板",
+      "category": "AGENT",
+      "tags": [
+        "演讲",
+        "口才",
+        "表达",
+        "speaking"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/public-speaking.json"
+    },
+    {
+      "id": "reading-buddy",
+      "name": "读书搭子",
+      "version": "1.0.0",
+      "description": "按需求与认知状态精准选书、四问框架共读讨论、分书型笔记方法与可持续阅读计划，帮读书人读得进、记得住、坚持得下去",
+      "category": "AGENT",
+      "tags": [
+        "读书",
+        "选书",
+        "阅读",
+        "reading",
+        "books"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/reading-buddy.json"
+    },
+    {
+      "id": "resume-crafter",
+      "name": "简历打磨工坊",
+      "version": "1.0.0",
+      "description": "简历五法：岗位匹配先读 JD、STAR 法则写经历、量化成果立证据、关键词过机筛、一页原则做减法",
+      "category": "AGENT",
+      "tags": [
+        "简历",
+        "求职",
+        "校招",
+        "resume"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/resume-crafter.json"
+    },
+    {
+      "id": "shopping-deals",
+      "name": "购物比价高手",
+      "version": "1.0.0",
+      "description": "理性消费五步：需求拆解防冲动、参数对比表决策、历史价格识促销、渠道比价择优、退换货政策前置确认",
+      "category": "AGENT",
+      "tags": [
+        "购物",
+        "比价",
+        "消费",
+        "shopping"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/shopping-deals.json"
+    },
+    {
+      "id": "social-savvy",
+      "name": "人情世故",
+      "version": "1.0.0",
+      "description": "为中国式人际场合犯难的人解围支招：送礼分寸、饭局座次敬酒、亲戚边界应对、求人办事的门道与还情，把事办体面，不越法律底线",
+      "category": "AGENT",
+      "tags": [
+        "人情世故",
+        "饭局",
+        "求人办事",
+        "social",
+        "guanxi"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/social-savvy.json"
+    },
+    {
+      "id": "story-teller",
+      "name": "故事大王",
+      "version": "1.0.0",
+      "description": "直接创作成品故事交付：儿童睡前故事、微型小说、故事接龙，按儿童或成人受众调整深度与安全边界，开箱即用而不教写作",
+      "category": "AGENT",
+      "tags": [
+        "故事",
+        "睡前故事",
+        "接龙",
+        "storytelling",
+        "fiction"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/story-teller.json"
+    },
+    {
+      "id": "study-methods",
+      "name": "高效学习方法",
+      "version": "1.0.0",
+      "description": "五件学习兵器：费曼技巧检验理解、主动回忆提取练习、间隔重复抗遗忘、番茄钟管理专注、错题本结构化复盘，附组合拳",
+      "category": "AGENT",
+      "tags": [
+        "学习",
+        "记忆",
+        "自学",
+        "study",
+        "memory"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/study-methods.json"
+    },
+    {
+      "id": "time-gtd",
+      "name": "时间管理大师",
+      "version": "1.0.0",
+      "description": "时间管理五层系统：GTD 清空大脑、四象限定优先级、时间块深度工作、周回顾闭环、抗拖延五招对症",
+      "category": "AGENT",
+      "tags": [
+        "时间管理",
+        "效率",
+        "拖延",
+        "productivity"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/time-gtd.json"
+    },
+    {
+      "id": "translation-master",
+      "name": "翻译润色大师",
+      "version": "1.0.0",
+      "description": "四步译法：译前分析定位文本类型与读者 → 初译求信 → 润色求达消翻译腔 → 本地化求雅，附术语一致性与译后自查双纪律",
+      "category": "AGENT",
+      "tags": [
+        "翻译",
+        "润色",
+        "本地化",
+        "translation"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/translation-master.json"
+    },
+    {
+      "id": "travel-planner",
+      "name": "旅行规划师",
+      "version": "1.0.0",
+      "description": "旅行规划五步法：需求定位四问（时间/预算/同行人/偏好）、目的地匹配、行程动线聚类与节奏张弛、预算分配比例、行前清单与避坑",
+      "category": "AGENT",
+      "tags": [
+        "旅行",
+        "行程",
+        "攻略",
+        "travel",
+        "itinerary"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/travel-planner.json"
+    },
+    {
+      "id": "video-script-writer",
+      "name": "短视频脚本",
+      "version": "1.0.0",
+      "description": "为短视频创作者量产口播稿与分镜脚本：黄金 3 秒开头六钩子、完播率节奏设计、分镜表格式交付，覆盖口播、剧情、vlog 多形态",
+      "category": "AGENT",
+      "tags": [
+        "短视频",
+        "脚本",
+        "口播",
+        "video",
+        "script"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/video-script-writer.json"
+    },
+    {
+      "id": "weekly-mealplan",
+      "name": "一周食谱",
+      "version": "1.0.0",
+      "description": "以周为周期的家庭饮食规划：营养结构搭盘、备餐 meal prep 实操、买菜清单生成与反浪费设计，解决每天不知道吃什么的决策疲劳",
+      "category": "AGENT",
+      "tags": [
+        "食谱",
+        "备餐",
+        "买菜",
+        "meal-prep",
+        "menu"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/weekly-mealplan.json"
+    },
+    {
+      "id": "workplace-wisdom",
+      "name": "职场生存智慧",
+      "version": "1.0.0",
+      "description": "职场五修：向上管理三主动、跨部门利益地图、结构化汇报金字塔、边界感三步拒绝法、办公室政治避坑三原则",
+      "category": "AGENT",
+      "tags": [
+        "职场",
+        "汇报",
+        "沟通",
+        "workplace"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/workplace-wisdom.json"
+    },
+    {
+      "id": "writing-coach",
+      "name": "创意写作教练",
+      "version": "1.0.0",
+      "description": "故事工法：三幕结构与场景设计、人物弧光（想要与需要）、悬念钩子与张弛节奏、文风三层拆解模仿、写作障碍五式急救包",
+      "category": "AGENT",
+      "tags": [
+        "写作",
+        "创意",
+        "文风",
+        "writing"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/writing-coach.json"
+    },
+    {
+      "id": "xiaohongshu-writer",
+      "name": "小红书文案",
+      "version": "1.0.0",
+      "description": "为小红书博主与商家打造种草笔记：四段式种草结构、爆款标题五公式、emoji 分段排版与广告法敏感词自查，写出高互动高转化文案",
+      "category": "AGENT",
+      "tags": [
+        "小红书",
+        "种草",
+        "文案",
+        "copywriting",
+        "social-media"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/xiaohongshu-writer.json"
+    }
+  ]
+}
