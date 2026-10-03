@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "git-worktrees-flow",
+  "name": "Git Worktree 并行工作流",
+  "version": "1.0.0",
+  "description": "一仓多目录的隔离开发：先侦查既有隔离，征得同意后按目录优先级创建 worktree（必验 git ignore），装依赖跑基线测试。适用于并行任务、长分支与紧急修复。",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【Git Worktree 工作流方法论】\n\n你已装备「Git Worktree 并行工作流」技能。凡需要与当前工作区隔离的开发任务——并行推进多条任务、长周期分支开发、紧急修复插入——按以下方法论建立隔离工作区；核心模型：一个仓库多个工作目录，先侦查既有隔离，再优先用平台原生工具，最后才手工 git worktree，绝不与宿主环境对抗。\n\n━━ 一、触发场景 ━━\n- 开始需要隔离的特性开发，或准备执行一份实施计划。\n- 主工作区有进行中的未提交工作，又必须并行处理另一任务。\n- 线上紧急修复：不动当前分支，从目标基线切出 worktree 直接处理。\n- 长周期实验分支：独立成目录，主目录保持干净。\n- 不触发：单目录内的小改动，或用户明确拒绝隔离（就地工作）。\n\n━━ 二、方法论 ━━\n\n【为什么是 worktree】\n- worktree 让同一仓库把多个分支同时检出到不同目录：免 stash、免来回切分支、多任务互不踩踏。在沙箱终端里跑并行任务与紧急修复，它是地基。\n- 对比 stash：stash 只是把一个工作区的脏改动暂存，切回来还要恢复，多任务并行时栈里一堆 stash 极易混淆；worktree 是物理隔离的独立目录，各任务各得其所。\n- 对比再克隆一份：worktree 共享同一套 .git 对象库——省磁盘、免互相同步，所有分支互相可见。\n- 三个典型画像：并行多任务（每任务一个 worktree 一条分支，互不抢文件）；长周期实验分支（主目录始终干净可用）；线上紧急修复（不打断进行中的工作，从基线切出，修完即收）。\n\n【多任务并行编排】\n- 并行任务编排：每个并行任务独立 worktree＋独立分支，目录名与分支名一致、带任务标识，一眼对应；汇合时按分支逐个走收尾流程。\n- 紧急修复路径：从基线切出 hotfix worktree → 修复 → 收尾并回 → 主工作区的进行中工作全程未动一步。\n- worktree 里的提交、分支、diff、stash 操作与普通仓库完全一致——隔离的是目录，不是 git 能力。\n- 长期驻留的 worktree 要登记用途（README 或笔记），僵尸目录是并行工作流最大的债务。\n\n【第一步永远是侦查】\n- 创建任何东西之前，先判断是否已身处隔离环境：比对 git rev-parse --git-dir 与 --git-common-dir，两者不同即已在链接型 worktree——直接进入项目设置，不要再套一层。\n- 陷阱：子模块里这两个目录同样不同。用 git rev-parse --show-superproject-working-tree 排除子模块，再下结论。\n- 顺带识别游离 HEAD：它说明工作区由外部托管，分支的创建与命名留到收尾阶段处理。\n- 肉眼判断「我显然不在 worktree 里」不算数——宿主创建的隔离和子模块都能骗过眼睛，检测命令说了算。\n\n【创建纪律】\n- 征得同意：用户未表达偏好时先问「是否建立隔离 worktree？它保护你当前分支不被改动」；已有声明的偏好直接遵行，不再问。\n- 目录优先级：用户明确指定＞既有 .worktrees/＞既有 worktrees/＞默认 .worktrees/（两者并存取 .worktrees/）。\n- 铁律：目录必须被 git 忽略。git check-ignore 验证不过，先写 .gitignore 并提交再继续——未忽略的 worktree 目录会把整棵树提交进仓库。\n- 创建：git worktree add <目录>/<分支名> -b <分支名>，随后进入该目录。有平台原生 worktree 工具时优先用它：原生工具管着目录布局、分支创建与清理，绕过它手工创建会留下宿主管不到的幽灵状态。\n- 沙箱拒绝创建（权限错误）时如实报告，就地工作并照常跑基线测试。\n\n【环境就位与基线验证】\n- 进 worktree 后装依赖：见 package.json 跑 npm install，见 Cargo.toml 跑 cargo build，见 gradle 文件跑依赖任务，Python 按 requirements.txt 或 pyproject.toml 安装。\n- 跑一遍完整测试建立干净基线。基线就是脏的，之后每次失败都说不清是你弄的还是本来就有的。基线失败：报告失败清单，问用户是继续还是先查。基线测试跑仓库全套命令，不是只跑你打算动的模块——脏基线可能藏在别处。\n- 就绪报告示例：「worktree 就绪于 <绝对路径>；基线测试 128 个 0 失败；可以开始实现 <特性名>」。\n\n【收尾边界】\n- 只清理自建在 .worktrees/ 或 worktrees/ 下的 worktree；其他目录归宿主环境所有，原样保留。\n- 移除被拒（含未提交文件）时不许擅自 --force：列出文件清单请用户定夺。\n\n━━ 三、输出格式约定 ━━\n1. 就绪报告三要素：worktree 路径、基线测试结果（N 个测试 0 失败）、准备实施的特性名。\n2. 每次创建前报告侦查结论（已在隔离／正常仓库／子模块）与所选目录策略。\n3. 基线测试失败时先呈失败清单再问处置，不擅自继续。",
+  "category": "coding",
+  "tags": [
+    "git",
+    "worktree",
+    "并行开发",
+    "隔离工作区",
+    "分支管理"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-03",
+      "notes": "方法论改编自 obra/superpowers（MIT，作者 Jesse Vincent），中文重写优化后收录于 Apex Skill Hub。"
+    }
+  ],
+  "scope": "coding"
+}

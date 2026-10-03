@@ -1,0 +1,39 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "api-contract-design",
+  "name": "API 契约设计",
+  "version": "1.0.0",
+  "description": "契约设计七维检查单：命名速查、资源建模与 URL 约定、方法语义、状态码表、游标分页与过滤排序、错误信封结构、版本与弃用策略，设计、评审、争议仲裁三用",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【API 契约设计方法论】\n\n你已装备「API 契约设计」技能。凡设计、评审、修订 REST 接口契约类任务，按以下方法论执行；核心模型：以资源建模为骨架、方法语义与状态码为动词、错误信封与版本策略为容错层，七维检查单驱动契约产出。\n\n━━ 一、触发场景 ━━\n- 设计新 API：新资源、新端点、新版本。\n- 评审既有接口文档 / OpenAPI 描述，或对接第三方 API 前的契约核对。\n- 仲裁接口约定争议：URL 怎么起名、PUT 还是 PATCH、错误怎么返回。\n- 制定团队 API 规范与命名基线。\n- 不触发：进程内函数签名设计、GraphQL / gRPC（范式不同，契约规则另论）。\n\n━━ 二、方法论 ━━\n\n【维度 1：命名速查（争议最多，先过一遍）】\n- 集合资源用名词复数（orders / users）；布尔查询参数加 is_ / has_ 前缀（?is_active=true）。\n- 时间参数消歧：created_after / created_before（时间戳）区别于 created_on（日期）；id 参数带类型（/users/{userId}）。\n- 同幂概念全网一致：分页统一 cursor+limit 或 page+size 一种，两套并存是事故源头。\n\n【维度 2：资源建模与 URL 约定】\n- URL 用名词复数，禁止动词（/getUser ❌）；从属关系用层级 /users/{userId}/orders，深度 ≤3，更深改独立资源加过滤参数。\n- 无法映射 CRUD 的动作用子资源动作 POST /orders/{id}/cancel；动作仅限真正的状态迁移（取消 / 发布 / 重试），语义必须单一。\n- 资源粒度以「客户端一次展示需要的聚合」为导向，不为表结构所困——表是实现，不是契约。\n- 路径段 kebab-case；版本放路径首段 /v1/orders（放 header 不便 curl 调试与日志检索）；可变状态用查询参数（?status=pending 而非 /orders/pending 分裂路径）。\n- 资源标识一旦对外发布即是契约：重命名与删除都是破坏性变更；宁可早期多花一刻钟把名字定对，也不要后期长期背负兼容包袱。\n\n【维度 3：方法语义】\n- GET 只读、幂等、严禁副作用——计数、写业务日志都不行，缓存与预取会放大副作用。\n- POST 创建或触发处理，非幂等：201 加 Location 指向新资源；异步受理用 202 加进度查询途径。\n- PUT 全量替换（客户端提交完整表示），幂等；PATCH 部分更新，必须声明并文档化采用 JSON Merge Patch 还是 JSON Patch。\n- DELETE 幂等，204（或 200 加删除摘要）。\n\n【维度 4：状态码表】\n- 200 成功有体；201 创建成功；202 已受理未完成；204 成功无体（DELETE / PUT）。\n- 400 参数语法错误；401 未认证与 403 已认证无权限不可混用；404 不存在或防越权探测隐藏存在性，文档写明本 API 采用哪种语义。\n- 409 状态冲突（重复创建、乐观锁版本冲突、状态机不允许的迁移）；422 语法正确但业务校验不过；429 限流带 Retry-After；500 是服务端故障，不是客户端问题的兜底筐——客户端问题用 4xx 精确表达。\n- 状态码是契约的一部分：客户端依据它做重试、退避与熔断决策，网关与监控也按状态码做聚合统计；随意复用或新增语义会让这些机制失真。\n\n【维度 5：分页与查询】\n- 优先游标分页（?cursor=xxx&limit=20，响应含 next_cursor）：深翻页稳定、高效、不受并发插入影响；offset 分页仅限小数据集——深 offset 是全扫陷阱，且翻页期间插入 / 删除导致条目漂移。\n- limit 必须设上限（防 ?limit=100000 拖库）并文档写明默认值与上限；响应体统一 items + next_cursor + has_more。\n- 过滤 ?status=pending&created_after=（等值与范围分开命名）；排序 ?sort=-created_at,price（- 表降序，可排序字段白名单防未索引字段排序拖库）；?q= 搜索与过滤语义不同，不共用参数。\n\n【维度 6：错误体信封】\n- 统一结构 error { code, message, field_errors, trace_id }，机器可读与人类可读并重。\n- code 用稳定大写下划线枚举——客户端分支判断的锚点，改 code 即破坏性变更；message 面向开发者，禁止携带内部堆栈 / SQL / 路径；field_errors 逐字段给问题；trace_id 串联服务端日志，排障刚需。\n- 错误信息面向排障而非甩锅：把发生时的关键上下文（资源标识、参数摘要、用户可操作的建议）写进字段，能显著降低来回沟通的成本。\n\n【维度 7：版本与兼容性】\n- 破坏性变更（删字段、改语义、改错误码）必须升版本 /v1 → /v2 两版并行；非破坏演进（加可选字段、新端点、新错误码）就地进当前版本。\n- 弃用三件套：文档标 deprecated、响应头 Sunset 声明下线日期、监控调用量归零后再移除。\n- 两版并行期间修缺陷要同步打到两版：只修新版会让旧版用户继续暴露在已知缺陷下，也违背并行期的兼容承诺。\n\n━━ 三、输出格式约定 ━━\n- 设计任务：输出 API 约定表（方法 | 路径 | 用途 | 请求要点 | 成功响应 | 错误码），附典型请求 / 响应示例，至少含一个错误示例。\n- 审查任务：输出问题清单（位置 | 违反条目 | 建议），再给修订后的约定表。\n- 争议仲裁：先给判定再给依据（对应检查单条目），不模糊两可。",
+  "category": "coding",
+  "tags": [
+    "契约设计",
+    "接口规范",
+    "REST",
+    "api"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-03",
+      "notes": "由 Android-Guru-Agent 内置技能改名优化迁入官方仓库（原 api-design）。"
+    }
+  ],
+  "scope": "coding"
+}

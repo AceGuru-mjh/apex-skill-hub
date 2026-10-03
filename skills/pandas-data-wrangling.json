@@ -1,0 +1,39 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "pandas-data-wrangling",
+  "name": "Pandas 数据整形",
+  "version": "1.0.0",
+  "description": "Pandas 整形范式：向量化替代 iterrows、链式管道与节点断言、命名聚合与 merge validate 防爆、dtype 降型与分块读的内存策略、时序三件套",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【Pandas 数据整形方法论】\n\n你已装备「Pandas 数据整形」技能。凡 pandas 数据处理、性能优化、内存管理类任务，按以下方法论执行；核心模型：向量化优先、管道化组织、类型化管理内存——禁止写逐行遍历的慢路径代码。\n\n━━ 一、触发场景 ━━\n- 用 Python / pandas 做数据清洗、转换、聚合。\n- 现有 pandas 代码跑得慢、内存爆掉，要求优化。\n- 组织可维护的多步数据处理管道。\n- 不触发：SQL 层面完成的处理、Polars / Spark 等其它框架的深度问题（可给迁移建议）、机器学习建模。\n\n━━ 二、方法论 ━━\n\n【维度 1：向量化思维（第一性能原则）】\n- 铁律：for 循环逐行遍历 DataFrame 是慢路径（每行都有解释器与对象开销），能用列运算绝不用 iterrows / apply(axis=1)。\n- 替换工具箱：条件赋值 → np.where / np.select；映射 → map(字典) / replace；字符串列 → .str 命名空间（contains / slice / split）；日期时间 → .dt 命名空间；数值批量计算 → NumPy 广播。\n- apply 仅限三个场景：调用外部逻辑或复杂正则、行内多列交互确实无法拆解、原型验证期先跑通再向量化——写之前自问「np.select 能不能两分钟搞定」。\n- 向量化的本质是把解释器循环下沉到列级：判断一段处理能否向量化，看它对每行的计算是否只依赖本行数据；依赖跨行状态的用分组或窗口实现，仍不必逐行。\n\n【维度 2：链式管道组织（可读性工程）】\n- 方法链一步一行，每步是读得懂的动作：dropna → rename → assign → query。\n- 复杂流程用 .pipe 封装：管道 = df.pipe(clean_missing).pipe(add_features).pipe(aggregate)，每步函数输入 df 输出 df，函数内可打印中间行数做断言。\n- 断言纪律：管道关键节点校验不变量（uid 非空、金额非负、行数变化在预期区间），失败即抛错而非带病前进。\n\n【维度 3：分组聚合与重塑】\n- 命名聚合防匿位列：groupby('city').agg(总额=('amount','sum'), 单数=('amount','count'))。\n- transform 回填组统计（组内中位数填充）；filter 做组级过滤（保留达标整组）——注意与「先 query 再 groupby」的组内筛行语义不同，需求翻译先问「过滤的是行还是组」。\n- 长宽转换：melt 宽变长、pivot 长变宽、带聚合的透视用 pivot_table；建模要整洁长表，汇报可用宽表。\n- 报错对症：groupby 后列消失 → as_index=False 或 reset_index。\n\n【维度 4：合并纪律（防笛卡尔爆炸）】\n- merge 四问：how（left / right / inner / outer）、on 键、validate 声明关系（'1:1' / '1:m'——校验失败立即报错，好过行数默默翻倍）、后缀处理。\n- 合并后对账：indicator=True 生成 _merge 列做三向对账（both / left_only / right_only 计数即对账表）；合并前后行数差值必须等于预期。\n- concat 陷阱：索引重复（ignore_index 或校验）、列错位（outer 补 NaN 静默进行）。\n- 合并前先问粒度：两次合并之间粒度是否被放大或丢失，是数据管道最常见的静默事故；每次合并后打印行数与键唯一性应成为肌肉记忆。\n\n【维度 5：内存策略（大数据不求删行求降型）】\n- 诊断：df.memory_usage(deep=True) 看真实占用，object 列常占大头。\n- 降型三板斧：数值 int64 → int32 / float64 → float32（确认取值范围不溢出）；低基数字符串 object → category（重复率越高省越多，「城市」类列可省九成）；读取时就指定 dtype 与 usecols（只读需要的列常是第一优化）。\n- 超内存文件：chunksize 分块读 + 块内聚合再合并；中间结果物化为 parquet（快且带类型），反复 read_csv 同一大文件是反模式；读取优化顺序别倒过来：usecols → dtype 降型 → chunksize → parquet 物化。\n- 副本安全：禁链式索引赋值（df[a][b]=x 是 SettingWithCopyWarning 之源），统一 .loc[条件, 列] = 值；Copy-on-Write 时代按「切片即副本」心智写最安全。\n\n【维度 6：时序与性能汇报】\n- 时序三件套：parse_dates 解析、.dt 访问器取属性、resample 重采样（周 / 月聚合）+ rolling 滚动窗口。\n- 时间口径纪律：周聚合先声明周起点（W-MON 与 W-SUN 结果不同）；月聚合用 dt.to_period('M')（带类型、比字符串切片快且不易错）；画时间趋势前先按时间排序——乱序数据是折线图锯齿的头号来源。\n- 时序补缺三步：asfreq 生成完整日期骨架 → 数值列有限度前向填充（limit=n 防无限顺延）→ 类别列填「未知」；补缺前先定性：缺的时段是业务真实断档还是采集缺失——两种答案对应两种补法。\n- 性能汇报纪律：优化类任务给出前后耗时与瓶颈定位理由（哪一步慢、为什么慢），不做「感觉快了」的无凭结论。\n- 输出前先查索引：结果怪异先看索引是否重复或乱序，多数灵异现象源于此；分组结果先重置索引再操作。\n\n━━ 三、输出格式约定 ━━\n- 目标翻译：输入数据形状 → 输出数据形状（行 / 列 / 粒度）。\n- 管道代码：分步注释、关键节点断言，避免单行超长嵌套。\n- 优化类任务附前后耗时 / 内存对照与瓶颈定位理由。\n- 陷阱提示：类型、索引、副本语义相关的边界提醒。",
+  "category": "data",
+  "tags": [
+    "Pandas",
+    "向量化",
+    "数据管道",
+    "python"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-03",
+      "notes": "由 Android-Guru-Agent 内置技能改名优化迁入官方仓库（原 pandas-craft）。"
+    }
+  ],
+  "scope": "coding"
+}
