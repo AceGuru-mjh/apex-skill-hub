@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "go-concurrency-patterns",
+  "name": "Go 并发模式",
+  "version": "1.0.0",
+  "description": "goroutine 生命周期有主、channel 由唯一属主关闭、context 层层下传三大纪律，配 worker 池与流水线模式库，交付以 -race 验证为门槛的并发代码。",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【核心模型】不要通过共享内存来通信，而要通过通信来共享内存——goroutine 生命周期有主、channel 有唯一属主、context 负责取消层层下传；三条纪律立起来，并发才不会反噬你。\n\n━━一、触发场景━━\n· 编写或评审 Go 并发代码：goroutine 编排、channel 管道、sync 原语、worker 池、限并发批处理。\n· 并发缺陷排查：数据竞争、goroutine 泄漏、死锁、channel 永久阻塞、WaitGroup 卡死。\n· 设计并发任务编排：超时控制、扇入扇出、任务池、优雅退出的整体方案。\n· 不触发：纯顺序逻辑、与并发无关的语法与包设计问题。\n\n━━二、方法论━━\n\n【维度1·生命周期纪律】\n- 铁律「谁创建谁负责收场」：每个 goroutine 在启动那一刻就要回答三个问题——它什么时候退出、谁等它退出、它退出时谁来善后清理；答不出任何一个，这个 goroutine 就是泄漏隐患。\n- main 返回不等于善终：进程退出时 goroutine 被硬杀，锁未释放、缓冲未刷出、下游未通知；用 sync.WaitGroup 保证收尾，退出路径与正常路径共用同一套清理逻辑。\n- 每个可能阻塞的操作（channel 收发、互斥锁、网络调用）都必须有退出通道：select 加 context.Done 分支是标准解法，漏一处，整条链路的取消就断在半路。\n\n【维度2·channel 所有权】\n- channel 只有一个属主：发送方。关闭是发送方的特权，接收方关闭等于在别人的门上挂停业牌；多发送方场景改用独立的 done channel 或 WaitGroup 协调，由协调者统一关闭。\n- 「向已关闭的 channel 发送会 panic」是语言设计出来的保护：宁可崩溃暴露关闭时序错误，也不要静默丢数据——panic 现场比数据丢失好排查一百倍。\n- 无缓冲 channel 是同步会合点，带缓冲是上下游解耦点；缓冲大小必须有明确理由（批次大小、上游配额），「随便给个一百」是坏味道，缓冲满之后的背压行为要能说清。\n\n【维度3·context 传递纪律】\n- context.Context 是并发函数的第一个参数，参数名固定叫 ctx；不存进结构体字段、不传 nil——需要空上下文时用 Background 与 TODO 显式表达意图。\n- 取消信号必须层层下传：每一层阻塞点都要 select ctx.Done，中间某一层忘了传，上游超时了下游还在傻跑；defer cancel() 防止 context 自身泄漏，即使下游跑得再快也要调用。\n- 请求级数据放 context 要克制：它不是万能参数袋，传值只限追踪标识这类横切数据，业务参数老实走函数签名，混进去的都会变成隐式耦合。\n\n【维度4·模式库】\n- worker pool：固定 N 个 worker 消费同一个任务 channel，N 由下游承受力决定而不是拍脑袋；限并发也可以用带缓冲 channel 当信号量，比起开一千个 goroutine 硬扛，前者的资源上限可预期得多。\n- pipeline：每级一个 goroutine，级间 channel 相连，从源头到出口共享同一个 context；fan-out 让多个 worker 读同一 channel 分摊负载，fan-in 用 WaitGroup 汇聚多路写入单一出口。\n- errgroup.WithContext 管理一组兄弟任务的错误传播：第一个错误返回即取消整组，比手工维护 error channel 与取消逻辑干净一个数量级，是循环起子任务时的默认选择。\n- 超时与心跳：对下游依赖的每次调用都套 context.WithTimeout，超时值来自下游的延迟分位数据而不是感觉；长任务定期给父级发心跳，连续丢失即判定子任务僵死，主动回收重建。\n\n【维度5·竞争与死锁排查】\n- 铁律「没跑过 -race 的并发代码不算写完」：go test -race 与 go build -race 是交付门槛，在沙箱终端跑一轮的成本，远低于线上数据竞争那种「怎么改都复现不了」的排查；race detector 报告的每一处都要修，没有误报豁免。\n- 死锁三嫌疑逐个过：锁顺序不一致（全局统一获取顺序）、channel 收发两端不对等（用缓冲或 select default 打破）、WaitGroup 的 Add 放进了 goroutine 内部（必须在启动前 Add 完）。\n- goroutine 泄漏检测看回落：一批任务结束后 goroutine 数量应回落到基线；runtime/pprof 的 goroutine 剖析能直接列出每个卡住的 goroutine 停在哪个收发点，定位精度是行级。\n- 并发度不是越大越好：压测找拐点——吞吐随并发上升到某点后开始回落，那就是拐点；生产并发度设在拐点左侧七成处，给过载留缓冲，而不是顶格压满。\n\n━━三、输出格式约定━━\n1. 并发设计先声明三件事：goroutine 拓扑（谁启动、谁等待、谁回收）、channel 方向标注（只发送 chan<- 与只接收 <-chan）、统一的退出路径。\n2. 交付代码必须报告 -race 验证结果，未验证要明说并给出验证命令。\n3. 缺陷排查先还原时序（哪个 goroutine 在哪一步卡住、谁在等谁），再给修复方案与同类隐患的排查建议。",
+  "category": "coding",
+  "tags": [
+    "并发编程",
+    "生命周期",
+    "并发模式",
+    "go",
+    "goroutine"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-04",
+      "notes": "Apex Skill Hub v3 编码与复杂任务扩容：面向移动端 Agent 编码工位原创收录。"
+    }
+  ],
+  "scope": "coding"
+}

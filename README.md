@@ -1,8 +1,18 @@
 # Apex Skill Hub
 
-**Apex Agent 官方技能仓库** —— 67 个精选专业/效率型技能、14 个域，从应用内「市场 → Skills → 官方仓库」按需安装。
+**Apex Agent 官方技能仓库** —— 117 个精选专业/效率型技能、14 个域（v3 新增 50 个编码与复杂任务技能），从应用内「市场 → Skills → 官方仓库」按需安装；配合宿主 v1.4.6+ 技能目录热加载，安装即生效免重启。
 
 [English](#english) below.
+
+## v3 扩容说明（2026-10）
+
+1. **新增 50 个「编码与完成复杂任务」技能**，全部原创中文方法论（三段式结构：触发场景 → 方法论维度 → 输出格式约定，密度双口径自检达标），四路主题：
+   - **架构与分布式**（12）：系统设计蓝图、微服务拆分、事件驱动、分布式一致性、缓存策略、消息队列、API 版本演进、错误处理与重试、并发模型、数据库建模、NoSQL 建模、实时系统；
+   - **语言与代码工艺**（13）：TypeScript 类型、Python 性能、Go 并发、Rust 所有权、JVM 调优、React 性能、状态管理、CSS 布局、Web 无障碍、代码库阅读、绞杀迁移、依赖升级、破坏性变更灰度；
+   - **DevOps 与质量工程**（13）：容器化、K8s 排障、Terraform IaC、流水线、单仓多包、Gradle 调优、可观测埋点、结构化日志、SRE 金信号、SLI/SLO、压测、混沌工程、安全加固；
+   - **复杂任务执行与协作**（12）：技术方案、ADR、估算、事故复盘、值班手册、多步研究综合、代理编排、Git 高级操作、Linux CLI、Shell 安全脚本、SQL 窗口函数、GraphQL 设计。
+2. 总数 67 → **117**；`scope` 分布 coding 67 / agent 35 / all 15；
+3. 配套宿主 Android-Guru-Agent v1.4.6：MCP 本地运行容错（看门狗 + 指数退避自动重连）+ 技能目录热加载（文件指纹监听，市场外变化免重启生效）。
 
 ## v2 重组说明（2026-10）
 
@@ -24,33 +34,34 @@ scripts/validate.py        # 注册表校验器（CI 用，零依赖）
 .github/workflows/validate.yml
 ```
 
-## 技能矩阵（67 个 · 14 域）
+## 技能矩阵（117 个 · 14 域）
 
 | 域 | 数量 | 代表技能 |
 |---|---|---|
-| coding 编程开发 | 18 | api-contract-design、root-cause-debugging、tdd-workflow、mcp-server-builder、sql-query-tuning、regex-forge |
+| coding 编程开发 | 46 | api-contract-design、root-cause-debugging、tdd-workflow、system-design-blueprint、typescript-type-mastery、go-concurrency-patterns、git-advanced-operations、sql-window-functions |
+| productivity 效率工具 | 15 | time-gtd、verification-before-done、execution-planner、technical-spec-writing、agent-orchestration-playbook、pdf/docx/xlsx/pptx-toolkit |
+| tech 数码科技 | 15 | kubernetes-troubleshooting、docker-craft-containerization、terraform-iac-craft、sre-golden-signals、gradle-build-tuning、linux-cli-mastery、prompt-craft-toolbox |
 | career 职场进阶 | 9 | resume-crafter、interview-coach、behavioral-interview-star、okr-alignment-craft |
-| productivity 效率工具 | 9 | time-gtd、brainstorm-partner、verification-before-done、execution-planner、pdf/docx/xlsx/pptx-toolkit |
-| data 数据分析 | 7 | ab-test-verdict、cohort-deep-dive、pandas-data-wrangling、metrics-tree-design |
+| data 数据分析 | 8 | ab-test-verdict、cohort-deep-dive、pandas-data-wrangling、sql-window-functions、metrics-tree-design |
 | business 商业思维 | 6 | business-model-craft、unit-economics-lab、pricing-strategy-lab、financial-statement-reader |
 | language 语言学习 | 4 | translation-master、business-english-polish、academic-english-editor |
-| writing 专业写作 | 3 | writing-coach、prd-architect 同源的 tech-writing 迁移、brand-voice-guardian |
-| safety 安全应急 | 2 | privacy-guard、phishing-defense-shield |
+| writing 专业写作 | 3 | writing-coach、brand-voice-guardian、video-script-writer |
+| safety 安全应急 | 3 | privacy-guard、phishing-defense-shield、security-hardening-review |
 | education 学习方法 | 2 | exam-tutor、study-methods |
 | communication 沟通表达 | 2 | public-speaking、internal-comms-writer |
-| tech 数码科技 | 2 | prompt-craft-toolbox、ai-tools-playbook |
+| knowledge 百科知识 | 2 | legal-consult、multi-step-research-synthesis |
 | finance 财务理财 | 1 | finance-literacy |
-| knowledge 百科知识 | 1 | legal-consult |
 | creative 创意写作 | 1 | visual-canvas-designer |
 
-`scope` 分布：`coding` 24 / `agent` 34 / `all` 9 —— 市场按 Agent / Coding 工位分级过滤。
+`scope` 分布：`coding` 67 / `agent` 35 / `all` 15 —— 市场按 Agent / Coding 工位分级过滤。
+
 
 ## index.json 格式
 
 ```json
 {
   "schema": "apex-skill-hub-v1",
-  "count": 67,
+  "count": 117,
   "skills": [
     {
       "id": "root-cause-debugging",
@@ -108,7 +119,7 @@ scripts/validate.py        # 注册表校验器（CI 用，零依赖）
 
 # English
 
-**Official skill repository for Apex Agent** — 67 curated professional & productivity skills across 14 domains, installed on demand from the in-app Market (Market → Skills → Official Hub).
+**Official skill repository for Apex Agent** — 117 curated professional skills across 14 domains (v3: +50 coding & complex-task skills — architecture, language mastery, DevOps/observability, execution & collaboration), installed on demand from the in-app Market. Works with host v1.4.6+ hot-reload: install takes effect without restart.
 
 **v2 reorg (Oct 2026)**: all 45 lifestyle skills retired; 17 professional keepers recategorized into the host app's 24-domain taxonomy; 50 new skills added — renamed, rewritten in Chinese and optimized from three sources: [anthropics/skills](https://github.com/anthropics/skills) (12), [obra/superpowers](https://github.com/obra/superpowers) (MIT, 8), and the Android-Guru-Agent bundled set (30, migrated out of the APK so the market downloads them on demand).
 

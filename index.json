@@ -1,9 +1,142 @@
 {
   "schema": "apex-skill-hub-v1",
   "name": "Apex Skill Hub",
-  "description": "Apex Agent official skill repository — 67 curated professional & productivity skills across 16 domains, renamed/optimized from anthropics/skills, obra/superpowers and the Android-Guru-Agent bundled set. Install on demand from the in-app Market.",
-  "count": 67,
+  "description": "Apex Agent official skill repository — 117 curated professional skills across 24 domains (v3: +50 coding & complex-task skills — architecture, language mastery, DevOps/observability, execution & collaboration). Install on demand from the in-app Market.",
+  "count": 117,
   "skills": [
+    {
+      "id": "ab-test-verdict",
+      "name": "A/B 实验裁决官",
+      "version": "1.0.0",
+      "description": "实验裁决五模块：假设与 MDE 先行、样本量公式与时长测算、SRM 与实验卫生、p 值与置信区间正确解读防自欺、决策三分法与上线后留组验证",
+      "category": "data",
+      "tags": [
+        "A/B 测试",
+        "实验设计",
+        "显著性",
+        "experiment"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/ab-test-verdict.json"
+    },
+    {
+      "id": "academic-english-editor",
+      "name": "学术英语编辑",
+      "version": "1.0.0",
+      "description": "学术英语编辑：IMRaD 功能句式与时态三区、引用动词立场分级、摘要五句结构、投稿信四段式与审稿逐条回复、名词化手术与一致性检查，精确客观可复现。",
+      "category": "language",
+      "tags": [
+        "学术写作",
+        "论文",
+        "引用",
+        "摘要",
+        "academic-writing"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/academic-english-editor.json"
+    },
+    {
+      "id": "adr-architecture-decisions",
+      "name": "架构决策记录",
+      "version": "1.0.0",
+      "description": "以上下文、决策、后果三段结构钉死每个架构选择的理由：一决策一文档，状态可流转但不可篡改，被取代的历史互相链接，让未来推翻有据可依。",
+      "category": "productivity",
+      "tags": [
+        "架构决策",
+        "决策留档",
+        "技术选型",
+        "adr"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/adr-architecture-decisions.json"
+    },
+    {
+      "id": "agent-orchestration-playbook",
+      "name": "复杂任务代理编排",
+      "version": "1.0.0",
+      "description": "主代理是指挥官不是劳模：按确定性、上下文隔离、可逆性三判据，在工具直做、子代理、人工确认点之间选派，依赖图编排加台账抗遗忘。",
+      "category": "productivity",
+      "tags": [
+        "任务编排",
+        "子代理调度",
+        "人工确认",
+        "编排台账",
+        "orchestration"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/agent-orchestration-playbook.json"
+    },
+    {
+      "id": "ai-tools-playbook",
+      "name": "AI 工具 playbook",
+      "version": "1.0.0",
+      "description": "AI 工具 playbook：任务工具匹配矩阵、够用三件套提示词、隐私三不投边界、幻觉回源验证与生成评审工作流、防依赖三纪律，把 AI 当高效草稿机而非真理机，输出即担责。",
+      "category": "tech",
+      "tags": [
+        "AI工具",
+        "效率",
+        "隐私",
+        "验证",
+        "ai-tools"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/ai-tools-playbook.json"
+    },
+    {
+      "id": "api-contract-design",
+      "name": "API 契约设计",
+      "version": "1.0.0",
+      "description": "契约设计七维检查单：命名速查、资源建模与 URL 约定、方法语义、状态码表、游标分页与过滤排序、错误信封结构、版本与弃用策略，设计、评审、争议仲裁三用",
+      "category": "coding",
+      "tags": [
+        "契约设计",
+        "接口规范",
+        "REST",
+        "api"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/api-contract-design.json"
+    },
+    {
+      "id": "api-versioning-lifecycle",
+      "name": "API 版本演进治理",
+      "version": "1.0.0",
+      "description": "API 版本演进治理方法论：URI 主版本与兼容判据，安全与破坏变更双清单门禁、废弃五阶段周期、契约测试先行与双版本共存，交付变更评审与迁移指南。",
+      "category": "coding",
+      "tags": [
+        "接口版本",
+        "兼容性",
+        "废弃治理",
+        "api",
+        "versioning"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/api-versioning-lifecycle.json"
+    },
+    {
+      "id": "bash-safe-scripting",
+      "name": "Shell 安全脚本",
+      "version": "1.0.0",
+      "description": "用严格模式与引号纪律堵死 Shell 陷阱：出错即停、未定义报错、管道失败计入，数组传参防注入，退出钩子必清理，脚本必幂等可测。",
+      "category": "coding",
+      "tags": [
+        "Shell脚本",
+        "严格模式",
+        "安全编码",
+        "幂等设计",
+        "bash"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/bash-safe-scripting.json"
+    },
     {
       "id": "behavioral-interview-star",
       "name": "行为面试 STAR 打磨",
@@ -19,6 +152,104 @@
       "scope": "agent",
       "author": "Apex",
       "file": "skills/behavioral-interview-star.json"
+    },
+    {
+      "id": "brainstorm-partner",
+      "name": "头脑风暴搭子",
+      "version": "1.0.0",
+      "description": "创意工作流：发散收敛双阶段纪律、SCAMPER 七问、六顶思考帽、评估矩阵筛选与组合升级，附流程模板",
+      "category": "productivity",
+      "tags": [
+        "头脑风暴",
+        "创意",
+        "点子",
+        "brainstorm"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/brainstorm-partner.json"
+    },
+    {
+      "id": "brand-voice-guardian",
+      "name": "品牌语气守护者",
+      "version": "1.0.0",
+      "description": "品牌一致性守护：把规范解析成色板四层与字体双角色（各配回退链），文本色按背景明暗取反、强调色只点睛，语气三问（对谁、像谁、绝不像谁）约束措辞，逐元素审校防漂移。适用于任何需符合品牌规范的文档、演示与界面产出。",
+      "category": "writing",
+      "tags": [
+        "品牌规范",
+        "视觉一致性",
+        "语气控制",
+        "branding"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/brand-voice-guardian.json"
+    },
+    {
+      "id": "breaking-change-rollout",
+      "name": "破坏性变更灰度发布",
+      "version": "1.0.0",
+      "description": "破坏成本由变更方预付：穷尽不破坏替代方案，废弃周期三段式配迁移指南，流量分桶灰度逐级放量，观测哨兵先行，回滚预案具体到命令。",
+      "category": "coding",
+      "tags": [
+        "破坏性变更",
+        "灰度发布",
+        "废弃周期",
+        "rollout"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/breaking-change-rollout.json"
+    },
+    {
+      "id": "business-english-polish",
+      "name": "商务英语润色",
+      "version": "1.0.0",
+      "description": "商务英语润色：会议用语按环节配框架、谈判硬事软说与交换式让步、地道小词替换大词堆砌、跨文化雷区排查与远程会议纪律，目标是准确得体把事办成。",
+      "category": "language",
+      "tags": [
+        "商务英语",
+        "会议",
+        "谈判",
+        "跨文化",
+        "business-english"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/business-english-polish.json"
+    },
+    {
+      "id": "business-model-craft",
+      "name": "商业模式画布",
+      "version": "1.0.0",
+      "description": "商业模式画布方法论：九格右先左后填写顺序、假设三级标注定位致命假设、跨格一致性检查、单变量推演与三张画布对照，把商业模式从九格散文变成可验证的假设清单。",
+      "category": "business",
+      "tags": [
+        "商业模式",
+        "画布",
+        "精益验证",
+        "strategy"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/business-model-craft.json"
+    },
+    {
+      "id": "caching-strategy-design",
+      "name": "缓存策略设计",
+      "version": "1.0.0",
+      "description": "缓存策略设计方法论：读写策略选型与先更库后删缓存基线，穿透、击穿、雪崩三件套防护，延迟双删一致性、容量与热点治理，交付命中率达标的缓存方案。",
+      "category": "coding",
+      "tags": [
+        "缓存策略",
+        "缓存穿透",
+        "读写一致性",
+        "caching",
+        "redis"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/caching-strategy-design.json"
     },
     {
       "id": "career-navigator",
@@ -53,132 +284,20 @@
       "file": "skills/career-pivot-blueprint.json"
     },
     {
-      "id": "interview-coach",
-      "name": "面试通关教练",
+      "id": "chaos-engineering-practice",
+      "name": "混沌工程实践",
       "version": "1.0.0",
-      "description": "面试全流程：自我介绍公式、STAR 结构化答题、反问环节设计、薪资谈判话术、模拟面试逐题复盘机制",
-      "category": "career",
+      "description": "混沌是可控实验而非破坏：稳态假说先行、爆炸半径四道闸门、从生产必发的故障起手注入，观察级联与恢复时长，未通过的实验沉淀为修复闭环。",
+      "category": "tech",
       "tags": [
-        "面试",
-        "求职",
-        "谈薪",
-        "interview"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/interview-coach.json"
-    },
-    {
-      "id": "okr-alignment-craft",
-      "name": "OKR 对齐术",
-      "version": "1.0.0",
-      "description": "OKR 对齐术：O 祈使句写法与数量红线、KR 基线化可打分公式、信心度 50% 双评纪律、上下左右对齐与 CFR 周检视、复盘诚实打分不与绩效挂钩，附定稿十查与写病改写对照。",
-      "category": "career",
-      "tags": [
-        "目标管理",
-        "对齐",
-        "复盘",
-        "okr"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/okr-alignment-craft.json"
-    },
-    {
-      "id": "resume-crafter",
-      "name": "简历打磨工坊",
-      "version": "1.0.0",
-      "description": "简历五法：岗位匹配先读 JD、STAR 法则写经历、量化成果立证据、关键词过机筛、一页原则做减法",
-      "category": "career",
-      "tags": [
-        "简历",
-        "求职",
-        "校招",
-        "resume"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/resume-crafter.json"
-    },
-    {
-      "id": "technical-interview-prep",
-      "name": "技术面试备战",
-      "version": "1.0.0",
-      "description": "技术面试备战：情报先行定复习范围、题型分类刷题与间隔重复、白板沟通四步、项目三层深挖防守、系统设计框架与四周计划表，把备考变成情报驱动的工程。",
-      "category": "career",
-      "tags": [
-        "技术面试",
-        "算法",
-        "系统设计",
-        "interview"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/technical-interview-prep.json"
-    },
-    {
-      "id": "work-report-storyline",
-      "name": "工作汇报叙事线",
-      "version": "1.0.0",
-      "description": "工作汇报叙事线：结论先行金字塔与 SCQA 开场、进展风险求助三分法、反流水账三刀与读者颗粒度分层、坏消息四步与风险前置话术，让每次汇报都有决策回路。",
-      "category": "career",
-      "tags": [
-        "工作汇报",
-        "向上沟通",
-        "金字塔原理",
-        "reporting"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/work-report-storyline.json"
-    },
-    {
-      "id": "workplace-wisdom",
-      "name": "职场生存智慧",
-      "version": "1.0.0",
-      "description": "职场五修：向上管理三主动、跨部门利益地图、结构化汇报金字塔、边界感三步拒绝法、办公室政治避坑三原则",
-      "category": "career",
-      "tags": [
-        "职场",
-        "汇报",
-        "沟通",
-        "workplace"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/workplace-wisdom.json"
-    },
-    {
-      "id": "legal-consult",
-      "name": "法律常识咨询",
-      "version": "1.0.0",
-      "description": "高频场景法律常识导航：劳动、租房、消费、婚姻家事的常见问题与维权路径，证据意识与何时找律师；不构成法律意见",
-      "category": "knowledge",
-      "tags": [
-        "法律",
-        "维权",
-        "劳动法",
-        "legal"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/legal-consult.json"
-    },
-    {
-      "id": "ab-test-verdict",
-      "name": "A/B 实验裁决官",
-      "version": "1.0.0",
-      "description": "实验裁决五模块：假设与 MDE 先行、样本量公式与时长测算、SRM 与实验卫生、p 值与置信区间正确解读防自欺、决策三分法与上线后留组验证",
-      "category": "data",
-      "tags": [
-        "A/B 测试",
-        "实验设计",
-        "显著性",
-        "experiment"
+        "混沌工程",
+        "故障演练",
+        "韧性验证",
+        "chaos"
       ],
       "scope": "coding",
       "author": "Apex",
-      "file": "skills/ab-test-verdict.json"
+      "file": "skills/chaos-engineering-practice.json"
     },
     {
       "id": "chart-design-principles",
@@ -197,624 +316,20 @@
       "file": "skills/chart-design-principles.json"
     },
     {
-      "id": "cohort-deep-dive",
-      "name": "留存队列深潜",
+      "id": "cicd-pipeline-design",
+      "name": "流水线设计",
       "version": "1.0.0",
-      "description": "队列深潜四步：N-day 与 Range 口径先行、队列表构建与成熟度声明、曲线形态解读（速降、翘尾、双谷）、分群归因与生命周期换算 1/(1-r)",
-      "category": "data",
-      "tags": [
-        "留存",
-        "队列分析",
-        "用户分群",
-        "retention"
-      ],
-      "scope": "coding",
-      "author": "Apex",
-      "file": "skills/cohort-deep-dive.json"
-    },
-    {
-      "id": "dashboard-design-craft",
-      "name": "仪表盘设计",
-      "version": "1.0.0",
-      "description": "仪表盘设计五模块：受众分层定决策场景、F 型五区布局、四层钻取路径、刷新分级与时效标注、信息密度删减与告警直达 owner 的纪律",
-      "category": "data",
-      "tags": [
-        "仪表盘",
-        "看板",
-        "BI",
-        "dashboard"
-      ],
-      "scope": "coding",
-      "author": "Apex",
-      "file": "skills/dashboard-design-craft.json"
-    },
-    {
-      "id": "data-cleaning-recipes",
-      "name": "数据清洗配方",
-      "version": "1.0.0",
-      "description": "清洗配方：画像先行出问题清单；缺失三机制（MCAR、MAR、MNAR）定填充策略、异常三法并用先辨性质、类型规范化与对账三数，全程代码化留痕可复现",
-      "category": "data",
-      "tags": [
-        "数据清洗",
-        "数据质量",
-        "缺失值",
-        "cleaning"
-      ],
-      "scope": "coding",
-      "author": "Apex",
-      "file": "skills/data-cleaning-recipes.json"
-    },
-    {
-      "id": "metrics-tree-design",
-      "name": "指标树设计",
-      "version": "1.0.0",
-      "description": "指标树设计：北极星三问选取、乘法加法双拆解到可干预叶节点、反指标配平古德哈特定律、九字段指标字典与埋点规范治理、分级监控与异常下钻",
-      "category": "data",
-      "tags": [
-        "指标树",
-        "北极星指标",
-        "口径治理",
-        "metrics"
-      ],
-      "scope": "coding",
-      "author": "Apex",
-      "file": "skills/metrics-tree-design.json"
-    },
-    {
-      "id": "pandas-data-wrangling",
-      "name": "Pandas 数据整形",
-      "version": "1.0.0",
-      "description": "Pandas 整形范式：向量化替代 iterrows、链式管道与节点断言、命名聚合与 merge validate 防爆、dtype 降型与分块读的内存策略、时序三件套",
-      "category": "data",
-      "tags": [
-        "Pandas",
-        "向量化",
-        "数据管道",
-        "python"
-      ],
-      "scope": "coding",
-      "author": "Apex",
-      "file": "skills/pandas-data-wrangling.json"
-    },
-    {
-      "id": "business-model-craft",
-      "name": "商业模式画布",
-      "version": "1.0.0",
-      "description": "商业模式画布方法论：九格右先左后填写顺序、假设三级标注定位致命假设、跨格一致性检查、单变量推演与三张画布对照，把商业模式从九格散文变成可验证的假设清单。",
-      "category": "business",
-      "tags": [
-        "商业模式",
-        "画布",
-        "精益验证",
-        "strategy"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/business-model-craft.json"
-    },
-    {
-      "id": "competitor-intel-brief",
-      "name": "竞争情报简报",
-      "version": "1.0.0",
-      "description": "竞争情报简报方法论：先定决策问题再选框架，一手二手三手证据分级采集与合规纪律，加权功能矩阵与同任务走查对比，结论落到带防御性的差异化定位陈述。",
-      "category": "business",
-      "tags": [
-        "竞品分析",
-        "情报",
-        "差异化",
-        "competitive-intel"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/competitor-intel-brief.json"
-    },
-    {
-      "id": "financial-statement-reader",
-      "name": "财报阅读器",
-      "version": "1.0.0",
-      "description": "财报阅读器：三表勾稽校验先行、审计意见与现金流优先的阅读顺序、五组比率速览与同业分位对照、粉饰信号清单与三年趋势纪律，输出财务画像而非投资建议。",
-      "category": "business",
-      "tags": [
-        "财报",
-        "三表勾稽",
-        "财务分析",
-        "red-flags"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/financial-statement-reader.json"
-    },
-    {
-      "id": "negotiation-master",
-      "name": "谈判沟通专家",
-      "version": "1.0.0",
-      "description": "谈判方法论：利益与立场区分、BATNA 三条线、锚定开局、节奏化让步、跨文化维度调整，附谈判前准备清单",
-      "category": "business",
-      "tags": [
-        "谈判",
-        "沟通",
-        "议价",
-        "negotiation"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/negotiation-master.json"
-    },
-    {
-      "id": "pricing-strategy-lab",
-      "name": "定价策略实验室",
-      "version": "1.0.0",
-      "description": "定价策略实验室：成本价值竞争三锚定区间、价值量化叙事与可复核计算链、价格敏感度测试与弹性解读、三档阶梯设计与老客隔离涨价流程、促销折扣治理，拒绝拍脑袋定价与盲目跟随对手。",
-      "category": "business",
-      "tags": [
-        "定价",
-        "价值量化",
-        "价格弹性",
-        "pricing"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/pricing-strategy-lab.json"
-    },
-    {
-      "id": "unit-economics-lab",
-      "name": "单位经济实验室",
-      "version": "1.0.0",
-      "description": "单位经济实验室：LTV 与 CAC 口径先行、毛利口径与留存曲线双路计算、CAC 回收期现金流纪律、流失杠杆敏感性推演与负单位经济病因清单，判断每获取一个客户到底赚不赚钱。",
-      "category": "business",
-      "tags": [
-        "单位经济",
-        "留存",
-        "获客成本",
-        "unit-economics"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/unit-economics-lab.json"
-    },
-    {
-      "id": "finance-literacy",
-      "name": "理财入门顾问",
-      "version": "1.0.0",
-      "description": "理财入门五步：记账摸底、应急金垫底、配置金字塔分层、复利思维养习惯、防骗清单避雷；仅财商科普，不构成投资建议",
-      "category": "finance",
-      "tags": [
-        "理财",
-        "记账",
-        "存钱",
-        "finance"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/finance-literacy.json"
-    },
-    {
-      "id": "ai-tools-playbook",
-      "name": "AI 工具 playbook",
-      "version": "1.0.0",
-      "description": "AI 工具 playbook：任务工具匹配矩阵、够用三件套提示词、隐私三不投边界、幻觉回源验证与生成评审工作流、防依赖三纪律，把 AI 当高效草稿机而非真理机，输出即担责。",
+      "description": "便宜门禁前置快速失败、同一制品一次构建逐环境晋级、锁文件缓存提速、凭据不落仓库，产出阶段化、幂等可重跑、失败即红的流水线设计与治理方案。",
       "category": "tech",
       "tags": [
-        "AI工具",
-        "效率",
-        "隐私",
-        "验证",
-        "ai-tools"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/ai-tools-playbook.json"
-    },
-    {
-      "id": "prompt-craft-toolbox",
-      "name": "提示词工程工具箱",
-      "version": "1.0.0",
-      "description": "提示词工程工具箱：结构化六件套（角色任务上下文约束示例输出格式）、少样本对齐、思维链触发、单变量迭代调试闭环与反模式清单，把许愿式提问变成下单式规格。",
-      "category": "tech",
-      "tags": [
-        "提示词工程",
-        "模板",
-        "少样本",
-        "prompt-engineering",
-        "LLM"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/prompt-craft-toolbox.json"
-    },
-    {
-      "id": "academic-english-editor",
-      "name": "学术英语编辑",
-      "version": "1.0.0",
-      "description": "学术英语编辑：IMRaD 功能句式与时态三区、引用动词立场分级、摘要五句结构、投稿信四段式与审稿逐条回复、名词化手术与一致性检查，精确客观可复现。",
-      "category": "language",
-      "tags": [
-        "学术写作",
-        "论文",
-        "引用",
-        "摘要",
-        "academic-writing"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/academic-english-editor.json"
-    },
-    {
-      "id": "business-english-polish",
-      "name": "商务英语润色",
-      "version": "1.0.0",
-      "description": "商务英语润色：会议用语按环节配框架、谈判硬事软说与交换式让步、地道小词替换大词堆砌、跨文化雷区排查与远程会议纪律，目标是准确得体把事办成。",
-      "category": "language",
-      "tags": [
-        "商务英语",
-        "会议",
-        "谈判",
-        "跨文化",
-        "business-english"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/business-english-polish.json"
-    },
-    {
-      "id": "language-coach",
-      "name": "语言学习教练",
-      "version": "1.0.0",
-      "description": "以可理解输入为主体、间隔重复为巩固、影子跟读练听说、产出驱动倒逼激活的四引擎学习法，附误区清单与每日节奏模板",
-      "category": "language",
-      "tags": [
-        "语言",
-        "外语",
-        "学习",
-        "language"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/language-coach.json"
-    },
-    {
-      "id": "translation-master",
-      "name": "翻译润色大师",
-      "version": "1.0.0",
-      "description": "四步译法：译前分析定位文本类型与读者 → 初译求信 → 润色求达消翻译腔 → 本地化求雅，附术语一致性与译后自查双纪律",
-      "category": "language",
-      "tags": [
-        "翻译",
-        "润色",
-        "本地化",
-        "translation"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/translation-master.json"
-    },
-    {
-      "id": "exam-tutor",
-      "name": "考试备考教练",
-      "version": "1.0.0",
-      "description": "备考体系：考纲拆解到考点颗粒度、三轮复习法（地毯-专题-套卷）、真题三刷策略、考场时间分配与心态预案",
-      "category": "education",
-      "tags": [
-        "考试",
-        "备考",
-        "复习",
-        "exam"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/exam-tutor.json"
-    },
-    {
-      "id": "study-methods",
-      "name": "高效学习方法",
-      "version": "1.0.0",
-      "description": "五件学习兵器：费曼技巧检验理解、主动回忆提取练习、间隔重复抗遗忘、番茄钟管理专注、错题本结构化复盘，附组合拳",
-      "category": "education",
-      "tags": [
-        "学习",
-        "记忆",
-        "自学",
-        "study",
-        "memory"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/study-methods.json"
-    },
-    {
-      "id": "visual-canvas-designer",
-      "name": "视觉画布设计师",
-      "version": "1.0.0",
-      "description": "视觉作品两阶段创作：先写四到六段设计哲学宣言（为美学运动命名、反复强调工匠精神），再翻译成九成视觉一成文字的画布——科学图鉴式视觉语言、有限色板、边界内零重叠，二遍只精炼不添加。适用于海报、艺术品与静态视觉设计。",
-      "category": "creative",
-      "tags": [
-        "视觉设计",
-        "设计哲学",
-        "海报创作",
-        "design"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/visual-canvas-designer.json"
-    },
-    {
-      "id": "brand-voice-guardian",
-      "name": "品牌语气守护者",
-      "version": "1.0.0",
-      "description": "品牌一致性守护：把规范解析成色板四层与字体双角色（各配回退链），文本色按背景明暗取反、强调色只点睛，语气三问（对谁、像谁、绝不像谁）约束措辞，逐元素审校防漂移。适用于任何需符合品牌规范的文档、演示与界面产出。",
-      "category": "writing",
-      "tags": [
-        "品牌规范",
-        "视觉一致性",
-        "语气控制",
-        "branding"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/brand-voice-guardian.json"
-    },
-    {
-      "id": "video-script-writer",
-      "name": "短视频脚本",
-      "version": "1.0.0",
-      "description": "为短视频创作者量产口播稿与分镜脚本：黄金 3 秒开头六钩子、完播率节奏设计、分镜表格式交付，覆盖口播、剧情、vlog 多形态",
-      "category": "writing",
-      "tags": [
-        "短视频",
-        "脚本",
-        "口播",
-        "video",
-        "script"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/video-script-writer.json"
-    },
-    {
-      "id": "writing-coach",
-      "name": "创意写作教练",
-      "version": "1.0.0",
-      "description": "故事工法：三幕结构与场景设计、人物弧光（想要与需要）、悬念钩子与张弛节奏、文风三层拆解模仿、写作障碍五式急救包",
-      "category": "writing",
-      "tags": [
-        "写作",
-        "创意",
-        "文风",
-        "writing"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/writing-coach.json"
-    },
-    {
-      "id": "brainstorm-partner",
-      "name": "头脑风暴搭子",
-      "version": "1.0.0",
-      "description": "创意工作流：发散收敛双阶段纪律、SCAMPER 七问、六顶思考帽、评估矩阵筛选与组合升级，附流程模板",
-      "category": "productivity",
-      "tags": [
-        "头脑风暴",
-        "创意",
-        "点子",
-        "brainstorm"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/brainstorm-partner.json"
-    },
-    {
-      "id": "docx-toolkit",
-      "name": "Word 文档工程师",
-      "version": "1.0.0",
-      "description": "把 docx 当 ZIP 打包的 XML：创建走生成脚本、编辑走解包改 XML、读取走 pandoc 三分路由；先合并碎片 run 再查找替换，修订带标记并用作者名校验，产物转图逐页验证。适用 Word 创建、编辑与批注修订。",
-      "category": "productivity",
-      "tags": [
-        "Word文档",
-        "文档工程",
-        "修订批注",
-        "docx"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/docx-toolkit.json"
-    },
-    {
-      "id": "execution-planner",
-      "name": "执行计划设计师",
-      "version": "1.0.0",
-      "description": "计划替执行者做完思考：为零上下文工程师写出文件、接口签名、红绿步骤与期望输出，自审五查后交用户确认；内联执行时以台账抗遗忘、以裁决代停车。",
-      "category": "productivity",
-      "tags": [
-        "实施计划",
-        "任务拆解",
-        "接口设计",
-        "执行台账",
-        "planning"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/execution-planner.json"
-    },
-    {
-      "id": "parallel-agent-dispatcher",
-      "name": "并行子代理调度官",
-      "version": "1.0.0",
-      "description": "独立问题域一代理：判定任务独立性后构造四要素任务包（范围、目标、约束、输出契约），同批发射并行执行，汇合时冲突检查＋全量回归＋抽查关键改动。",
-      "category": "productivity",
-      "tags": [
-        "并行任务",
-        "子代理",
-        "任务拆分",
-        "上下文管理",
-        "parallel"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/parallel-agent-dispatcher.json"
-    },
-    {
-      "id": "pdf-toolkit",
-      "name": "PDF 文档处理大师",
-      "version": "1.0.0",
-      "description": "PDF 三分路由方法论：读取、创建、修改分别走 pdfplumber、reportlab、pypdf 工具链；表单先探测可填域再选填充路线，扫描件转图 OCR，交付前逐页渲染验证。适用一切 PDF 提取、合并、生成与加密任务。",
-      "category": "productivity",
-      "tags": [
-        "PDF处理",
-        "文档提取",
-        "表单填充",
-        "OCR",
-        "pdf"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/pdf-toolkit.json"
-    },
-    {
-      "id": "pptx-toolkit",
-      "name": "演示文稿架构师",
-      "version": "1.0.0",
-      "description": "先定视觉系统再动手：主题化色板按 60-30-10 分配、单一视觉母题贯穿、每页必有视觉元素；生成器陷阱清单防文件损坏，内容、文件、视觉三关 QA 拦截溢出与占位符。适用幻灯片创建、模板套用与编辑。",
-      "category": "productivity",
-      "tags": [
-        "演示文稿",
-        "幻灯片设计",
-        "视觉QA",
-        "pptx"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/pptx-toolkit.json"
-    },
-    {
-      "id": "time-gtd",
-      "name": "时间管理大师",
-      "version": "1.0.0",
-      "description": "时间管理五层系统：GTD 清空大脑、四象限定优先级、时间块深度工作、周回顾闭环、抗拖延五招对症",
-      "category": "productivity",
-      "tags": [
-        "时间管理",
-        "效率",
-        "拖延",
-        "productivity"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/time-gtd.json"
-    },
-    {
-      "id": "verification-before-done",
-      "name": "完工验证官",
-      "version": "1.0.0",
-      "description": "铁律「证据先于断言」：任何完成宣称前必须刚跑过验证命令并读到输出。五步门禁＋声称-证据对照＋回归测试红绿验证，堵死「应该可以了」式收工。",
-      "category": "productivity",
-      "tags": [
-        "完工验证",
-        "质量门禁",
-        "证据驱动",
-        "回归测试",
-        "verification"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/verification-before-done.json"
-    },
-    {
-      "id": "xlsx-toolkit",
-      "name": "电子表格大师",
-      "version": "1.0.0",
-      "description": "电子表格工程铁律：公式写活不写死（SUMIFS 与 INDEX-MATCH 优先、禁 XLOOKUP），交付前重算零错误，财务模型按颜色语义标注输入与假设、留痕可审计。适用 xlsx 创建、修复、数据清洗与建模。",
-      "category": "productivity",
-      "tags": [
-        "电子表格",
-        "公式建模",
-        "数据清洗",
-        "财务模型",
-        "xlsx"
-      ],
-      "scope": "all",
-      "author": "Apex",
-      "file": "skills/xlsx-toolkit.json"
-    },
-    {
-      "id": "internal-comms-writer",
-      "name": "内部沟通写手",
-      "version": "1.0.0",
-      "description": "内部沟通六体裁路由：3P 周报严格三节半分钟读完，全员通讯 20 至 25 条分区带链接、用「我们」口吻，FAQ 一问一答有据可链；动笔前三问（受众、目的、渠道），素材从高互动痕迹采集。适用于周报、通讯、FAQ 与事故通报。",
-      "category": "communication",
-      "tags": [
-        "内部沟通",
-        "周报",
-        "企业通讯",
-        "写作"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/internal-comms-writer.json"
-    },
-    {
-      "id": "public-speaking",
-      "name": "演讲表达训练",
-      "version": "1.0.0",
-      "description": "演讲五维：坡道-发现-甜点结构、开场钩子三式、故事化表达、控场互动技巧、紧张能量转化与即兴模板",
-      "category": "communication",
-      "tags": [
-        "演讲",
-        "口才",
-        "表达",
-        "speaking"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/public-speaking.json"
-    },
-    {
-      "id": "phishing-defense-shield",
-      "name": "钓鱼防御盾",
-      "version": "1.0.0",
-      "description": "钓鱼防御盾：五处特征快查识破伪装、独立渠道反向验证铁律、转账与验证码最后防线、AI 换脸克隆语音新变种应对、中招三级处置与给长辈的三句话口诀。",
-      "category": "safety",
-      "tags": [
-        "反诈",
-        "钓鱼",
-        "安全意识",
-        "phishing"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/phishing-defense-shield.json"
-    },
-    {
-      "id": "privacy-guard",
-      "name": "隐私卫士",
-      "version": "1.0.0",
-      "description": "账号分级加固、诈骗话术拆解识别、APP 权限最小化与个人信息卫生，纯防御向，帮普通用户把泄露与被骗的风险和损失降到最低",
-      "category": "safety",
-      "tags": [
-        "隐私",
-        "防诈骗",
-        "账号安全",
-        "privacy",
-        "security"
-      ],
-      "scope": "agent",
-      "author": "Apex",
-      "file": "skills/privacy-guard.json"
-    },
-    {
-      "id": "api-contract-design",
-      "name": "API 契约设计",
-      "version": "1.0.0",
-      "description": "契约设计七维检查单：命名速查、资源建模与 URL 约定、方法语义、状态码表、游标分页与过滤排序、错误信封结构、版本与弃用策略，设计、评审、争议仲裁三用",
-      "category": "coding",
-      "tags": [
-        "契约设计",
-        "接口规范",
-        "REST",
-        "api"
+        "流水线设计",
+        "制品晋级",
+        "快速失败",
+        "cicd"
       ],
       "scope": "coding",
       "author": "Apex",
-      "file": "skills/api-contract-design.json"
+      "file": "skills/cicd-pipeline-design.json"
     },
     {
       "id": "code-review-receiver",
@@ -851,6 +366,38 @@
       "file": "skills/code-review-requester.json"
     },
     {
+      "id": "codebase-reading-strategy",
+      "name": "陌生代码库阅读策略",
+      "version": "1.0.0",
+      "description": "先跑通再深读：构建与测试建立地面真值，目录与配置绘制粗图，主链路追踪搭骨架，假设与验证循环补细节，交付结构化认知地图与疑问清单。",
+      "category": "coding",
+      "tags": [
+        "代码阅读",
+        "认知地图",
+        "主链路追踪",
+        "codebase"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/codebase-reading-strategy.json"
+    },
+    {
+      "id": "cohort-deep-dive",
+      "name": "留存队列深潜",
+      "version": "1.0.0",
+      "description": "队列深潜四步：N-day 与 Range 口径先行、队列表构建与成熟度声明、曲线形态解读（速降、翘尾、双谷）、分群归因与生命周期换算 1/(1-r)",
+      "category": "data",
+      "tags": [
+        "留存",
+        "队列分析",
+        "用户分群",
+        "retention"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/cohort-deep-dive.json"
+    },
+    {
       "id": "commit-message-craft",
       "name": "提交信息匠",
       "version": "1.0.0",
@@ -865,6 +412,121 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/commit-message-craft.json"
+    },
+    {
+      "id": "competitor-intel-brief",
+      "name": "竞争情报简报",
+      "version": "1.0.0",
+      "description": "竞争情报简报方法论：先定决策问题再选框架，一手二手三手证据分级采集与合规纪律，加权功能矩阵与同任务走查对比，结论落到带防御性的差异化定位陈述。",
+      "category": "business",
+      "tags": [
+        "竞品分析",
+        "情报",
+        "差异化",
+        "competitive-intel"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/competitor-intel-brief.json"
+    },
+    {
+      "id": "concurrency-model-selection",
+      "name": "并发模型选型",
+      "version": "1.0.0",
+      "description": "并发模型选型方法论：CPU 与 IO 任务画像定模型，线程池经验公式与有界队列底线、事件循环禁阻塞铁律、通信优先与资源隔离，交付池参数表与竞态治理清单。",
+      "category": "coding",
+      "tags": [
+        "并发模型",
+        "线程池",
+        "协程",
+        "concurrency",
+        "thread-pool"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/concurrency-model-selection.json"
+    },
+    {
+      "id": "css-layout-mastery",
+      "name": "CSS 布局精通",
+      "version": "1.0.0",
+      "description": "一维 flex 二维 grid 的选型铁律：flex-basis 与 min-width 陷阱排查、grid 轨道与命名区域、层叠上下文治理、移动优先响应式，先选原语再调细节。",
+      "category": "coding",
+      "tags": [
+        "布局选型",
+        "弹性布局",
+        "网格布局",
+        "css",
+        "responsive"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/css-layout-mastery.json"
+    },
+    {
+      "id": "dashboard-design-craft",
+      "name": "仪表盘设计",
+      "version": "1.0.0",
+      "description": "仪表盘设计五模块：受众分层定决策场景、F 型五区布局、四层钻取路径、刷新分级与时效标注、信息密度删减与告警直达 owner 的纪律",
+      "category": "data",
+      "tags": [
+        "仪表盘",
+        "看板",
+        "BI",
+        "dashboard"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/dashboard-design-craft.json"
+    },
+    {
+      "id": "data-cleaning-recipes",
+      "name": "数据清洗配方",
+      "version": "1.0.0",
+      "description": "清洗配方：画像先行出问题清单；缺失三机制（MCAR、MAR、MNAR）定填充策略、异常三法并用先辨性质、类型规范化与对账三数，全程代码化留痕可复现",
+      "category": "data",
+      "tags": [
+        "数据清洗",
+        "数据质量",
+        "缺失值",
+        "cleaning"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/data-cleaning-recipes.json"
+    },
+    {
+      "id": "data-modeling-schema",
+      "name": "数据库建模设计",
+      "version": "1.0.0",
+      "description": "数据库建模设计方法论：实体关系与 3NF 起步、反范式三问判据，主键三选策略、金额与时间类型纪律、查询先行索引与版本化迁移，交付 ER 说明与建表 DDL。",
+      "category": "coding",
+      "tags": [
+        "数据库建模",
+        "范式设计",
+        "索引规划",
+        "schema",
+        "modeling"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/data-modeling-schema.json"
+    },
+    {
+      "id": "dependency-upgrade-playbook",
+      "name": "依赖升级工程",
+      "version": "1.0.0",
+      "description": "语义化版本解读加锁文件纪律：major 逐级升不跳级，changelog 与依赖树先侦察，类型检查到运行冒烟的验证阶梯，每步可回滚、卡死有止损线。",
+      "category": "coding",
+      "tags": [
+        "依赖升级",
+        "锁文件",
+        "语义化版本",
+        "upgrades"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/dependency-upgrade-playbook.json"
     },
     {
       "id": "dev-branch-finisher",
@@ -884,6 +546,170 @@
       "file": "skills/dev-branch-finisher.json"
     },
     {
+      "id": "distributed-consistency-design",
+      "name": "分布式一致性选型",
+      "version": "1.0.0",
+      "description": "分布式一致性选型方法论：CAP 立场与不一致窗口量化，事务选型阶梯从事务消息到 TCC 与 Saga 补偿、共识组件边界、幂等与对账兜底，交付级别匹配的一致性方案。",
+      "category": "coding",
+      "tags": [
+        "分布式一致性",
+        "分布式事务",
+        "幂等设计",
+        "cap",
+        "consistency"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/distributed-consistency-design.json"
+    },
+    {
+      "id": "docker-craft-containerization",
+      "name": "容器化工艺",
+      "version": "1.0.0",
+      "description": "镜像即不可变交付物：分层缓存按稳定度排序指令、多阶段构建剥离工具链、非 root 最小化运行、配置环境注入，交付可一键构建验证的容器化工艺。",
+      "category": "tech",
+      "tags": [
+        "容器化",
+        "镜像优化",
+        "多阶段构建",
+        "docker"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/docker-craft-containerization.json"
+    },
+    {
+      "id": "docx-toolkit",
+      "name": "Word 文档工程师",
+      "version": "1.0.0",
+      "description": "把 docx 当 ZIP 打包的 XML：创建走生成脚本、编辑走解包改 XML、读取走 pandoc 三分路由；先合并碎片 run 再查找替换，修订带标记并用作者名校验，产物转图逐页验证。适用 Word 创建、编辑与批注修订。",
+      "category": "productivity",
+      "tags": [
+        "Word文档",
+        "文档工程",
+        "修订批注",
+        "docx"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/docx-toolkit.json"
+    },
+    {
+      "id": "error-handling-design",
+      "name": "错误处理与重试设计",
+      "version": "1.0.0",
+      "description": "错误处理与重试设计方法论：错误三分瞬时、永久、未知，指数退避全抖动公式、重试预算与幂等前提、逐跳超时递减与熔断舱壁，交付错误码表与容错参数表。",
+      "category": "coding",
+      "tags": [
+        "错误处理",
+        "重试退避",
+        "熔断降级",
+        "retries",
+        "resilience"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/error-handling-design.json"
+    },
+    {
+      "id": "estimation-techniques",
+      "name": "工作量估算",
+      "version": "1.0.0",
+      "description": "估算给区间不给承诺：任务先拆到可估算粒度，三点法算期望与标准差，历史锚定、信心分级、缓冲归整合层，偏差超两成主动重估同步。",
+      "category": "productivity",
+      "tags": [
+        "工作量估算",
+        "三点估算",
+        "排期规划",
+        "estimation"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/estimation-techniques.json"
+    },
+    {
+      "id": "event-driven-architecture",
+      "name": "事件驱动架构设计",
+      "version": "1.0.0",
+      "description": "事件驱动架构设计方法论：事实事件、命令、查询语义三分，schema 契约演进、编排协同拓扑、分区键保序与幂等消费、死信补偿闭环，交付事件清单与失败路径设计。",
+      "category": "coding",
+      "tags": [
+        "事件驱动",
+        "发布订阅",
+        "事件溯源",
+        "event-driven",
+        "cqrs"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/event-driven-architecture.json"
+    },
+    {
+      "id": "exam-tutor",
+      "name": "考试备考教练",
+      "version": "1.0.0",
+      "description": "备考体系：考纲拆解到考点颗粒度、三轮复习法（地毯-专题-套卷）、真题三刷策略、考场时间分配与心态预案",
+      "category": "education",
+      "tags": [
+        "考试",
+        "备考",
+        "复习",
+        "exam"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/exam-tutor.json"
+    },
+    {
+      "id": "execution-planner",
+      "name": "执行计划设计师",
+      "version": "1.0.0",
+      "description": "计划替执行者做完思考：为零上下文工程师写出文件、接口签名、红绿步骤与期望输出，自审五查后交用户确认；内联执行时以台账抗遗忘、以裁决代停车。",
+      "category": "productivity",
+      "tags": [
+        "实施计划",
+        "任务拆解",
+        "接口设计",
+        "执行台账",
+        "planning"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/execution-planner.json"
+    },
+    {
+      "id": "finance-literacy",
+      "name": "理财入门顾问",
+      "version": "1.0.0",
+      "description": "理财入门五步：记账摸底、应急金垫底、配置金字塔分层、复利思维养习惯、防骗清单避雷；仅财商科普，不构成投资建议",
+      "category": "finance",
+      "tags": [
+        "理财",
+        "记账",
+        "存钱",
+        "finance"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/finance-literacy.json"
+    },
+    {
+      "id": "financial-statement-reader",
+      "name": "财报阅读器",
+      "version": "1.0.0",
+      "description": "财报阅读器：三表勾稽校验先行、审计意见与现金流优先的阅读顺序、五组比率速览与同业分位对照、粉饰信号清单与三年趋势纪律，输出财务画像而非投资建议。",
+      "category": "business",
+      "tags": [
+        "财报",
+        "三表勾稽",
+        "财务分析",
+        "red-flags"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/financial-statement-reader.json"
+    },
+    {
       "id": "frontend-design-eye",
       "name": "前端设计之眼",
       "version": "1.0.0",
@@ -898,6 +724,23 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/frontend-design-eye.json"
+    },
+    {
+      "id": "git-advanced-operations",
+      "name": "Git 高级操作",
+      "version": "1.0.0",
+      "description": "进阶 Git 纪律：破坏性操作前先造安全网，二分定位必先有可复现判据，变基不越共享边界、拣选保持克制，引用日志救援与考古三件套齐备。",
+      "category": "coding",
+      "tags": [
+        "历史改写",
+        "二分定位",
+        "提交拣选",
+        "误操作救援",
+        "git"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/git-advanced-operations.json"
     },
     {
       "id": "git-worktrees-flow",
@@ -917,6 +760,219 @@
       "file": "skills/git-worktrees-flow.json"
     },
     {
+      "id": "go-concurrency-patterns",
+      "name": "Go 并发模式",
+      "version": "1.0.0",
+      "description": "goroutine 生命周期有主、channel 由唯一属主关闭、context 层层下传三大纪律，配 worker 池与流水线模式库，交付以 -race 验证为门槛的并发代码。",
+      "category": "coding",
+      "tags": [
+        "并发编程",
+        "生命周期",
+        "并发模式",
+        "go",
+        "goroutine"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/go-concurrency-patterns.json"
+    },
+    {
+      "id": "gradle-build-tuning",
+      "name": "构建系统调优",
+      "version": "1.0.0",
+      "description": "先测量后调优：构建扫描定位瓶颈，构建缓存、增量任务、配置缓存与并行执行分层治理，附沙箱受限环境生存术，交付前后数据量化的提速报告。",
+      "category": "tech",
+      "tags": [
+        "构建提速",
+        "缓存优化",
+        "增量构建",
+        "gradle"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/gradle-build-tuning.json"
+    },
+    {
+      "id": "graphql-api-design",
+      "name": "GraphQL API 设计",
+      "version": "1.0.0",
+      "description": "GraphQL 设计铁律：Schema 即契约、解析器即边界，可空性是语义，列表字段必查放大倍数配批处理，连接模式游标分页，演进只做加法。",
+      "category": "coding",
+      "tags": [
+        "API设计",
+        "查询放大",
+        "游标分页",
+        "schema",
+        "graphql"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/graphql-api-design.json"
+    },
+    {
+      "id": "incident-postmortem-craft",
+      "name": "事故复盘写作",
+      "version": "1.0.0",
+      "description": "无责复盘方法论：对事不对人，逐分钟重建带证据出处的时间线，连环追问挖到系统性根因，每根因配可验证行动项；没有复现就没有复盘。",
+      "category": "productivity",
+      "tags": [
+        "事故复盘",
+        "根因分析",
+        "无责文化",
+        "时间线",
+        "postmortem"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/incident-postmortem-craft.json"
+    },
+    {
+      "id": "internal-comms-writer",
+      "name": "内部沟通写手",
+      "version": "1.0.0",
+      "description": "内部沟通六体裁路由：3P 周报严格三节半分钟读完，全员通讯 20 至 25 条分区带链接、用「我们」口吻，FAQ 一问一答有据可链；动笔前三问（受众、目的、渠道），素材从高互动痕迹采集。适用于周报、通讯、FAQ 与事故通报。",
+      "category": "communication",
+      "tags": [
+        "内部沟通",
+        "周报",
+        "企业通讯",
+        "写作"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/internal-comms-writer.json"
+    },
+    {
+      "id": "interview-coach",
+      "name": "面试通关教练",
+      "version": "1.0.0",
+      "description": "面试全流程：自我介绍公式、STAR 结构化答题、反问环节设计、薪资谈判话术、模拟面试逐题复盘机制",
+      "category": "career",
+      "tags": [
+        "面试",
+        "求职",
+        "谈薪",
+        "interview"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/interview-coach.json"
+    },
+    {
+      "id": "jvm-tuning-playbook",
+      "name": "JVM 调优手册",
+      "version": "1.0.0",
+      "description": "证据驱动调优：GC 日志与堆快照给病灶画像，代际布局与 GC 器选型配数字依据，容器堆外内存留账，一次一变量压测对照，变更附回滚四元组。",
+      "category": "coding",
+      "tags": [
+        "调优手册",
+        "垃圾回收",
+        "内存排查",
+        "jvm",
+        "gc"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/jvm-tuning-playbook.json"
+    },
+    {
+      "id": "kubernetes-troubleshooting",
+      "name": "Kubernetes 排障",
+      "version": "1.0.0",
+      "description": "状态、事件、日志三板斧取证，按 Pod 状态决策树下钻：CrashLoopBackOff 读退出码、探针核生命周期、Endpoint 逐跳查链路，修复后四项闭环验证才算排障完成。",
+      "category": "tech",
+      "tags": [
+        "集群排障",
+        "Pod诊断",
+        "探针调优",
+        "kubernetes"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/kubernetes-troubleshooting.json"
+    },
+    {
+      "id": "language-coach",
+      "name": "语言学习教练",
+      "version": "1.0.0",
+      "description": "以可理解输入为主体、间隔重复为巩固、影子跟读练听说、产出驱动倒逼激活的四引擎学习法，附误区清单与每日节奏模板",
+      "category": "language",
+      "tags": [
+        "语言",
+        "外语",
+        "学习",
+        "language"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/language-coach.json"
+    },
+    {
+      "id": "legacy-strangler-migration",
+      "name": "遗留系统绞杀迁移",
+      "version": "1.0.0",
+      "description": "绞杀者模式增量迁移：路由收口、防腐层隔离旧模型、影子流量到全量的灰度阶梯、双写对账与回滚预案，每一步可停可退，拒绝推倒重来。",
+      "category": "coding",
+      "tags": [
+        "绞杀者模式",
+        "遗留系统",
+        "增量迁移",
+        "strangler"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/legacy-strangler-migration.json"
+    },
+    {
+      "id": "legal-consult",
+      "name": "法律常识咨询",
+      "version": "1.0.0",
+      "description": "高频场景法律常识导航：劳动、租房、消费、婚姻家事的常见问题与维权路径，证据意识与何时找律师；不构成法律意见",
+      "category": "knowledge",
+      "tags": [
+        "法律",
+        "维权",
+        "劳动法",
+        "legal"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/legal-consult.json"
+    },
+    {
+      "id": "linux-cli-mastery",
+      "name": "Linux 命令行实战",
+      "version": "1.0.0",
+      "description": "命令行组合系统实战法：先侦查后行动、先干跑后真跑，管道先粗滤再细作省算力，破坏性命令三查红灯，三步以上操作先落脚本再执行。",
+      "category": "tech",
+      "tags": [
+        "命令行实战",
+        "管道组合",
+        "文本处理",
+        "系统排查",
+        "linux"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/linux-cli-mastery.json"
+    },
+    {
+      "id": "load-testing-design",
+      "name": "压力测试设计",
+      "version": "1.0.0",
+      "description": "先定目标再设计：真实流量画像建模、阶梯加压找拐点、错误率抬头先于延迟陡升、资源水位指认瓶颈，k6 脚本即代码，交付可重跑复验的容量结论。",
+      "category": "tech",
+      "tags": [
+        "压力测试",
+        "容量评估",
+        "拐点分析",
+        "k6"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/load-testing-design.json"
+    },
+    {
       "id": "mcp-server-builder",
       "name": "MCP 服务器开发指南",
       "version": "1.0.0",
@@ -931,6 +987,251 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/mcp-server-builder.json"
+    },
+    {
+      "id": "message-queue-selection",
+      "name": "消息队列选型治理",
+      "version": "1.0.0",
+      "description": "消息队列选型治理方法论：五问判据定中间件，at-least-once 加幂等消费合成 exactly-once、分区键保序、积压三板斧与死信闭环，交付选型结论与消费链路设计。",
+      "category": "coding",
+      "tags": [
+        "消息队列",
+        "消费幂等",
+        "积压治理",
+        "kafka",
+        "message-queue"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/message-queue-selection.json"
+    },
+    {
+      "id": "metrics-tree-design",
+      "name": "指标树设计",
+      "version": "1.0.0",
+      "description": "指标树设计：北极星三问选取、乘法加法双拆解到可干预叶节点、反指标配平古德哈特定律、九字段指标字典与埋点规范治理、分级监控与异常下钻",
+      "category": "data",
+      "tags": [
+        "指标树",
+        "北极星指标",
+        "口径治理",
+        "metrics"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/metrics-tree-design.json"
+    },
+    {
+      "id": "microservice-split-playbook",
+      "name": "微服务拆分决策",
+      "version": "1.0.0",
+      "description": "微服务拆分决策方法论：痛点先行与成本对冲，限界上下文划界、数据归属先行、绞杀者渐进迁移与粒度红线，防分布式单体，交付边界清晰的拆分或禁拆方案。",
+      "category": "coding",
+      "tags": [
+        "微服务拆分",
+        "限界上下文",
+        "服务边界",
+        "microservices",
+        "ddd"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/microservice-split-playbook.json"
+    },
+    {
+      "id": "monorepo-craft",
+      "name": "单仓多包管理",
+      "version": "1.0.0",
+      "description": "以依赖图为核心的仓库治理：包边界单向、按受影响集增量构建、原子提交与锁定版本发布、共享配置单一来源，交付 CI 不随规模膨胀的单仓方案。",
+      "category": "tech",
+      "tags": [
+        "单仓管理",
+        "增量构建",
+        "依赖治理",
+        "monorepo"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/monorepo-craft.json"
+    },
+    {
+      "id": "multi-step-research-synthesis",
+      "name": "多步研究与综合",
+      "version": "1.0.0",
+      "description": "多轮检索任务总纲：先定问题清单与停止条件，再迭代采集多源材料，经证据分级与冲突裁决，收敛成结论挂来源、推断有标记的综合报告。",
+      "category": "knowledge",
+      "tags": [
+        "多步研究",
+        "证据分级",
+        "信息综合",
+        "research"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/multi-step-research-synthesis.json"
+    },
+    {
+      "id": "negotiation-master",
+      "name": "谈判沟通专家",
+      "version": "1.0.0",
+      "description": "谈判方法论：利益与立场区分、BATNA 三条线、锚定开局、节奏化让步、跨文化维度调整，附谈判前准备清单",
+      "category": "business",
+      "tags": [
+        "谈判",
+        "沟通",
+        "议价",
+        "negotiation"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/negotiation-master.json"
+    },
+    {
+      "id": "nosql-modeling-patterns",
+      "name": "NoSQL 建模范式",
+      "version": "1.0.0",
+      "description": "NoSQL 建模范式方法论：查询驱动倒推数据形态，四型模型对号判据、聚合根嵌套设计、分区键高基数与时间桶防热点、一致性别级权衡，交付访问模式映射表。",
+      "category": "coding",
+      "tags": [
+        "查询驱动",
+        "分区键设计",
+        "反范式",
+        "nosql",
+        "modeling"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/nosql-modeling-patterns.json"
+    },
+    {
+      "id": "observability-instrumentation",
+      "name": "可观测性埋点",
+      "version": "1.0.0",
+      "description": "日志答发生了什么、指标答趋势告警、追踪答请求去了哪：RED 最小完备集、标签基数红线、p99 分位数与上下文全程传播，每个埋点都有消费场景。",
+      "category": "tech",
+      "tags": [
+        "可观测性",
+        "指标设计",
+        "分布式追踪",
+        "observability"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/observability-instrumentation.json"
+    },
+    {
+      "id": "okr-alignment-craft",
+      "name": "OKR 对齐术",
+      "version": "1.0.0",
+      "description": "OKR 对齐术：O 祈使句写法与数量红线、KR 基线化可打分公式、信心度 50% 双评纪律、上下左右对齐与 CFR 周检视、复盘诚实打分不与绩效挂钩，附定稿十查与写病改写对照。",
+      "category": "career",
+      "tags": [
+        "目标管理",
+        "对齐",
+        "复盘",
+        "okr"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/okr-alignment-craft.json"
+    },
+    {
+      "id": "oncall-runbook-craft",
+      "name": "值班手册编写",
+      "version": "1.0.0",
+      "description": "为凌晨三点只剩一半脑力的值班者写手册：第一分钟动作可复制粘贴，症状到处置步骤编号可勾选，危险操作亮红灯，升级路径有明确阈值。",
+      "category": "productivity",
+      "tags": [
+        "值班手册",
+        "告警响应",
+        "应急处置",
+        "runbook"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/oncall-runbook-craft.json"
+    },
+    {
+      "id": "pandas-data-wrangling",
+      "name": "Pandas 数据整形",
+      "version": "1.0.0",
+      "description": "Pandas 整形范式：向量化替代 iterrows、链式管道与节点断言、命名聚合与 merge validate 防爆、dtype 降型与分块读的内存策略、时序三件套",
+      "category": "data",
+      "tags": [
+        "Pandas",
+        "向量化",
+        "数据管道",
+        "python"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/pandas-data-wrangling.json"
+    },
+    {
+      "id": "parallel-agent-dispatcher",
+      "name": "并行子代理调度官",
+      "version": "1.0.0",
+      "description": "独立问题域一代理：判定任务独立性后构造四要素任务包（范围、目标、约束、输出契约），同批发射并行执行，汇合时冲突检查＋全量回归＋抽查关键改动。",
+      "category": "productivity",
+      "tags": [
+        "并行任务",
+        "子代理",
+        "任务拆分",
+        "上下文管理",
+        "parallel"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/parallel-agent-dispatcher.json"
+    },
+    {
+      "id": "pdf-toolkit",
+      "name": "PDF 文档处理大师",
+      "version": "1.0.0",
+      "description": "PDF 三分路由方法论：读取、创建、修改分别走 pdfplumber、reportlab、pypdf 工具链；表单先探测可填域再选填充路线，扫描件转图 OCR，交付前逐页渲染验证。适用一切 PDF 提取、合并、生成与加密任务。",
+      "category": "productivity",
+      "tags": [
+        "PDF处理",
+        "文档提取",
+        "表单填充",
+        "OCR",
+        "pdf"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/pdf-toolkit.json"
+    },
+    {
+      "id": "phishing-defense-shield",
+      "name": "钓鱼防御盾",
+      "version": "1.0.0",
+      "description": "钓鱼防御盾：五处特征快查识破伪装、独立渠道反向验证铁律、转账与验证码最后防线、AI 换脸克隆语音新变种应对、中招三级处置与给长辈的三句话口诀。",
+      "category": "safety",
+      "tags": [
+        "反诈",
+        "钓鱼",
+        "安全意识",
+        "phishing"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/phishing-defense-shield.json"
+    },
+    {
+      "id": "pptx-toolkit",
+      "name": "演示文稿架构师",
+      "version": "1.0.0",
+      "description": "先定视觉系统再动手：主题化色板按 60-30-10 分配、单一视觉母题贯穿、每页必有视觉元素；生成器陷阱清单防文件损坏，内容、文件、视觉三关 QA 拦截溢出与占位符。适用幻灯片创建、模板套用与编辑。",
+      "category": "productivity",
+      "tags": [
+        "演示文稿",
+        "幻灯片设计",
+        "视觉QA",
+        "pptx"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/pptx-toolkit.json"
     },
     {
       "id": "pr-review-checklist",
@@ -949,6 +1250,89 @@
       "file": "skills/pr-review-checklist.json"
     },
     {
+      "id": "pricing-strategy-lab",
+      "name": "定价策略实验室",
+      "version": "1.0.0",
+      "description": "定价策略实验室：成本价值竞争三锚定区间、价值量化叙事与可复核计算链、价格敏感度测试与弹性解读、三档阶梯设计与老客隔离涨价流程、促销折扣治理，拒绝拍脑袋定价与盲目跟随对手。",
+      "category": "business",
+      "tags": [
+        "定价",
+        "价值量化",
+        "价格弹性",
+        "pricing"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/pricing-strategy-lab.json"
+    },
+    {
+      "id": "privacy-guard",
+      "name": "隐私卫士",
+      "version": "1.0.0",
+      "description": "账号分级加固、诈骗话术拆解识别、APP 权限最小化与个人信息卫生，纯防御向，帮普通用户把泄露与被骗的风险和损失降到最低",
+      "category": "safety",
+      "tags": [
+        "隐私",
+        "防诈骗",
+        "账号安全",
+        "privacy",
+        "security"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/privacy-guard.json"
+    },
+    {
+      "id": "prompt-craft-toolbox",
+      "name": "提示词工程工具箱",
+      "version": "1.0.0",
+      "description": "提示词工程工具箱：结构化六件套（角色任务上下文约束示例输出格式）、少样本对齐、思维链触发、单变量迭代调试闭环与反模式清单，把许愿式提问变成下单式规格。",
+      "category": "tech",
+      "tags": [
+        "提示词工程",
+        "模板",
+        "少样本",
+        "prompt-engineering",
+        "LLM"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/prompt-craft-toolbox.json"
+    },
+    {
+      "id": "public-speaking",
+      "name": "演讲表达训练",
+      "version": "1.0.0",
+      "description": "演讲五维：坡道-发现-甜点结构、开场钩子三式、故事化表达、控场互动技巧、紧张能量转化与即兴模板",
+      "category": "communication",
+      "tags": [
+        "演讲",
+        "口才",
+        "表达",
+        "speaking"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/public-speaking.json"
+    },
+    {
+      "id": "python-performance-craft",
+      "name": "Python 性能优化",
+      "version": "1.0.0",
+      "description": "profile 先行、复杂度优先、热循环交给 C 实现与向量化，GIL 下并发模型按 CPU 与 IO 密集分型；每项优化附前后测量数字，拒绝凭感觉调优。",
+      "category": "coding",
+      "tags": [
+        "性能优化",
+        "测量先行",
+        "并发选型",
+        "python",
+        "profiling"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/python-performance-craft.json"
+    },
+    {
       "id": "react-artifacts-builder",
       "name": "React 制品构建者",
       "version": "1.0.0",
@@ -963,6 +1347,40 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/react-artifacts-builder.json"
+    },
+    {
+      "id": "react-performance-optimization",
+      "name": "React 性能优化",
+      "version": "1.0.0",
+      "description": "Profiler 先定位再动手：重渲染按引用稳定性与渲染代价双重判据治理，状态就近放置，列表虚拟化阈值明确，每项优化附前后渲染次数对照证据。",
+      "category": "coding",
+      "tags": [
+        "重渲染",
+        "渲染性能",
+        "记忆化",
+        "react",
+        "profiler"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/react-performance-optimization.json"
+    },
+    {
+      "id": "realtime-systems-design",
+      "name": "实时系统设计",
+      "version": "1.0.0",
+      "description": "实时系统设计方法论：端到端延迟逐跳记账与 P99 分位纪律，推送三通道选型、扇出治理、watermark 取舍与 checkpoint 恢复、背压降级矩阵，交付延迟预算分解表。",
+      "category": "coding",
+      "tags": [
+        "实时系统",
+        "延迟预算",
+        "背压设计",
+        "realtime",
+        "latency"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/realtime-systems-design.json"
     },
     {
       "id": "refactoring-playbook",
@@ -997,6 +1415,22 @@
       "file": "skills/regex-forge.json"
     },
     {
+      "id": "resume-crafter",
+      "name": "简历打磨工坊",
+      "version": "1.0.0",
+      "description": "简历五法：岗位匹配先读 JD、STAR 法则写经历、量化成果立证据、关键词过机筛、一页原则做减法",
+      "category": "career",
+      "tags": [
+        "简历",
+        "求职",
+        "校招",
+        "resume"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/resume-crafter.json"
+    },
+    {
       "id": "root-cause-debugging",
       "name": "根因定位调试法",
       "version": "1.0.0",
@@ -1011,6 +1445,38 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/root-cause-debugging.json"
+    },
+    {
+      "id": "rust-ownership-mastery",
+      "name": "Rust 所有权与借用",
+      "version": "1.0.0",
+      "description": "所有权是编译期资源协议：移动语义、借用三法则、与检查器协作的修复路径与智能指针选型判据，借报错反推数据流设计，cargo check 清零交付。",
+      "category": "coding",
+      "tags": [
+        "所有权",
+        "借用检查",
+        "生命周期",
+        "rust"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/rust-ownership-mastery.json"
+    },
+    {
+      "id": "security-hardening-review",
+      "name": "安全加固审查",
+      "version": "1.0.0",
+      "description": "以攻击者视角逐面过筛：注入与 SSRF、越权与最小权限、密钥三不纪律、依赖供应链与 TLS 红线，按 OWASP 关键项分级呈报，阻断项不修不发布。",
+      "category": "safety",
+      "tags": [
+        "安全加固",
+        "漏洞审查",
+        "密钥管理",
+        "owasp"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/security-hardening-review.json"
     },
     {
       "id": "skill-authoring-guide",
@@ -1029,6 +1495,22 @@
       "file": "skills/skill-authoring-guide.json"
     },
     {
+      "id": "sli-slo-design",
+      "name": "SLI 与 SLO 设计",
+      "version": "1.0.0",
+      "description": "SLI 立足用户视角测量、SLO 是承诺、错误预算是发布速度的货币：99.9% 即三十天四十三分钟预算，燃烧率快慢双窗口告警替代阈值风暴。",
+      "category": "tech",
+      "tags": [
+        "错误预算",
+        "燃烧率告警",
+        "可靠性目标",
+        "slo"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/sli-slo-design.json"
+    },
+    {
       "id": "sql-query-tuning",
       "name": "SQL 查询调优",
       "version": "1.0.0",
@@ -1043,6 +1525,105 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/sql-query-tuning.json"
+    },
+    {
+      "id": "sql-window-functions",
+      "name": "SQL 窗口函数",
+      "version": "1.0.0",
+      "description": "窗口函数保留行的同时看见聚合：分区、排序、帧三件套定义组内视野，排名三兄弟辨析并列处理，帧语义显式声明，结果逐行手工对账。",
+      "category": "data",
+      "tags": [
+        "窗口函数",
+        "组内排名",
+        "帧语义",
+        "累计指标",
+        "sql"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/sql-window-functions.json"
+    },
+    {
+      "id": "sre-golden-signals",
+      "name": "SRE 金信号排障",
+      "version": "1.0.0",
+      "description": "延迟、流量、错误、饱和度四信号先定方向：分位数读长尾、错误率先问分母、队列深度是领先指标、变更永远位列嫌疑第一，先止血后归因收尾。",
+      "category": "tech",
+      "tags": [
+        "金信号",
+        "线上排障",
+        "性能归因",
+        "sre"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/sre-golden-signals.json"
+    },
+    {
+      "id": "state-management-patterns",
+      "name": "前端状态管理范式",
+      "version": "1.0.0",
+      "description": "状态分类学：URL、服务器缓存、全局会话、局部表单分型归位，单一事实源消灭冗余副本，订阅粒度决定选型，交付状态户口表与选型对比矩阵。",
+      "category": "coding",
+      "tags": [
+        "状态管理",
+        "状态分类",
+        "单一事实源",
+        "state-management"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/state-management-patterns.json"
+    },
+    {
+      "id": "structured-logging-craft",
+      "name": "结构化日志工艺",
+      "version": "1.0.0",
+      "description": "一行一条、字段结构化、等级即语义：四级纪律对齐告警动作、trace_id 全程透传、敏感数据永不入日志，交付三十秒能定位真相的日志字段契约。",
+      "category": "tech",
+      "tags": [
+        "结构化日志",
+        "等级纪律",
+        "日志脱敏",
+        "logging"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/structured-logging-craft.json"
+    },
+    {
+      "id": "study-methods",
+      "name": "高效学习方法",
+      "version": "1.0.0",
+      "description": "五件学习兵器：费曼技巧检验理解、主动回忆提取练习、间隔重复抗遗忘、番茄钟管理专注、错题本结构化复盘，附组合拳",
+      "category": "education",
+      "tags": [
+        "学习",
+        "记忆",
+        "自学",
+        "study",
+        "memory"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/study-methods.json"
+    },
+    {
+      "id": "system-design-blueprint",
+      "name": "系统设计蓝图",
+      "version": "1.0.0",
+      "description": "容量估算驱动的系统设计方法论：QPS、存储、带宽三笔账先行，分层组件与数据流推演、单点降级预案、ADR 取舍留痕，交付可演进的架构蓝图与技术方案。",
+      "category": "coding",
+      "tags": [
+        "系统设计",
+        "容量估算",
+        "架构蓝图",
+        "architecture",
+        "scalability"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/system-design-blueprint.json"
     },
     {
       "id": "tdd-workflow",
@@ -1062,6 +1643,55 @@
       "file": "skills/tdd-workflow.json"
     },
     {
+      "id": "technical-interview-prep",
+      "name": "技术面试备战",
+      "version": "1.0.0",
+      "description": "技术面试备战：情报先行定复习范围、题型分类刷题与间隔重复、白板沟通四步、项目三层深挖防守、系统设计框架与四周计划表，把备考变成情报驱动的工程。",
+      "category": "career",
+      "tags": [
+        "技术面试",
+        "算法",
+        "系统设计",
+        "interview"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/technical-interview-prep.json"
+    },
+    {
+      "id": "technical-spec-writing",
+      "name": "技术方案文档写作",
+      "version": "1.0.0",
+      "description": "把问题钉死、把方案比出来、把风险列成册：产出含问题定义、方案对比矩阵、接口契约与风险登记的完整技术方案，让评审者只做判断题。",
+      "category": "productivity",
+      "tags": [
+        "技术方案",
+        "方案对比",
+        "接口契约",
+        "风险登记",
+        "spec"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/technical-spec-writing.json"
+    },
+    {
+      "id": "terraform-iac-craft",
+      "name": "基础设施即代码",
+      "version": "1.0.0",
+      "description": "声明终态而非步骤：plan 逐行审读、意外销毁零容忍，state 远端加锁绝不手改，模块化复用与例行漂移检测，交付可审查、可回滚、可复制环境的基础设施代码。",
+      "category": "tech",
+      "tags": [
+        "基础设施即代码",
+        "状态管理",
+        "漂移检测",
+        "terraform"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/terraform-iac-craft.json"
+    },
+    {
       "id": "test-strategy-writer",
       "name": "测试策略设计师",
       "version": "1.0.0",
@@ -1078,6 +1708,137 @@
       "file": "skills/test-strategy-writer.json"
     },
     {
+      "id": "time-gtd",
+      "name": "时间管理大师",
+      "version": "1.0.0",
+      "description": "时间管理五层系统：GTD 清空大脑、四象限定优先级、时间块深度工作、周回顾闭环、抗拖延五招对症",
+      "category": "productivity",
+      "tags": [
+        "时间管理",
+        "效率",
+        "拖延",
+        "productivity"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/time-gtd.json"
+    },
+    {
+      "id": "translation-master",
+      "name": "翻译润色大师",
+      "version": "1.0.0",
+      "description": "四步译法：译前分析定位文本类型与读者 → 初译求信 → 润色求达消翻译腔 → 本地化求雅，附术语一致性与译后自查双纪律",
+      "category": "language",
+      "tags": [
+        "翻译",
+        "润色",
+        "本地化",
+        "translation"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/translation-master.json"
+    },
+    {
+      "id": "typescript-type-mastery",
+      "name": "TypeScript 类型系统精通",
+      "version": "1.0.0",
+      "description": "类型建模驱动：可辨识联合让非法状态不可表示、never 穷尽检查、泛型约束与 satisfies 收紧推断，配严格化渐进路线，交付可编译验证的类型设计。",
+      "category": "coding",
+      "tags": [
+        "类型建模",
+        "可辨识联合",
+        "泛型约束",
+        "typescript"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/typescript-type-mastery.json"
+    },
+    {
+      "id": "unit-economics-lab",
+      "name": "单位经济实验室",
+      "version": "1.0.0",
+      "description": "单位经济实验室：LTV 与 CAC 口径先行、毛利口径与留存曲线双路计算、CAC 回收期现金流纪律、流失杠杆敏感性推演与负单位经济病因清单，判断每获取一个客户到底赚不赚钱。",
+      "category": "business",
+      "tags": [
+        "单位经济",
+        "留存",
+        "获客成本",
+        "unit-economics"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/unit-economics-lab.json"
+    },
+    {
+      "id": "verification-before-done",
+      "name": "完工验证官",
+      "version": "1.0.0",
+      "description": "铁律「证据先于断言」：任何完成宣称前必须刚跑过验证命令并读到输出。五步门禁＋声称-证据对照＋回归测试红绿验证，堵死「应该可以了」式收工。",
+      "category": "productivity",
+      "tags": [
+        "完工验证",
+        "质量门禁",
+        "证据驱动",
+        "回归测试",
+        "verification"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/verification-before-done.json"
+    },
+    {
+      "id": "video-script-writer",
+      "name": "短视频脚本",
+      "version": "1.0.0",
+      "description": "为短视频创作者量产口播稿与分镜脚本：黄金 3 秒开头六钩子、完播率节奏设计、分镜表格式交付，覆盖口播、剧情、vlog 多形态",
+      "category": "writing",
+      "tags": [
+        "短视频",
+        "脚本",
+        "口播",
+        "video",
+        "script"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/video-script-writer.json"
+    },
+    {
+      "id": "visual-canvas-designer",
+      "name": "视觉画布设计师",
+      "version": "1.0.0",
+      "description": "视觉作品两阶段创作：先写四到六段设计哲学宣言（为美学运动命名、反复强调工匠精神），再翻译成九成视觉一成文字的画布——科学图鉴式视觉语言、有限色板、边界内零重叠，二遍只精炼不添加。适用于海报、艺术品与静态视觉设计。",
+      "category": "creative",
+      "tags": [
+        "视觉设计",
+        "设计哲学",
+        "海报创作",
+        "design"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/visual-canvas-designer.json"
+    },
+    {
+      "id": "web-accessibility-audit",
+      "name": "Web 无障碍审计",
+      "version": "1.0.0",
+      "description": "语义优先、键盘先行：原生元素优于 ARIA 修补，对比度 4.5:1 量化达标，自动扫描加人工双轨走查，产出按严重度分级的可执行整改清单。",
+      "category": "coding",
+      "tags": [
+        "无障碍",
+        "键盘可达",
+        "对比度",
+        "wcag",
+        "a11y"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/web-accessibility-audit.json"
+    },
+    {
       "id": "webapp-e2e-testing",
       "name": "Web 应用端到端测试",
       "version": "1.0.0",
@@ -1092,6 +1853,78 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/webapp-e2e-testing.json"
+    },
+    {
+      "id": "work-report-storyline",
+      "name": "工作汇报叙事线",
+      "version": "1.0.0",
+      "description": "工作汇报叙事线：结论先行金字塔与 SCQA 开场、进展风险求助三分法、反流水账三刀与读者颗粒度分层、坏消息四步与风险前置话术，让每次汇报都有决策回路。",
+      "category": "career",
+      "tags": [
+        "工作汇报",
+        "向上沟通",
+        "金字塔原理",
+        "reporting"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/work-report-storyline.json"
+    },
+    {
+      "id": "workplace-wisdom",
+      "name": "职场生存智慧",
+      "version": "1.0.0",
+      "description": "职场五修：向上管理三主动、跨部门利益地图、结构化汇报金字塔、边界感三步拒绝法、办公室政治避坑三原则",
+      "category": "career",
+      "tags": [
+        "职场",
+        "汇报",
+        "沟通",
+        "workplace"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/workplace-wisdom.json"
+    },
+    {
+      "id": "writing-coach",
+      "name": "创意写作教练",
+      "version": "1.0.0",
+      "description": "故事工法：三幕结构与场景设计、人物弧光（想要与需要）、悬念钩子与张弛节奏、文风三层拆解模仿、写作障碍五式急救包",
+      "category": "writing",
+      "tags": [
+        "写作",
+        "创意",
+        "文风",
+        "writing"
+      ],
+      "scope": "agent",
+      "author": "Apex",
+      "file": "skills/writing-coach.json"
+    },
+    {
+      "id": "xlsx-toolkit",
+      "name": "电子表格大师",
+      "version": "1.0.0",
+      "description": "电子表格工程铁律：公式写活不写死（SUMIFS 与 INDEX-MATCH 优先、禁 XLOOKUP），交付前重算零错误，财务模型按颜色语义标注输入与假设、留痕可审计。适用 xlsx 创建、修复、数据清洗与建模。",
+      "category": "productivity",
+      "tags": [
+        "电子表格",
+        "公式建模",
+        "数据清洗",
+        "财务模型",
+        "xlsx"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/xlsx-toolkit.json"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "3.0.0",
+      "date": "2026-10-04",
+      "notes": "v3 编码与复杂任务扩容：新增 50 个技能（架构与分布式 12 / 语言与代码工艺 13 / DevOps 与质量工程 13 / 复杂任务执行与协作 12），全部原创方法论 + 三段式结构 + 密度自检；总数 67→117。配套宿主 Android-Guru-Agent v1.4.6 技能目录热加载（免重启生效）。"
     }
   ]
 }
