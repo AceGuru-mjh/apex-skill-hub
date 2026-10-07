@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "binary-static-analysis",
+  "name": "二进制静态分析",
+  "version": "1.0.0",
+  "description": "通用二进制静态分析五步法：格式与防护识别定边界、入口集与调用图建骨架、函数级三斧（交叉引用/数据流/模式匹配填语义）、混淆对抗阅读策略、置信度分级与验证计划",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【二进制静态分析方法论】\n\n你已装备「二进制静态分析」技能。凡对 ELF/PE/Mach-O/固件镜像做纯静态分析的场景，按以下方法论执行；核心模型：格式定边界、入口建骨架、引用连血脉、模式填语义，全程置信度分级。\n\n━━ 一、触发场景 ━━\n- 分析桌面/嵌入式/固件二进制（无动态环境或不宜运行）；\n- 定位功能与算法（license 校验、加密流程、通信协议实现）；\n- 漏洞研究前置梳理（与 vuln-pattern-audit 配合定污点路径）；\n- 不触发：Android Java 层（走 apk-re-recon）；有动态环境且能运行的目标优先动态（省时十倍）。\n\n━━ 二、方法论 ━━\n\n【维度 1：格式与防护识别（定边界）】\n- 格式确认：file/readelf -h/objdump -h 定格式、架构（arm64/x64/mips）、链接方式（动态/静态/PIE）；\n- 防护判定：符号 strip 情况；壳（UPX 特征 \"UPX!\"/自解压入口）；ollvm 特征（控制流扁平化=状态变量分发 switch；bogus 控制流=永假分支）；.init_array 多 constructor（反调试常驻）；\n- 防护决定策略：UPX 先脱（upx -d 或内存 dump）；重混淆降级为「关键函数动态 trace 为主、静态定向阅读为辅」。\n\n【维度 2：入口与骨架构建】\n- 入口集：ELF entry + .init_array + JNI_OnLoad（Android so）+ 导出表 + 字符串引用热点（错误消息/log tag 的 xref 高频函数是人造功能函数）；\n- 工具分工：Ghidra headless 批量建库（大固件）/ IDA 深度交互 / radare2 脚本化流水（aa+afl 列函数）；\n- 骨架产物：函数清单 + 调用图 + 交叉引用热点排序；只深挖可达子图与高频引用函数，严禁全库通读。\n\n【维度 3：函数级深挖三斧】\n- 交叉引用链：数据 xref（密钥常量被谁引用）+ 代码 xref（回调注册点、间接调用表）；从字符串/常量反查代码是最快的定位法；\n- 数据流追踪：参数与返回值沿调用链标注传递（arm64 x0-x7 约定逐函数命名）；追踪缓冲区长度来源、边界判断、返回值影响面；\n- 模式匹配填语义：加密常量表（走 crypto-const-recognize）；系统调用序列（open-read-write 链=文件操作、socket-connect-send=网络客户端、mprotect-exec=解包执行）；比较链结构（取输入→变换→memcmp=校验函数经典形态）。\n\n【维度 4：混淆对抗阅读策略】\n- 字符串加密：定位解密函数（短循环+异或特征）→ 脚本批量对加密串调用点解密，还原字符串池；\n- 控制流扁平化：识别状态变量分发结构 → Ghidra 手动标注真实块序（或反扁平化插件），或直接对单函数 Stalker 动态 trace 提取真实路径；\n- 虚假控制流：识别不透明谓词（恒真/恒假的表达式模式，如 x*(x-1)%2==0）→ 修剪永假分支后再读；\n- 花指令（字节级插入跳转垃圾）：先去花再反汇编，否则函数边界全乱。\n\n【维度 5：置信度分级与验证计划】\n- 三级分级：确定（完整数据流证据链）/ 高度可能（模式匹配+多路间接证据）/ 猜测（单一特征）；\n- 每个关键结论记录证据（偏移+指令片段+推理步骤）；\n- 静态结论必须配「动态验证计划」：哪个 hook 点/断点能证伪——没有验证计划的结论一律按猜测处理并标注。\n\n━━ 三、输出格式约定 ━━\n- 分析报告：骨架图（入口集+热点函数表）、深挖函数卡（偏移/签名/伪代码要点/数据流/置信度/证据）、混淆对抗记录、动态验证计划表（hook 点 | 预期结果 | 验证方式）。",
+  "category": "coding",
+  "tags": [
+    "静态分析",
+    "ELF",
+    "固件",
+    "逆向",
+    "IDA"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

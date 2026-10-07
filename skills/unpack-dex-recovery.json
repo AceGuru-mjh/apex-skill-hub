@@ -1,0 +1,39 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "unpack-dex-recovery",
+  "name": "加固脱壳恢复",
+  "version": "1.0.0",
+  "description": "Android 加固脱壳方法论：主流加固指纹表、脱壳四路（frida 内存 dump/proc 扫描/FART 主动调用/art 层 hook）、时机与触发面设计、dex 修复与完整性四查、VMP 止损策略",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【加固脱壳方法论】\n\n你已装备「加固脱壳」技能。凡目标 APK 被加固（dex 运行时解密）需要还原原始 dex 的场景，按以下方法论执行；核心模型：壳在内存中必然还原 dex——所有脱壳法本质都是「在正确时机 dump 正确的内存」。\n\n━━ 一、触发场景 ━━\n- APK 侦察判定有加固（libjiagu/libDexHelper/libtup 等特征）无法直接读业务代码；\n- jadx 打开后只有壳的 Application/Stub 代码，assets 有大体积加密文件；\n- 需要 smali 级分析或改写被加固的 APP；\n- 红线：仅限授权分析与自有应用安全测试。\n\n━━ 二、方法论 ━━\n\n【维度 1：加固指纹表（先判壳再选法）】\n- 360 加固：libjiagu.so/libjiugu_art.so；梆梆：libDexHelper.so/libSecShell.so；腾讯乐固：libshell.so/libtup.so + assets tosv.conf；\n- 爱加密：libexec.so/libexecmain.so；网易易盾：libnesec.so；百度：libbaiduprotect.so；娜迦：libchaosvmp/libddog.so；\n- 指纹只定起点：每家壳版本代际差异大，VMP 化版本难度陡增，实际以内存结构为准选法。\n\n【维度 2：脱壳四路（按成本递增）】\n- R1 frida 脚本 dump（首选）：FRIDA-DEXDump 思路——扫进程内存找 dex magic（64 65 78 0a 即 \"dex\\n\"）按 header size 整体 dump；so 层壳同理扫内存中的 dex 结构；\n- R2 /proc 直接读：root 下读 /proc/<pid>/maps + mem，扫 mmap 匿名区中 dex 头再提取；\n- R3 主动调用脱壳（FART 系）：壳把方法体与类结构分离存放时被动 dump 不全——用主动调用逼其加载类与方法（每个类反射触发）；\n- R4 art 层 hook：hook DexFile/OpenMemory 等构造点直接拿 dex 对象（需适配 ART 版本）；\n- 选择路径：R1 起步 → dump 不全（方法体空/类缺失）→ 升 R3。\n\n【维度 3：时机与触发面设计】\n- 时机原则：越晚越全——Application 完成后（壳解密完毕），多导航操作几步再 dump；懒加载类需主动触发：登录页/支付页/目标功能各走一遍再 dump；\n- 多次 dump 合并策略：不同时机产物求并集，按 magic+size+首 N 字节哈希去重；\n- so 层加密资产（assets 大 blob）：JNI_OnLoad 后内存中已解密形态 dump 优于静态推解密算法。\n\n【维度 4：修复与完整性四查】\n- dex 修复：dump 边界截断需拼接；header 的 file_size/map_off/checksum/signature 与实际不符时按结构重算（dexlib2/模板工具辅助）；\n- 完整性四查：① baksmali 重汇编无错 ② jadx 可读出业务类 ③ dump 出的方法与动态 hook 行为吻合 ④ 类数量与原 APK 体积量级合理；\n- 四查过才算脱壳完成；产物与原 APK 资源合并（资源来自原包 + 脱出 dex）构成可继续分析的工作包。\n\n【维度 5：VMP/抽取壳止损】\n- 方法体 VMP 化（指令转 native）：静态还原成本极高——转动态分析（Java 方法 hook 仍有效，art 转发链仍在）或 unicorn 模拟执行单函数；\n- 抽取式壳（方法体 nop 运行时回填）：FART 系主动调用，或 hook 艺术方法 invoke 时 dump 回填后内存；\n- 止损原则：投入产出评估——目标方法级证据够用时不必全量脱壳，定点 hook 拿数据即可结案。\n\n━━ 三、输出格式约定 ━━\n- 脱壳报告：壳指纹判定（证据）、采用方法与时机、产物清单（dex 文件+大小+类数）、完整性四查结果表、未恢复项与原因（VMP 部分如实标注）、后续分析路径建议（配合哪个技能继续）。",
+  "category": "coding",
+  "tags": [
+    "脱壳",
+    "加固",
+    "dump",
+    "dex"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

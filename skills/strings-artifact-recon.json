@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "strings-artifact-recon",
+  "name": "字符串资源侦察",
+  "version": "1.0.0",
+  "description": "字符串与资源情报挖掘：strings 分层提取与降噪、高价值特征正则集（网络/密钥/路径/语义线索）、资源文件分类深挖、变形还原（异或/Base64 变体/运行时生成）、五表结构化产出",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【字符串资源侦察方法论】\n\n你已装备「字符串资源侦察」技能。凡从样本的字符串与资源文件中提取高价值情报（C2、密钥、隐藏功能、后门特征）的场景，按以下方法论执行；核心模型：分类→过滤→变形还原→特征提取，只产出结构化情报不堆原始清单。\n\n━━ 一、触发场景 ━━\n- APK/so/固件的初始侦察（代码层攻击面之外的软情报）；\n- 定位 C2/更新源/统计上报地址；找硬编码密钥与配置；\n- 发现隐藏功能/后门入口（调试开关、隐藏 deeplink、特殊后缀触发）；\n- 不触发：需要代码语义的位置定位（交叉引用分析，走 binary-static-analysis）。\n\n━━ 二、方法论 ━━\n\n【维度 1：strings 分层提取】\n- 提取链：strings -n 6 起步 → 按形态分栏（ASCII 可读 / UTF-16 宽字符（strings -el，Windows 侧 PE 必备）/ 混淆二进制残段）；\n- so 层：C++ mangled 符号（_ZN 前缀）先 c++filt demangle 再入池；\n- 去噪次序：编译器与链接器噪声（GCC 版本串/glibc 路径/段名）→ 系统 API 名 → 剩余才是应用层字符串池；so 还要区分 .rodata 与 .data（后者多为运行时构造，是密钥与配置候选）。\n\n【维度 2：高价值特征正则集】\n- 网络特征：URL/域名/IP:端口/ws://wss://、socket 构造相关串；域名形态注意 DGA 特征（高熵随机子域）；\n- 密钥特征：Base64 形态（长度 4 倍数+字符集校验）、定长 hex（32/64 长度=MD5/SHA/AES key 候选）、PEM 头（-----BEGIN）、云与 API key 前缀指纹（AKIA/ghp_/sk-）；\n- 路径与文件特征：/data/data/ /sdcard/、.db .xml .so 拼接、配置文件名；\n- 语义线索：中文提示串（理解隐藏功能的最快途径）、错误消息（功能模块归属定位）、log tag（tag 与模块的对应关系）。\n\n【维度 3：资源文件分类深挖】\n- assets/ 与 res/raw/：配置（json/xml/properties 直接读）；高熵无扩展 blob（记录偏移与长度——可能是加密 dex/配置/密钥）；脚本资产（js/lua 直接读逻辑层）；\n- res/xml：network_security_config（信任用户证书与否=抓包难度预判）、file_paths（provider 暴露目录）、backup 规则；\n- res/values/strings.xml：全部 UI 文案=功能全景图（声明功能 vs 实际文案比对，发现隐藏功能）；多语言目录 diff 可定位版本间新增功能；\n- 隐蔽载体检测：图片尾部附加数据（binwalk 或文件声明长度 vs 实际长度差）、zip 注释段、png tEXt 块、异常体积的字体/音频。\n\n【维度 4：变形与混淆还原】\n- 单字节异或：频率分析（高频同值字节与空格异或特征）推 key，批量试解验证可读性；\n- Base64 变体：字母表替换（+/ 换 -_ 或自定义表）、无填充、UTF-16 包装后 base64；\n- 运行时生成字符串：静态池为空但动态行为有 URL → frida 内存扫描 dump / 断常量解密函数后批量解密（对每个加密串的解密调用点批量执行）；\n- 分段拼接型：字符串被切成数组常量运行时 join——数组初始化处重组。\n\n【维度 5：五表结构化产出】\n- 网络资产表：URL/域名/IP | 端口 | 上下文 | 出现位置（文件+偏移）；\n- 密钥候选表：值 | 类型猜测 | 位置 | 用途推测；\n- 隐藏功能表：线索 | 归属模块 | 触发方式推测；\n- 异常资源表：文件 | 熵值/异常点 | 推测；\n- 待动态验证项：静态拿不准的，逐项给 hook 方案（在哪个点 dump/断哪里）；\n- 每项情报标来源与置信度，供复核与证据链回溯。\n\n━━ 三、输出格式约定 ━━\n- 输出五表结构（如维度 5）；结尾给路径建议：C2 已找到 → protocol-re-craft 跟进协议；密钥候选 → crypto-const-recognize 验证；隐藏功能 → 动态触发验证方案。",
+  "category": "coding",
+  "tags": [
+    "字符串",
+    "资源",
+    "情报",
+    "C2",
+    "strings"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "all"
+}

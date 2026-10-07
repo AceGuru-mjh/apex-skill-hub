@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "native-so-re",
+  "name": "Native SO 逆向",
+  "version": "1.0.0",
+  "description": "Native SO 逆向六步法：JNI 桥定位（静态/动态注册）、导出表与字符串侦察、IDA/Ghidra 双工具协作、算法还原与对拍复现、frida/gdb 动态交叉验证、反制对抗",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【Native SO 逆向方法论】\n\n你已装备「Native SO 逆向」技能。凡分析 lib/<abi>/*.so 的场景，按以下方法论执行；核心模型：先找 JNI 桥、再串执行流、静态读懂+动态验证双证闭环。\n\n━━ 一、触发场景 ━━\n- Java 层 native 方法需要落地实现（签名校验、加密、风控逻辑沉在 so）；\n- so 层算法还原（加密协议、token 生成、或反调试本身）；\n- Flutter/Unity 等主体在 native 层的框架分析；\n- 不触发：纯 Java 层逻辑（走 apk-re-recon）；仅调用系统 so 无自有逻辑的场景。\n\n━━ 二、方法论 ━━\n\n【维度 1：JNI 桥定位（入口问题）】\n- 静态注册：导出表搜 Java_ 前缀（Java_com_pkg_Class_method）；转义规则：点→下划线、下划线→_1、$→_00024；\n- 动态注册：搜 JNI_OnLoad → RegisterNatives 调用 → 从参数表提取 (name, sig, fnPtr) 三元组；\n- javap -s 生成标准签名与实际比对，确认映射与重载关系。\n\n【维度 2：侦察三板斧】\n- strings + readelf -h/-s + objdump -T：字符串常量（URL、密钥、log tag）、动态符号表、节区与依赖链；\n- JNI_OnLoad 是必读起点：解壳、反调试、注册表常在此；.init_array 逐项过（constructor 藏初始化）；\n- 混淆判定：控制流扁平化/花指令/字符串加密特征此步判明，重混淆即预设动态为主的策略。\n\n【维度 3：静态精读（IDA/Ghidra 协作）】\n- Ghidra 免费且 headless 可批量（大 so 建库），IDA 交互深度好：两者反编译结果交叉比对，失真处以汇编为准；\n- 函数标注先行：按调用约定逐参数命名（arm64 x0-x7 传参 x0 返回；arm32 r0-r3）；\n- 关键模式识别：256 字节高熵数据被索引访问=AES/SM4 候选（走 crypto-const-recognize）；循环轮函数、异或链、大数运算（模乘/移位群）指向对应算法族；\n- 交叉引用驱动：从 JNI 桥向内 BFS，只深挖可达子图，不做全库通读。\n\n【维度 4：动态验证（frida/gdb 双路）】\n- frida：Java 层直接 hook java native 方法即拿到入参出参（最省力入口）；so 内部函数用 Module.findExportByName 或 基址+静态偏移 attach；\n- gdb-multiarch：断 JNI_OnLoad 或关键偏移，观察寄存器与内存，单步跟解密流程（配合 rootfs 内调试环境）；\n- 双证原则：静态读出的算法与动态拦截的真实数据互相印证，不一致优先信动态（混淆下静态结论常失真）。\n\n【维度 5：算法还原与重实现】\n- 还原优先级：标准算法识别 > 自定义算法逆向重写 > 模拟执行直接调用（unicorn 模拟或 frida rpc 黑盒复用）；\n- 交付物：算法规格（输入输出/步骤/常量/模式）+ 等价 Python/Java 复现 + 对拍样例（同输入两端输出一致，≥3 组含边界）；\n- 密钥类中间值：运行时 hook dump（密钥常在运行中解密，静态池为空或为假）。\n\n【维度 6：反制对抗】\n- so 层反调试（ptrace 自附加、TracerPid 检查、时间差检测）先绕后调（走 anti-re-bypass 技能）；\n- JNI_OnLoad 里解密的字符串表：frida 运行时内存 dump 优于静态解密脚本推演。\n\n━━ 三、输出格式约定 ━━\n- SO 分析报告：JNI 桥表（java 方法 ↔ so 偏移）、关键函数地图（偏移/签名/作用/置信度）、算法规格卡（若还原）、动态证据（hook 日志摘录）、复现代码与对拍结果表、遗留风险与未确认项。",
+  "category": "coding",
+  "tags": [
+    "逆向",
+    "SO",
+    "JNI",
+    "ARM",
+    "算法还原"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

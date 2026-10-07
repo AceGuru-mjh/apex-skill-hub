@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "smali-craft",
+  "name": "Smali 改写工艺",
+  "version": "1.0.0",
+  "description": "Smali 读写工艺：类型与寄存器心法、jadx 与 smali 双视图交叉验证、四类高频改写模式、定位-改写-回编译-重签四步闭环、指令级坑清单与回滚交付",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【Smali 改写工艺方法论】\n\n你已装备「Smali 改写工艺」技能。凡阅读或改写 smali/dex 字节码的场景，按以下方法论执行；核心模型：jadx 读懂意图、smali 精准落刀、回编译-重签闭环验证。\n\n━━ 一、触发场景 ━━\n- jadx 反编译失败或失真（控制流异常、字符串动态解密），必须读 smali；\n- 修改方法逻辑：去签名校验、去 root 检测、改常量返回、插桩日志；\n- jadx 侧改不了的场景（寄存器级操作、注解、资源 id 硬编码改写）；\n- 不触发：能走正规源码工程的修改；纯观察类需求交给 frida（动态不改文件）。\n\n━━ 二、方法论 ━━\n\n【维度 1：双视图交叉】\n- 永远 jadx（可读 Java）+ smali（baksmali 产物）同时开：jadx 给语义，smali 给可改写事实；\n- jadx 失真信号：空方法体、throw null、巨型 switch 跳转表——此时以 smali 为准逐指令核对；\n- 文件定位：com.a.b.c → smali/com/a/b/c.smali；内部类 c$d.smali；多 dex 按 classes(N).dex 对应目录查。\n\n【维度 2：语法心法（最小可用集）】\n- 类型：V=void Z=boolean I=J(int/long) D=double [ =数组 L...;=对象全限定；\n- 寄存器：.registers/.locals 总数；pN=参数槽（实例方法 p0=this），vN=局部槽；invoke 系列参数顺序=寄存器顺序；\n- 指令族速查：const/4 const/16 const-wide（常量）、iget/iput sget/sput（成员读写）、invoke-virtual/direct/static/range（调用）、move move-object move-result（传递与收参）、new-instance new-array（构造）、goto if-eqz if-nez（分支）、return return-object（返回）；\n- long/double 占用两个寄存器（const-wide v0 用 v0+v1）；改写前数清寄存器占用，扩槽有 vN 全体后移风险——优先复用方法尾部空寄存器。\n\n【维度 3：四类高频改写模式】\n- 返回值伪造：定位返回 Z 的校验方法 → 方法体整体替换为 const/4 v0, 0x1 + return v0；\n- 调用点覆盖：检测结果 move-result 后插入 const v0, 0x1 覆盖（先确认 v0 后续无他用）；\n- 插桩日志：方法入口插 invoke-static Log.e——先 const-string 建 tag，检查 .locals 余量再扩；\n- 常量改写：const/16 数值直改；资源 id 硬编码需对照 apktool 的 public.xml 值，勿手改 id 引用。\n\n【维度 4：改写-回编译-重签闭环】\n- 闭环四步：改 smali → apktool b → zipalign → apksigner 重签（debug key 先验流程）；\n- 失败三查：资源报错（保护 public.xml 原样，勿手动改 id）、smali 语法错（按报错行号回读上下文）、multidex 顺序（保持原 dex 分布不搬方法）；\n- 验证：安装 → logcat 过滤插桩 TAG → 触发原路径确认行为按预期变化。\n\n【维度 5：坑清单】\n- try/catch 改写后必须核对 .catch 范围行号覆盖；invoke-static 与 invoke-virtual 混用是最常见崩溃源；\n- 静态方法无 this，pN 从 0 起算；混淆单字母类同名多——每次落刀前核对完整类路径防串文件；\n- return-void 方法里不能有 move-result 残留；寄存器改写影响 live 区间（改后相邻指令寄存器冲突）。\n\n━━ 三、输出格式约定 ━━\n- 改写交付四件套：改写点表（文件#方法#行 | 原指令 | 新指令 | 目的）、回编译日志摘要、重签命令、验证步骤（触发路径+预期 logcat）。\n- 每个改写点附回滚方式（原始 smali 片段备份或补丁前文件留存位置）。",
+  "category": "coding",
+  "tags": [
+    "Smali",
+    "改写",
+    "dex",
+    "回编译",
+    "重打包"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

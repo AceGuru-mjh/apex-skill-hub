@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "patch-nop-craft",
+  "name": "补丁改写工艺",
+  "version": "1.0.0",
+  "description": "二进制与 DEX 补丁工艺：补丁点选择决策（配置>调用点>分支>函数体四级穷举）、smali 与 ARM 两层落刀指令模板、副作用评估清单、重打包重签与回归验证闭环交付",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【补丁改写工艺方法论】\n\n你已装备「补丁改写工艺」技能。凡通过直接修改字节码/机器码达成行为改变（去校验/解锁功能/改常量/绕检测）的场景，按以下方法论执行；核心模型：最小改动原则——落刀前穷举替代方案，落刀时改最短路径，落刀后闭环验证。\n\n━━ 一、触发场景 ━━\n- 去 license/签名/root/调试检测（与 anti-re-bypass 配合定位后落刀）；\n- 修改常量与流程（改返回值、跳过分支、解锁隐藏功能）；\n- 静态持久插桩（关键点常驻日志——与 frida 分工：frida 动态临时，补丁静态持久）；\n- 不触发：纯观察需求（frida 不改文件优先）；有官方开关/配置能改变行为时不打补丁。\n\n━━ 二、方法论 ━━\n\n【维度 1：补丁点选择决策（落刀前穷举）】\n- 优先级排序：配置开关（零侵入）> 单调用点 NOP（改一处）> 分支反转（改一条跳转）> 函数体替换（改方法体）> 结构改造（最后手段）；\n- 溯源优先：与其 NOP 十个调用点，不如改一个公共汇聚函数的返回值（各检测最终都调 isXxx() 类函数——回溯调用链找汇聚点）；\n- 落刀点三标准：指令边界对齐、非热路径（性能无感）、远离 try/catch 边界（异常表重排风险）。\n\n【维度 2：DEX/Smali 层补丁模板】\n- 返回值伪造：Z → const/4 v0, 0x1 + return v0；宽类型用 const-wide；对象 → const/4 v0, 0x0 + return-object v0；\n- 分支反转：if-eqz ↔ if-nez 互换；或在检测结果 move-result 后插 const 覆盖（先确认寄存器活区间）；\n- 调用点 NOP：invoke-* 替换为等宽 nop 序列（注意 invoke 指令宽度对齐，不破坏后续偏移）；\n- 工作流：baksmali 定位 → 改 smali → smali 回编译 → apktool b 合包 → zipalign → apksigner 重签（细节与坑走 smali-craft 技能）。\n\n【维度 3：ARM/native 层补丁模板】\n- 跳转改写：条件跳转（CBZ/CBNZ/B.cond）反转或改 B 无条件跳过目标块；调用点 NOP：ARM4 字节 00 00 A0 E1；Thumb 00 BF（注意指令集状态：函数入口 T 标志/BLX 切换点）；\n- 返回值伪造：函数入口 MOV X0, #1 + RET（arm64）/ MOV R0, #1 + BX LR（arm）——适合校验类小函数整函数改写；\n- 等长铁律：补丁字节数必须与原指令等长——跳转表/函数指针表全是相对偏移，长度改变=全表重算灾难；复杂补丁用 Keystone 汇编重编码，hex 编辑器只做等长替换；\n- so 改后直接覆盖 APK lib/<abi>/ 内文件重打包。\n\n【维度 4：副作用评估清单（改前必过）】\n- 控制流副作用：NOP 掉的调用是否兼带初始化职责（校验函数里顺手初始化密钥表是经典陷阱——patch 后功能整体失效）；公共函数多调用方全被影响；\n- 完整性副作用：Java 层补了 so 层还校验（双层检测）；文件哈希自校验（改后触发第二层防护）；\n- 结构副作用：直接改 dex 二进制必须重算 header 三件套（checksum/signature/file_size）；apktool b 自动处理；ELF 无内建校验但 APP 可自校验 so（改前先确认有无）。\n\n【维度 5：闭环验证四步与留档】\n- 四步：改写点表先行（哪个文件哪个函数哪条指令）→ 重编译/重打包日志无错 → 目标行为验证（预期变化发生）→ 回归验证（登录/支付/核心路径走查无损坏）；\n- 留档：原文件备份 + 二进制 diff（bsdiff 产出补丁文件）+ 补丁说明（可复现步骤与环境），支持回滚与审计。\n\n━━ 三、输出格式约定 ━━\n- 补丁交付：补丁点表（文件#函数#偏移 | 原指令 | 新指令 | 目的 | 副作用评估）、重签命令、验证记录（目标变化+回归结果）、回滚方式（备份位置+恢复命令）。",
+  "category": "coding",
+  "tags": [
+    "补丁",
+    "NOP",
+    "重打包",
+    "重签",
+    "patch"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

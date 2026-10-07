@@ -1,0 +1,39 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "protocol-re-craft",
+  "name": "协议逆向工艺",
+  "version": "1.0.0",
+  "description": "私有协议逆向五步法：抓包面部署与全量采样、流量特征画像、帧结构逐层剥离（帧头字段校验）、加密层定位还原、重放三关验证与协议规格化交付",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【协议逆向工艺方法论】\n\n你已装备「协议逆向工艺」技能。凡还原 APP 私有网络协议（非标准明文 API）的场景，按以下方法论执行；核心模型：先拿全量样本，自顶向下逐层剥离「传输层→帧结构→字段语义→加密层→业务语义」。\n\n━━ 一、触发场景 ━━\n- APP 使用私有 TCP/UDP 协议或二进制化 HTTP 体，需要理解通信格式；\n- 需要脱离 APP 与服务端交互（自动化、兼容客户端、协议研究）；\n- 加密流量需要定位客户端加解密位置还原明文；\n- 不触发：明文 HTTPS REST API（标准抓包即得）；纯服务端逻辑分析。\n\n━━ 二、方法论 ━━\n\n【维度 1：抓包面部署（全量样本是第一优先）】\n- HTTPS 标准接口：mitmproxy 配 CA 证书（Android 7+ 用户证书不被信任——需 Magisk 系统证书模块将证书装入系统区，或目标 minSdk 低于 24）；SSL pinning 场景先跑通用 unpinning 脚本；\n- 私有 TCP/UDP：tcpdump -s 0 全量落盘 + Wireshark 分析（应用数据走 Follow Stream 逐条比对）；\n- 样本工程化：构造已知输入（注册新号、发送已知内容消息），让密文可预期；同操作不同时间多次采样，用于分离恒定段与变化段。\n\n【维度 2：流量特征画像】\n- 基础画像：端口/传输协议（TCP/UDP/QUIC）、连接模式（长连心跳/短连）、包大小分布、收发频率与方向；\n- 密文形态粗分：明文可读 / base64-hex 外壳 / 纯二进制；恒定前缀（magic/消息 id 候选）与恒定尾缀（校验候选）；\n- 对比法：同操作不同时间 → 变化字段=时间戳/nonce/序列号；不同操作同账号 → 恒定段=会话标识。\n\n【维度 3：帧结构剥离（自顶向下）】\n- 通用帧假设先行：magic(2-4B) + version(1B) + cmd(1-2B) + seq(4B) + len(2-4B) + body + checksum(2-4B)，按此对齐再修正；\n- 字段推断：固定偏移规律变化值=时间戳/计数器；递增 4B=seq；len 字段与实际包长相关性验证（对齐样本回归）；末尾 2/4B 随 body 变 → 标准 CRC16/32 直接算对即确认，对不上再考虑自定义校验（累加和/异或和）；\n- 内层 body：解密后常见 JSON 或 protobuf（0x08/0x12/0x1a 变长字段头特征）→ protoc --decode_raw 反推字段号，再按业务语义命名。\n\n【维度 4：加密层定位与还原】\n- 加密必在客户端，定位三板斧：jadx 搜 Cipher/SecretKeySpec/AES/GCM/IvParameterSpec；frida hook javax.crypto.Cipher.doFinal 与 SecretKeySpec 构造直接拿明文密钥参数（最省力）；so 层加密走 native-so-re 技能；\n- 流量特征反推：密文长=明文 16 倍数+16 → CBC/ECB+PKCS7；12B nonce+16B tag 结构 → GCM；密文明文等长 → CTR/流式；\n- 密钥来源分类处理：硬编码（直接提取）/ 派生（设备 id+盐 → hook 中间值）/ 首包协商（先还原握手层）/ 服务端下发（先还原外层解密）；\n- 算法本体识别与复现走 crypto-const-recognize 技能。\n\n【维度 5：重放验证与 SDK 化交付】\n- 重放三关：校验和重算正确、时间戳/seq 更新有效、会话 token 仍被接受——三关全过才叫协议还原完成；\n- 半 SDK 化：frida rpc 调 APP 内部签名/加密函数（黑盒复用最稳）；全 SDK 化：纯语言重实现协议栈，与真实 APP 流量对拍验证；\n- 最终交付物：协议规格文档（字段表：偏移/长度/类型/语义/来源），可直接据此写解析器。\n\n━━ 三、输出格式约定 ━━\n- 协议规格卡：分层结构图（传输层→帧→字段→body）、字段表、加密规格（算法/模式/key 来源/IV 规则）、重放验证记录（请求-响应对拍）；\n- 复现代码：加解密函数 + 帧构造/解析器 + 最小可运行样例（含一组真实对拍数据）。",
+  "category": "coding",
+  "tags": [
+    "协议逆向",
+    "抓包",
+    "mitmproxy",
+    "二进制协议"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

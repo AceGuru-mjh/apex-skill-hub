@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "anti-re-bypass",
+  "name": "反检测对抗",
+  "version": "1.0.0",
+  "description": "反调试/反 Frida/反 root 检测对抗体系：检测面全景清单、绕过四层级（篡改结果/环境伪装/源级修补/时机规避）、组合拳设计与定位三板斧、不可绕情形的止损与红线",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【反检测对抗方法论】\n\n你已装备「反检测对抗」技能。凡目标 APP 存在反调试/反 Frida/反 root 检测导致无法正常分析的场景，按以下方法论执行；核心模型：先枚举检测面，再按「篡改结果＞环境伪装＞源级修补＞错开时机」优先级逐层瓦解。\n\n━━ 一、触发场景 ━━\n- 一 attach frida 或一开调试器目标即闪退、功能异常；\n- root 环境下 APP 拒绝运行（银行/游戏/风控类常见）；\n- 模拟器检测、签名校验、Xposed 检测导致分析受阻；\n- 红线：仅限自有 APP 安全测试、授权渗透、CTF 场景使用本技能。\n\n━━ 二、方法论 ━━\n\n【维度 1：检测面全景（先枚举再对抗）】\n- 反调试：ptrace(TRACEME) 自附加失败即退出；Debug.isDebuggerConnected()；/proc/self/status 的 TracerPid 非零；fork 双进程互 ptrace；\n- 反 Frida：/proc/*/maps 扫 frida-agent 特征（gum-js-loop、frida-gadget 字样）；27042 端口探测；线程名扫描（gmain/gdbus）；inline hook 后函数头字节比对；\n- 反 root：su 路径遍历（常见 20+ 路径）、which su、Build.TAGS=test-keys、/system 可写、Magisk 特征（magisk.db/属性）、Busybox、Xposed 类加载试探；\n- 环境检测：模拟器特征（qemu pipe、传感器全零、电池常满、IMEI 全 0）；\n\n【维度 2：绕过策略四级优先】\n- L1 篡改检测结果（首选）：Java 层 hook 检测函数改返回值；native 层 Interceptor 改 retval；文件型检测（读 TracerPid/maps）hook open/fopen 重定向到伪造内容；\n- L2 环境伪装：Zygisk+Shamiko 整体隐藏 root 痕迹；mount --bind 空文件覆盖检测路径；frida 改名重编译（gadget 模式或编译期改名）；\n- L3 源级修补：定位检测代码 smali/so 直接补丁（走 smali-craft / patch-nop-craft）——检测点分散且高频触发时用；\n- L4 时机规避：检测在启动早期 → spawn 模式在检测前完成 hook；或 gadget 注入在更早时机接管；\n- 组合原则：先 L1 逐点试，单点绕不掉升级 L2/L3；多点串行检测找最早的公共源头一击瓦解。\n\n【维度 3：定位检测点三板斧】\n- 静态检索：jadx/so strings 搜 isDebuggerConnected/TracerPid/test-keys/frida/27042 等关键词 → 交叉引用定位检测函数；\n- 动态回溯（最有效一招）：hook android.os.Process.killProcess / System.exit + 堆栈回溯——崩溃瞬间回溯直达触发点；\n- 时序二分：行为异常但不确定何时触发 → 分阶段 logcat 插桩缩小检测窗口。\n\n【维度 4：典型组合拳】\n- 场景「attach 即退」：killProcess 回溯定位（多为 native 检测）→ maps 扫描型 → hook open/fopen 拦截该路径读取 → 或改 frida 特征名；\n- 场景「root 弹窗」：弹窗文案反查调用链上溯检测函数 → L1 改返回值 + L2 Shamiko 双保险；\n- 场景「Magisk 检测」：Zygisk 隐藏 + hook Build.TAGS 与 su 路径遍历兜底；\n- 场景「启动即检」：spawn -f 冷启动立即挂 hook，抢在 JNI_OnLoad 检测之前。\n\n【维度 5：不可绕与止损】\n- 服务端风控（云端行为校验/设备指纹上送比对）本地绕不掉——分析目标转协议层（走 protocol-re-craft）；\n- TEE/硬件级（key attestation 绑定密钥操作）只能绕 UI 判定，密钥操作本身绕不掉——如实报告局限；\n- 每次对抗记录：检测类型→位置→绕法→验证证据，形成该 APP 的对抗地图供后续复用。\n\n━━ 三、输出格式约定 ━━\n- 对抗报告：检测面清单（类型/位置/触发现象）、绕过方案（层级/手段/hook 脚本或补丁位置）、验证结果（功能恢复正常的证据）、未解决项与原因（服务端/TEE 类如实标注）。",
+  "category": "coding",
+  "tags": [
+    "反调试",
+    "反root",
+    "Frida检测",
+    "绕过",
+    "对抗"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

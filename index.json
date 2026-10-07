@@ -1,8 +1,8 @@
 {
   "schema": "apex-skill-hub-v1",
   "name": "Apex Skill Hub",
-  "description": "Apex Agent official skill repository — 117 curated professional skills across 24 domains (v3: +50 coding & complex-task skills — architecture, language mastery, DevOps/observability, execution & collaboration). Install on demand from the in-app Market.",
-  "count": 117,
+  "description": "Apex Agent official skill repository — 132 curated professional skills across 24 domains (v3.1: +15 reverse-engineering skills — APK recon, smali, native SO, Frida, anti-re bypass, protocol RE, crypto recognition, unpacking, binary analysis, malware triage; v3: +50 coding & complex-task skills). Install on demand from the in-app Market.",
+  "count": 132,
   "skills": [
     {
       "id": "ab-test-verdict",
@@ -88,6 +88,23 @@
       "file": "skills/ai-tools-playbook.json"
     },
     {
+      "id": "anti-re-bypass",
+      "name": "反检测对抗",
+      "version": "1.0.0",
+      "description": "反调试/反 Frida/反 root 检测对抗体系：检测面全景清单、绕过四层级（篡改结果/环境伪装/源级修补/时机规避）、组合拳设计与定位三板斧、不可绕情形的止损与红线",
+      "category": "coding",
+      "tags": [
+        "反调试",
+        "反root",
+        "Frida检测",
+        "绕过",
+        "对抗"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/anti-re-bypass.json"
+    },
+    {
       "id": "api-contract-design",
       "name": "API 契约设计",
       "version": "1.0.0",
@@ -121,6 +138,23 @@
       "file": "skills/api-versioning-lifecycle.json"
     },
     {
+      "id": "apk-re-recon",
+      "name": "APK 逆向侦察",
+      "version": "1.0.0",
+      "description": "APK 侦察六步法：指纹与加固判定、解包资源清点、Manifest 攻击面测绘、入口定位、混淆画像、假设驱动重点函数清单，把陌生 APK 变成结构化情报再深入",
+      "category": "coding",
+      "tags": [
+        "逆向",
+        "APK",
+        "侦察",
+        "recon",
+        "加固"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/apk-re-recon.json"
+    },
+    {
       "id": "bash-safe-scripting",
       "name": "Shell 安全脚本",
       "version": "1.0.0",
@@ -152,6 +186,23 @@
       "scope": "agent",
       "author": "Apex",
       "file": "skills/behavioral-interview-star.json"
+    },
+    {
+      "id": "binary-static-analysis",
+      "name": "二进制静态分析",
+      "version": "1.0.0",
+      "description": "通用二进制静态分析五步法：格式与防护识别定边界、入口集与调用图建骨架、函数级三斧（交叉引用/数据流/模式匹配填语义）、混淆对抗阅读策略、置信度分级与验证计划",
+      "category": "coding",
+      "tags": [
+        "静态分析",
+        "ELF",
+        "固件",
+        "逆向",
+        "IDA"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/binary-static-analysis.json"
     },
     {
       "id": "brainstorm-partner",
@@ -447,6 +498,23 @@
       "file": "skills/concurrency-model-selection.json"
     },
     {
+      "id": "crypto-const-recognize",
+      "name": "加密常量识别",
+      "version": "1.0.0",
+      "description": "加密算法识别法：魔数常量指纹库速查（AES/DES/RC4/MD5/SHA/SM 系列/CRC/TEA）、S 盒与轮结构特征判定、密钥来源还原、自研变形剥离与魔改 diff、对拍验证闭环",
+      "category": "coding",
+      "tags": [
+        "加密识别",
+        "AES",
+        "国密",
+        "算法还原",
+        "crypto"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/crypto-const-recognize.json"
+    },
+    {
       "id": "css-layout-mastery",
       "name": "CSS 布局精通",
       "version": "1.0.0",
@@ -595,6 +663,22 @@
       "file": "skills/docx-toolkit.json"
     },
     {
+      "id": "dynamic-trace-analysis",
+      "name": "动态行为追踪",
+      "version": "1.0.0",
+      "description": "动态行为追踪方法论：追踪层级选型（系统调用/ART 方法/指令级宁低勿高）、触发面矩阵设计、原始日志降噪聚合三步、五维行为画像构建、无 root 与反检测场景适配",
+      "category": "coding",
+      "tags": [
+        "动态分析",
+        "trace",
+        "行为画像",
+        "strace"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/dynamic-trace-analysis.json"
+    },
+    {
       "id": "error-handling-design",
       "name": "错误处理与重试设计",
       "version": "1.0.0",
@@ -708,6 +792,22 @@
       "scope": "agent",
       "author": "Apex",
       "file": "skills/financial-statement-reader.json"
+    },
+    {
+      "id": "frida-hook-craft",
+      "name": "Frida Hook 工艺",
+      "version": "1.0.0",
+      "description": "Frida 实战工艺：hook 点选择决策树（Java/native/底层拦截分级）、Java 与 native 双层模板与细节、堆栈回溯定位调用链、崩溃三因排障、脚本工程化与输出规范",
+      "category": "coding",
+      "tags": [
+        "Frida",
+        "hook",
+        "动态分析",
+        "插桩"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/frida-hook-craft.json"
     },
     {
       "id": "frontend-design-eye",
@@ -973,6 +1073,23 @@
       "file": "skills/load-testing-design.json"
     },
     {
+      "id": "malware-triage",
+      "name": "恶意样本分诊",
+      "version": "1.0.0",
+      "description": "恶意样本分诊流程：隔离处置前置红线、静态快筛（哈希情报/权限画像/伪装特征）、动态沙箱画像、行为五型定性与家族归类、IOC 提取与三侧处置建议闭环",
+      "category": "safety",
+      "tags": [
+        "恶意样本",
+        "分诊",
+        "IOC",
+        "木马",
+        "应急响应"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/malware-triage.json"
+    },
+    {
       "id": "mcp-server-builder",
       "name": "MCP 服务器开发指南",
       "version": "1.0.0",
@@ -1069,6 +1186,23 @@
       "scope": "agent",
       "author": "Apex",
       "file": "skills/multi-step-research-synthesis.json"
+    },
+    {
+      "id": "native-so-re",
+      "name": "Native SO 逆向",
+      "version": "1.0.0",
+      "description": "Native SO 逆向六步法：JNI 桥定位（静态/动态注册）、导出表与字符串侦察、IDA/Ghidra 双工具协作、算法还原与对拍复现、frida/gdb 动态交叉验证、反制对抗",
+      "category": "coding",
+      "tags": [
+        "逆向",
+        "SO",
+        "JNI",
+        "ARM",
+        "算法还原"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/native-so-re.json"
     },
     {
       "id": "negotiation-master",
@@ -1183,6 +1317,23 @@
       "scope": "all",
       "author": "Apex",
       "file": "skills/parallel-agent-dispatcher.json"
+    },
+    {
+      "id": "patch-nop-craft",
+      "name": "补丁改写工艺",
+      "version": "1.0.0",
+      "description": "二进制与 DEX 补丁工艺：补丁点选择决策（配置>调用点>分支>函数体四级穷举）、smali 与 ARM 两层落刀指令模板、副作用评估清单、重打包重签与回归验证闭环交付",
+      "category": "coding",
+      "tags": [
+        "补丁",
+        "NOP",
+        "重打包",
+        "重签",
+        "patch"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/patch-nop-craft.json"
     },
     {
       "id": "pdf-toolkit",
@@ -1300,6 +1451,22 @@
       "file": "skills/prompt-craft-toolbox.json"
     },
     {
+      "id": "protocol-re-craft",
+      "name": "协议逆向工艺",
+      "version": "1.0.0",
+      "description": "私有协议逆向五步法：抓包面部署与全量采样、流量特征画像、帧结构逐层剥离（帧头字段校验）、加密层定位还原、重放三关验证与协议规格化交付",
+      "category": "coding",
+      "tags": [
+        "协议逆向",
+        "抓包",
+        "mitmproxy",
+        "二进制协议"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/protocol-re-craft.json"
+    },
+    {
       "id": "public-speaking",
       "name": "演讲表达训练",
       "version": "1.0.0",
@@ -1331,6 +1498,22 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/python-performance-craft.json"
+    },
+    {
+      "id": "re-report-writing",
+      "name": "逆向报告写作",
+      "version": "1.0.0",
+      "description": "逆向分析报告写作法：结论先行五段结构（执行摘要-背景-发现-复现-附录）、证据链可复现规范、置信度分级与局限诚实声明、受众分层三视图、SRC/CNVD 行业格式适配",
+      "category": "coding",
+      "tags": [
+        "报告写作",
+        "交付",
+        "漏洞提交",
+        "置信度"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/re-report-writing.json"
     },
     {
       "id": "react-artifacts-builder",
@@ -1511,6 +1694,23 @@
       "file": "skills/sli-slo-design.json"
     },
     {
+      "id": "smali-craft",
+      "name": "Smali 改写工艺",
+      "version": "1.0.0",
+      "description": "Smali 读写工艺：类型与寄存器心法、jadx 与 smali 双视图交叉验证、四类高频改写模式、定位-改写-回编译-重签四步闭环、指令级坑清单与回滚交付",
+      "category": "coding",
+      "tags": [
+        "Smali",
+        "改写",
+        "dex",
+        "回编译",
+        "重打包"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/smali-craft.json"
+    },
+    {
       "id": "sql-query-tuning",
       "name": "SQL 查询调优",
       "version": "1.0.0",
@@ -1574,6 +1774,23 @@
       "scope": "coding",
       "author": "Apex",
       "file": "skills/state-management-patterns.json"
+    },
+    {
+      "id": "strings-artifact-recon",
+      "name": "字符串资源侦察",
+      "version": "1.0.0",
+      "description": "字符串与资源情报挖掘：strings 分层提取与降噪、高价值特征正则集（网络/密钥/路径/语义线索）、资源文件分类深挖、变形还原（异或/Base64 变体/运行时生成）、五表结构化产出",
+      "category": "coding",
+      "tags": [
+        "字符串",
+        "资源",
+        "情报",
+        "C2",
+        "strings"
+      ],
+      "scope": "all",
+      "author": "Apex",
+      "file": "skills/strings-artifact-recon.json"
     },
     {
       "id": "structured-logging-craft",
@@ -1772,6 +1989,22 @@
       "file": "skills/unit-economics-lab.json"
     },
     {
+      "id": "unpack-dex-recovery",
+      "name": "加固脱壳恢复",
+      "version": "1.0.0",
+      "description": "Android 加固脱壳方法论：主流加固指纹表、脱壳四路（frida 内存 dump/proc 扫描/FART 主动调用/art 层 hook）、时机与触发面设计、dex 修复与完整性四查、VMP 止损策略",
+      "category": "coding",
+      "tags": [
+        "脱壳",
+        "加固",
+        "dump",
+        "dex"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/unpack-dex-recovery.json"
+    },
+    {
       "id": "verification-before-done",
       "name": "完工验证官",
       "version": "1.0.0",
@@ -1820,6 +2053,22 @@
       "scope": "agent",
       "author": "Apex",
       "file": "skills/visual-canvas-designer.json"
+    },
+    {
+      "id": "vuln-pattern-audit",
+      "name": "漏洞模式审计",
+      "version": "1.0.0",
+      "description": "移动端漏洞模式审计：模式库驱动（组件暴露/WebView/存储/IPC/加密误用/注入六类）、污点路径法确证（源到汇消毒判定）、利用条件推演分级、MobSF/semgrep 机械化辅助",
+      "category": "coding",
+      "tags": [
+        "漏洞审计",
+        "污点分析",
+        "MobSF",
+        "安全审计"
+      ],
+      "scope": "coding",
+      "author": "Apex",
+      "file": "skills/vuln-pattern-audit.json"
     },
     {
       "id": "web-accessibility-audit",
@@ -1921,6 +2170,11 @@
     }
   ],
   "changelog": [
+    {
+      "version": "3.1.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容：新增 15 个原创逆向方法论技能（此前逆向领域为空白），三段式结构 + 密度自检达标——APK 侦察/Smali 改写/Native SO 逆向/Frida Hook 工艺/反检测对抗/协议逆向/加密常量识别/加固脱壳/二进制静态分析/动态行为追踪/漏洞模式审计/恶意样本分诊/字符串资源侦察/补丁改写工艺/逆向报告写作；总数 117→132（coding 46→60，safety 3→4）；scope 分布 coding 12 / all 3（加密常量识别、恶意样本分诊、字符串资源侦察）。技能间互相引用形成逆向工作流闭环（侦察→脱壳→so/协议→对抗→补丁→报告）。"
+    },
     {
       "version": "3.0.0",
       "date": "2026-10-04",

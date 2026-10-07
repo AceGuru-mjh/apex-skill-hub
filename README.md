@@ -1,8 +1,19 @@
 # Apex Skill Hub
 
-**Apex Agent 官方技能仓库** —— 117 个精选专业/效率型技能、14 个域（v3 新增 50 个编码与复杂任务技能），从应用内「市场 → Skills → 官方仓库」按需安装；配合宿主 v1.4.6+ 技能目录热加载，安装即生效免重启。
+**Apex Agent 官方技能仓库** —— 132 个精选专业/效率型技能、14 个域（v3.1 新增 15 个逆向工程技能，补齐逆向领域空白），从应用内「市场 → Skills → 官方仓库」按需安装；配合宿主 v1.4.6+ 技能目录热加载，安装即生效免重启。
 
 [English](#english) below.
+
+## v3.1 逆向工程扩容说明（2026-10）
+
+1. **新增 15 个原创逆向工程方法论技能**（此前逆向领域为空白），全部原创中文三段式结构（触发场景 → 方法论维度 → 输出格式约定，密度双口径自检达标），与逆向工作流闭环对应：
+   - **入口侦察**（4）：APK 逆向侦察（指纹/加固判定/攻击面测绘）、字符串资源侦察（特征正则集/变形还原）、加固脱壳恢复（脱壳四路/修复四查）、恶意样本分诊（安全域）；
+   - **核心分析**（5）：Smali 改写工艺、Native SO 逆向（JNI 桥/算法还原）、Frida Hook 工艺、二进制静态分析、动态行为追踪；
+   - **专项深化**（4）：反检测对抗（检测面全景/绕过四级）、协议逆向工艺、加密常量识别（魔数指纹库/国密）、漏洞模式审计；
+   - **产出交付**（2）：补丁改写工艺（smali/ARM 两层落刀）、逆向报告写作（结论先行/证据链规范）；
+2. 技能间互相引用形成工作流闭环：侦察 → 脱壳 → so/协议分析 → 对抗反检测 → 补丁验证 → 报告交付；
+3. 总数 117 → **132**（coding 46→60，safety 3→4）；新技能 scope 以 coding 为主，恶意样本分诊等 3 个为 all；
+4. 配套 apex-mcp-hub v2.3.0 的 reverse-engineering 类（15 台 MCP）——技能教「怎么想」，MCP 给「用什么工具」。
 
 ## v3 扩容说明（2026-10）
 
@@ -34,26 +45,26 @@ scripts/validate.py        # 注册表校验器（CI 用，零依赖）
 .github/workflows/validate.yml
 ```
 
-## 技能矩阵（117 个 · 14 域）
+## 技能矩阵（132 个 · 14 域）
 
 | 域 | 数量 | 代表技能 |
 |---|---|---|
-| coding 编程开发 | 46 | api-contract-design、root-cause-debugging、tdd-workflow、system-design-blueprint、typescript-type-mastery、go-concurrency-patterns、git-advanced-operations、sql-window-functions |
+| coding 编程开发 | 60 | api-contract-design、root-cause-debugging、tdd-workflow、system-design-blueprint、apk-re-recon、native-so-re、frida-hook-craft、protocol-re-craft、unpack-dex-recovery、crypto-const-recognize、vuln-pattern-audit |
 | productivity 效率工具 | 15 | time-gtd、verification-before-done、execution-planner、technical-spec-writing、agent-orchestration-playbook、pdf/docx/xlsx/pptx-toolkit |
 | tech 数码科技 | 15 | kubernetes-troubleshooting、docker-craft-containerization、terraform-iac-craft、sre-golden-signals、gradle-build-tuning、linux-cli-mastery、prompt-craft-toolbox |
 | career 职场进阶 | 9 | resume-crafter、interview-coach、behavioral-interview-star、okr-alignment-craft |
 | data 数据分析 | 8 | ab-test-verdict、cohort-deep-dive、pandas-data-wrangling、sql-window-functions、metrics-tree-design |
 | business 商业思维 | 6 | business-model-craft、unit-economics-lab、pricing-strategy-lab、financial-statement-reader |
 | language 语言学习 | 4 | translation-master、business-english-polish、academic-english-editor |
-| writing 专业写作 | 3 | writing-coach、brand-voice-guardian、video-script-writer |
-| safety 安全应急 | 3 | privacy-guard、phishing-defense-shield、security-hardening-review |
+| safety 安全应急 | 4 | privacy-guard、phishing-defense-shield、security-hardening-review、malware-triage |
 | education 学习方法 | 2 | exam-tutor、study-methods |
 | communication 沟通表达 | 2 | public-speaking、internal-comms-writer |
 | knowledge 百科知识 | 2 | legal-consult、multi-step-research-synthesis |
 | finance 财务理财 | 1 | finance-literacy |
+| writing 专业写作 | 3 | writing-coach、brand-voice-guardian、video-script-writer |
 | creative 创意写作 | 1 | visual-canvas-designer |
 
-`scope` 分布：`coding` 67 / `agent` 35 / `all` 15 —— 市场按 Agent / Coding 工位分级过滤。
+`scope` 分布：`coding` 79 / `agent` 35 / `all` 18 —— 市场按 Agent / Coding 工位分级过滤。
 
 
 ## index.json 格式
@@ -61,7 +72,7 @@ scripts/validate.py        # 注册表校验器（CI 用，零依赖）
 ```json
 {
   "schema": "apex-skill-hub-v1",
-  "count": 117,
+  "count": 132,
   "skills": [
     {
       "id": "root-cause-debugging",
@@ -119,7 +130,7 @@ scripts/validate.py        # 注册表校验器（CI 用，零依赖）
 
 # English
 
-**Official skill repository for Apex Agent** — 117 curated professional skills across 14 domains (v3: +50 coding & complex-task skills — architecture, language mastery, DevOps/observability, execution & collaboration), installed on demand from the in-app Market. Works with host v1.4.6+ hot-reload: install takes effect without restart.
+**Official skill repository for Apex Agent** — 132 curated professional skills across 14 domains (v3.1: +15 original reverse-engineering skills — APK recon, smali editing, native SO analysis, Frida hooking, anti-re bypass, protocol RE, crypto constant recognition, unpacking, binary static/dynamic analysis, vulnerability pattern audit, malware triage, patching, and RE report writing; v3: +50 coding & complex-task skills), installed on demand from the in-app Market. Works with host v1.4.6+ hot-reload: install takes effect without restart. Pairs with apex-mcp-hub v2.3's `reverse-engineering` MCP category — skills teach the methodology, MCPs provide the tools.
 
 **v2 reorg (Oct 2026)**: all 45 lifestyle skills retired; 17 professional keepers recategorized into the host app's 24-domain taxonomy; 50 new skills added — renamed, rewritten in Chinese and optimized from three sources: [anthropics/skills](https://github.com/anthropics/skills) (12), [obra/superpowers](https://github.com/obra/superpowers) (MIT, 8), and the Android-Guru-Agent bundled set (30, migrated out of the APK so the market downloads them on demand).
 
