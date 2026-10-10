@@ -1,0 +1,39 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "frida-hook-craft",
+  "name": "Frida Hook 工艺",
+  "version": "1.0.0",
+  "description": "Frida 实战工艺：hook 点选择决策树（Java/native/底层拦截分级）、Java 与 native 双层模板与细节、堆栈回溯定位调用链、崩溃三因排障、脚本工程化与输出规范",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【Frida Hook 工艺方法论】\n\n你已装备「Frida Hook 工艺」技能。凡编写或调试 frida 脚本做动态分析与 hook 的场景，按以下方法论执行；核心模型：先想清楚「在哪层拦、拦到什么、怎么呈现」，再动笔写脚本。\n\n━━ 一、触发场景 ━━\n- 验证静态分析结论（某函数是否执行、参数是什么）；\n- 拦截加密/签名函数拿明文与密钥；主动调用目标函数构造测试；\n- 定位调用来源（谁在什么业务动作里调了敏感 API）；dump 运行时数据（解密后字符串、内存块）；\n- 不触发：一次性简单验证（logcat/断点够用）；需要持久化改行为（走 patch-nop-craft 补丁路线）。\n\n━━ 二、方法论 ━━\n\n【维度 1：hook 点选择决策树】\n- Java 层业务方法 → Java.use 拦截（稳定、类型安全、可主动调用，首选）；\n- 标准算法调用 → 拦底层通用点（javax.crypto.Cipher.doFinal 一处拦全部调用方）；\n- so 导出函数 → Module.getExportByName；无导出 → Process.findModuleByName().base.add(偏移) attach（偏移来自静态分析）；\n- 到底层拦一次胜过上层拦十次：文件/网络类行为拦 libc open/connect 或 Java InputStream 层。\n\n【维度 2：Java 层模板与细节】\n- Java.perform 内 Java.use(\"class\")；重载方法必须 .overload('java.lang.String', ...) 精确匹配，不确定签名先遍历 .overloads 打印；\n- 原逻辑保留：return this.method.apply(this, arguments)；构造函数 hook $init；内部类/匿名类用 包名$1 语法；\n- 主动调用：Java.choose 实例遍历 或 Java.use 后 new；参数打印逐个 JSON 化（byte[] 给十六进制+长度），避免对象 toString 黑洞；\n- hook 时机：类未加载时挂不上——Java.perform 即时 + 高频触达，或延迟/条件后挂。\n\n【维度 3：native 层模板与细节】\n- Interceptor.attach(addr, { onEnter(args){…}, onLeave(retval){…} })；arm64 args[N] 对应 x0-x7；\n- 字符串读出：ptr.readCString()/readUtf8String()；返回值改写 retval.replace(0) / retval.replace(ptr(0))；\n- 偏移注意：PIE 基址随加载变化，偏移恒取自静态文件分析；指令不对齐的 attach 位置会崩溃（先核对反汇编确认指令边界）；\n- JNIEnv 层拦 GetStringUTFChars / CallStaticObjectMethod 可观察 Java↔native 数据流。\n\n【维度 4：堆栈回溯与调用来源】\n- Java 层：Log.getStackTraceString(Java.use(\"java.lang.Exception\").$new())；\n- native 层：Thread.backtrace(this.context, Backtracer.ACCURATE).map(DebugSymbol.fromAddress)；\n- 回溯的价值：把「敏感函数被调」升级为「业务链路被调」——定位签名/风控在哪个用户动作触发。\n\n【维度 5：崩溃三因与排障】\n- 类型不匹配（找错重载签名——遍历 .overloads 打印真实签名再挂）；\n- 时机过早（类未加载 attach 无效或立刻失败——延迟挂/触发后挂）；\n- 偏移错（attach 瞬间崩=偏移或对齐问题；运行中崩=逻辑问题）；frida-server 与目标环境版本不匹配（attach 失败/退出，换版本再试）。\n\n【维度 6：脚本工程化】\n- hook 表配置化（点|目的|打印格式分列）；日志带时间戳与线程 id；高频函数限流（只打前 N 次）；\n- 防检测：脚本特征/端口会被反调试发现，对抗策略走 anti-re-bypass 技能协调。\n\n━━ 三、输出格式约定 ━━\n- hook 脚本交付：完整可运行脚本 + 用法（spawn/attach 命令行）、hook 点清单（类#方法 或 so#偏移 | 目的）、预期输出样例。\n- 复杂链路补时序图（触发→加密→上传的调用顺序与数据形态）。",
+  "category": "coding",
+  "tags": [
+    "Frida",
+    "hook",
+    "动态分析",
+    "插桩"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

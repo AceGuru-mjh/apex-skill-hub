@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "crypto-const-recognize",
+  "name": "加密常量识别",
+  "version": "1.0.0",
+  "description": "加密算法识别法：魔数常量指纹库速查（AES/DES/RC4/MD5/SHA/SM 系列/CRC/TEA）、S 盒与轮结构特征判定、密钥来源还原、自研变形剥离与魔改 diff、对拍验证闭环",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【加密常量识别方法论】\n\n你已装备「加密常量识别」技能。凡逆向中判断「这是什么加密算法」的场景，按以下方法论执行；核心模型：常量指纹优先、结构特征次之、最终以对拍验证闭环。\n\n━━ 一、触发场景 ━━\n- 静态分析遇到可疑常量表/查表运算，需判定算法家族；\n- 动态 hook 到加密调用但变换层不明；自研魔改变换需要剥离出标准部分；\n- 配合 protocol-re-craft / native-so-re 还原协议与签名算法；\n- 不触发：上层直接声明算法名的场景（Cipher.getInstance(\"AES/GCM\") 已自明）。\n\n━━ 二、方法论 ━━\n\n【维度 1：魔数常量指纹库（最高优先级）】\n- AES：S 盒首 16 字节 63 7c 77 7b f2 6b 6f c5 30 01 67 2b fe d7 ab 76；Rcon 01 02 04 08…；逆 S 盒 52 09 6a d5…；\n- DES/3DES：IP 表 58 50 42 34…、S 盒、PC1/PC2 表；\n- RC4：无表但识别 KSA 结构（256 轮 j=(j+S[i]+key[i%len])%256 交换循环）；\n- MD5：init 67452301 efcdab89 98badcfe 10325476 + 64 个 T 常量（0xd76aa478 起）；SHA1：init 五字 + c3d2e1f0；SHA256：K 表 0x428a2f98 起共 64 个；\n- CRC32：表首 00000000 77073096…；TEA/XXTEA：delta 0x9e3779b9；\n- 国密：SM4 S 盒 d6 90 e9 fe cc e1 3b b7…；SM3 IV 7380166f 4914b2b9…；SM2 曲线 p=FFFFFFFE FFFFFFFF…（sm2p256v1）；\n- Base64 变体：自定义字母表（标准 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ 被替换）。\n\n【维度 2：结构特征判定（无常量表时）】\n- 轮数：AES-128 十轮 / 192 十二轮 / 256 十四轮；DES 十六轮；SM4 三十二轮——循环计数反推规格；\n- 分组特征：16B 对齐+填充 → AES 族；8B 对齐 → DES 族；流式逐字节 → RC4/CTR；常量 \"expand 32-byte k\" → ChaCha20；\n- 大数运算（模幂/Montgomery 乘）→ RSA/SM2；点运算 double-and-add → ECC 族；\n- 魔改判定：表是标准的但轮函数改动——按「AES 魔改」处理，逐段 diff 标准流程定位改动点（常见：换 S 盒、改轮密钥混合方式、换列混淆矩阵）。\n\n【维度 3：密钥与参数来源还原】\n- 来源四类：硬编码（so/Java 常量，最常见）→ 派生（设备 id+盐，hook 拿中间值）→ 协商（首包交换，走协议层）→ 下发（服务端加密传输，先还原外层）；\n- KDF 识别：PBKDF2（迭代 count+盐参数）、HKDF（extract-expand 两段结构）；硬编码 key 常与 iv 紧邻存储；\n- 最省力路径：Java 层 hook javax.crypto.spec.SecretKeySpec 构造函数一击拿到 key；so 层 hook 密钥初始化函数或运行时 dump。\n\n【维度 4：自研变形剥离】\n- 分层假设：多数「自研加密」= 标准算法 + 前后置变换（异或层、换表、字节序翻转、base64 变体壳）；\n- 剥离顺序：密文端反向剥（先解 base64/hex 外壳 → 试异或混淆层 → 核心对标准指纹）；\n- 常量运行时生成（表加密存放）：frida 运行时 dump 表内容再比对标准表；\n- 中间值对比法：自实现与目标逐层对拍，找第一个分歧层——分歧层即魔改所在。\n\n【维度 5：对拍验证闭环与规格卡】\n- 工具链：Python（pycryptodome/gmssl）按猜测实现，同输入对拍目标输出（hook 拿到的或已知样本的）；\n- 验证要求 ≥3 组含边界（空串/超长/特殊字符）全一致才算还原完成；\n- 交付规格卡五项：算法全称（家族+模式+填充）、key/iv 来源与规格、前后置变换、魔改点（若有）、复现代码+对拍记录。\n\n━━ 三、输出格式约定 ━━\n- 识别结论必须给证据链：指纹来源（常量偏移或 hook 日志）→ 判定依据 → 置信度（高/中/低）；\n- 魔改算法附 diff 表（标准步骤 | 实际实现 | 差异影响）；对拍记录以表呈现（输入 | 目标输出 | 复现输出 | 一致?）。",
+  "category": "coding",
+  "tags": [
+    "加密识别",
+    "AES",
+    "国密",
+    "算法还原",
+    "crypto"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "all"
+}

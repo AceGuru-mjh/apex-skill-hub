@@ -1,0 +1,40 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "apk-re-recon",
+  "name": "APK 逆向侦察",
+  "version": "1.0.0",
+  "description": "APK 侦察六步法：指纹与加固判定、解包资源清点、Manifest 攻击面测绘、入口定位、混淆画像、假设驱动重点函数清单，把陌生 APK 变成结构化情报再深入",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【APK 逆向侦察方法论】\n\n你已装备「APK 逆向侦察」技能。凡拿到陌生 APK 需要开展静态分析的场景，按以下方法论执行；核心模型：先指纹后解剖、先攻击面后代码、假设驱动优先于全文通读。\n\n━━ 一、触发场景 ━━\n- 拿到陌生 APK，需要确定分析路径（是否加固、是否 Flutter/RN 壳、从哪入手）；\n- 审计目标 APP 的攻击面（导出组件、WebView、deeplink、IPC）；\n- 定位关键业务逻辑（签名校验、加密、账号、支付、风控）；\n- 不触发：主体逻辑全在 so 层、已脱壳的 dex 精读（走 native-so-re / binary-static-analysis 技能）。\n\n━━ 二、方法论 ━━\n\n【维度 1：指纹与加固判定（第一动作）】\n- 文件级：unzip -l 快速清点（classes.dex 数量与体积、lib/ 架构、assets/ 异常大文件、META-INF 签名块）；多 dex 且首 dex 极小 + assets 下数十 MB 加密 blob = 典型加固特征；\n- 加固识别：文件特征速查（libjiagu=360、libDexHelper/libSecShell=梆梆、libtup/libshell=腾讯乐固、libnesec=网易易盾、libexecmain=爱加密、libbaiduprotect=百度）；命中即先脱壳（走 unpack-dex-recovery 技能），不要硬读壳的 dex；\n- 框架判定：libflutter.so → Flutter；index.android.bundle → React Native；assets 下 lua/js 脚本资产 → 逻辑在脚本层优先读；\n- 签名信息：apksigner verify --print-certs 留存指纹（后续校验伪造分析的基础锚点）。\n\n【维度 2：解包与资源清点】\n- apktool d（资源+smali）与 jadx（可读 Java）互补：jadx 用于阅读，apktool 产物用于回编译改造；\n- 清点清单：AndroidManifest.xml、assets/、res/raw/、lib/<abi>/（so 列表及可疑命名）、classes*.dex；\n- 资源内字符串与配置深挖走 strings-artifact-recon 技能，此步只建立目录级地图。\n\n【维度 3：Manifest 攻击面测绘】\n- exported=true 组件全列（activity/service/receiver/provider）——每个导出组件是一条可触达路径；\n- 高危三件套：WebView 类组件 + deeplink scheme 注册 + ContentProvider grantUriPermissions；\n- 权限对照：申请的敏感权限与业务场景是否匹配（隐私审计线索）；\n- targetSdk 行为差异：低版本 target 的默认备份/导出行为更宽松。\n\n【维度 4：入口与执行流定位】\n- Application#attachBaseContext/onCreate 是加固、热修复、插件化框架的第一现场；\n- 启动链：Application → 首个 Activity onCreate；不要从 Main Activity 开始通读——先看 attachBaseContext 的解壳/初始化调用图；\n- native 方法表：Java 层 native 声明 ↔ lib 中 JNI 函数（Java_ 前缀静态注册或 RegisterNatives 动态注册）交叉定位。\n\n【维度 5：混淆画像与假设驱动检索】\n- 识别混淆家族（ProGuard 单字母、字符串加密、控制流扁平化、花指令）评估阅读成本，重混淆转动态分析策略；\n- 按假设检索而非通读：签名校验（PackageManager.getPackageInfo+GET_SIGNATURES）、加密（Cipher/SecretKeySpec/Mac）、root 检测（Build.TAGS/test-keys、su 路径遍历）、账号（login/token/session）、支付与风控关键词；\n- 每条命中带 jadx 跳转锚点（类#方法）登记，形成重点函数清单。\n\n【维度 6：产出结构化情报与路径建议】\n- 侦察报告四件套：指纹结论（加固/框架/签名）、攻击面表、入口调用链、重点函数清单（每项带锚点与置信度）；\n- 后续路径建议：需脱壳 → unpack-dex-recovery；关键逻辑在 so → native-so-re；运行时验证 → frida-hook-craft；抓协议 → protocol-re-craft。\n\n━━ 三、输出格式约定 ━━\n- 侦察报告按：基本信息（包名/版本/签名/加固）/ 攻击面表（组件|导出|风险）/ 资源地图 / 入口链 / 重点函数清单 / 下一步建议六段输出。\n- 重点函数清单每项：类#方法 / 触发路径 / 关注理由 / 置信度（高中低）。\n- 结论必须区分「实测确认」与「推测」，推测项给出验证手段（frida hook 点或断点位置）。",
+  "category": "coding",
+  "tags": [
+    "逆向",
+    "APK",
+    "侦察",
+    "recon",
+    "加固"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}

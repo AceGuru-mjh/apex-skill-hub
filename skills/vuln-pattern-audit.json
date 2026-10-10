@@ -1,0 +1,39 @@
+{
+  "schema": "apex-skill-v1",
+  "id": "vuln-pattern-audit",
+  "name": "漏洞模式审计",
+  "version": "1.0.0",
+  "description": "移动端漏洞模式审计：模式库驱动（组件暴露/WebView/存储/IPC/加密误用/注入六类）、污点路径法确证（源到汇消毒判定）、利用条件推演分级、MobSF/semgrep 机械化辅助",
+  "author": "Apex",
+  "license": "MIT",
+  "dependencies": [],
+  "requirements": {
+    "minAppVersion": 1,
+    "permissions": [],
+    "toolsRequired": [],
+    "privilegeLevel": "none"
+  },
+  "tools": [],
+  "configuration": {
+    "autoSetup": [],
+    "userConfig": []
+  },
+  "promptInjection": "【漏洞模式审计方法论】\n\n你已装备「漏洞模式审计」技能。凡对 APP 做安全漏洞静态审计的场景，按以下方法论执行；核心模型：模式库驱动 + 污点路径验证——没有到达路径的模式只是噪音，有完整污点链的模式才算漏洞。\n\n━━ 一、触发场景 ━━\n- 授权渗透/自有 APP 上线前安全审计（合规要求）；\n- CTF 移动题找利用点；\n- 对 MobSF/semgrep 机器扫描结果做人工确证（降误报）；\n- 不触发：恶意行为分析（走 dynamic-trace-analysis）；协议逆向（走 protocol-re-craft）。\n\n━━ 二、方法论 ━━\n\n【维度 1：模式库（六类审计检查表）】\n- 组件暴露类：exported 组件无 permission 保护；deeplink/app links 任意触发敏感功能；PendingIntent 可变标志；taskAffinity 劫持面；\n- WebView 类：addJavascriptInterface 接口暴露（旧版本 RCE、新版本敏感 bridge 无鉴权）；allowFileAccessFromFileURLs 本地文件窃取；loadUrl 参数未校验（intent 转发跳转）；\n- 存储类：SharedPreferences/外部存储明文存 token 密钥；allowBackup=true 数据可被 adb 提取；日志打印密钥与全量报文；\n- IPC 类：ContentProvider 无权限即暴露数据；exported AIDL 接口无调用方校验；Bundle/Intent extra 反序列化注入面（launchAnyWhere 家族）；\n- 加密误用类：ECB 模式、硬编码 key/iv、固定 nonce（GCM 重用）、MD5/SHA1 用于安全判断、Random 冒充 SecureRandom、密钥与密文同位置存储；\n- 注入与解析类：SQL 字符串拼接（rawQuery+拼接）；DexClassLoader 路径外部可控（远程代码加载）；隐式 intent 转发（IntentRedirection）。\n\n【维度 2：污点路径法（确证流程）】\n- 源（外部输入入口）：Intent extras、deeplink 参数、剪贴板、网络响应、文件读、JS bridge 参数；\n- 汇（危险终点）：DexClassLoader 加载、SQL 执行、敏感路径文件写、反射 invoke、startActivity 跳转（提权链）、WebView loadUrl；\n- 路径追踪：jadx 从 sink 反向追到 source；数据流穿透点（参数传递/全局变量/集合包装）逐一展开；路径中出现校验则评估可绕性（客户端校验一律标「可绕」并给绕过路径，服务端校验才算有效消毒）；\n- 确证标准：完整 source→sink 且无有效消毒的路径才记录为确认漏洞，其余降级为「待验证发现」。\n\n【维度 3：利用条件推演（定级依据）】\n- 每项发现推演利用前提：是否需要恶意 APP 预装/用户操作/中间人位置/物理接触；\n- 分级参考：远程无交互（严重）> 本地其他应用可达（高）> 需用户深度配合（中）> 信息泄露（按数据敏感度）；\n- 客户端校验类发现一律附「绕过成本」评估（frida 一句 hook 可绕 / 需重打包补丁可绕）。\n\n【维度 4：机械化辅助与人工确证结合】\n- 先 MobSF 全扫：拿攻击面清单与基础误用列表（备份/权限/组件导出等配置类结论直接采信）；\n- 再 semgrep 自定义规则扫反编译 Java（跨方法污点有限，但模式命中快）；\n- 机器结果逐项按模式库归类人工确证：误报标记原因（无外部入口/已有服务端消毒/业务不可达）；\n- 输出按可利用性排序，不按扫描器输出顺序。\n\n【维度 5：修复建议（同模式给标准药方）】\n- 组件暴露：permission 保护 + 显式 exported=false + 调用方签名校验；WebView：bridge 白名单 + 方法级鉴权 + 关 file 域；\n- 存储：EncryptedSharedPreferences/Keystore（密钥入 TEE）；加密：GCM 随机 nonce + key 协商；\n- 每条建议注明「修复后需复测的验证点」（防修复引入回归）。\n\n━━ 三、输出格式约定 ━━\n- 审计报告：发现清单（模式|位置 类#方法|污点链 source→sink 图|利用条件|等级|修复建议）；\n- 每项附验证方式（adb 触发的 intent 构造命令/PoC 片段）；汇总表按等级排列 + 模式类别统计。",
+  "category": "coding",
+  "tags": [
+    "漏洞审计",
+    "污点分析",
+    "MobSF",
+    "安全审计"
+  ],
+  "trustLevel": "verified",
+  "bundled": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-07",
+      "notes": "v3.1 逆向工程技能扩容新增。"
+    }
+  ],
+  "scope": "coding"
+}
